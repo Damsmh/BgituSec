@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using BgituSec.Domain.Entities;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace BgituSec.Api.Models.Users
@@ -12,6 +13,6 @@ namespace BgituSec.Api.Models.Users
         public string Name { get; set; }
         [Required]
         public string Password { get; set; }
-        public string? Role { get; set; }
+        public string Role { get; set; }
     }
 }

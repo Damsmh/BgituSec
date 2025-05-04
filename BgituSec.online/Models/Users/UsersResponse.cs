@@ -1,4 +1,6 @@
-﻿namespace BgituSec.Api.Models.Users
+﻿using BgituSec.Domain.Entities;
+
+namespace BgituSec.Api.Models.Users
 {
     public class UsersResponse
     {

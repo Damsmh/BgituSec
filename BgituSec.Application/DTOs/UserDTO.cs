@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using BgituSec.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace BgituSec.Application.DTOs
 {
@@ -10,6 +11,6 @@ namespace BgituSec.Application.DTOs
         [Required]
         public string Email { get; set; }
         [Required]
-        public string Role { get; set; }
+        public Roles Role { get; set; }
     }
 }

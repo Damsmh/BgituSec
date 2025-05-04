@@ -13,7 +13,7 @@ using NpgsqlTypes;
 namespace BgituSec.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250504111657_InitialCreate")]
+    [Migration("20250504222406_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
