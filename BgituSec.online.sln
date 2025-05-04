@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35818.85 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BgituSec.Api", "BgituSec.online\BgituSec.Api.csproj", "{F02965E6-FE03-44F6-A108-B5ED7EA78630}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3FD2F725-C615-465E-B1A8-537D6844902F} = {3FD2F725-C615-465E-B1A8-537D6844902F}
+		{FB2D0E89-DD1C-4EF4-8D8C-15207D870429} = {FB2D0E89-DD1C-4EF4-8D8C-15207D870429}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BgituSec.Domain", "BgituSec.Domain\BgituSec.Domain.csproj", "{B6CB0DE6-CAA7-4211-B587-760685586AEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BgituSec.Application", "BgituSec.Application\BgituSec.Application.csproj", "{3FD2F725-C615-465E-B1A8-537D6844902F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B6CB0DE6-CAA7-4211-B587-760685586AEC} = {B6CB0DE6-CAA7-4211-B587-760685586AEC}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BgituSec.Infrastructure", "BgituSec.Infrastructure\BgituSec.Infrastructure.csproj", "{FB2D0E89-DD1C-4EF4-8D8C-15207D870429}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3FD2F725-C615-465E-B1A8-537D6844902F} = {3FD2F725-C615-465E-B1A8-537D6844902F}
+		{B6CB0DE6-CAA7-4211-B587-760685586AEC} = {B6CB0DE6-CAA7-4211-B587-760685586AEC}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F02965E6-FE03-44F6-A108-B5ED7EA78630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F02965E6-FE03-44F6-A108-B5ED7EA78630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F02965E6-FE03-44F6-A108-B5ED7EA78630}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F02965E6-FE03-44F6-A108-B5ED7EA78630}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6CB0DE6-CAA7-4211-B587-760685586AEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6CB0DE6-CAA7-4211-B587-760685586AEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6CB0DE6-CAA7-4211-B587-760685586AEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6CB0DE6-CAA7-4211-B587-760685586AEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FD2F725-C615-465E-B1A8-537D6844902F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FD2F725-C615-465E-B1A8-537D6844902F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FD2F725-C615-465E-B1A8-537D6844902F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FD2F725-C615-465E-B1A8-537D6844902F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB2D0E89-DD1C-4EF4-8D8C-15207D870429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB2D0E89-DD1C-4EF4-8D8C-15207D870429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB2D0E89-DD1C-4EF4-8D8C-15207D870429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB2D0E89-DD1C-4EF4-8D8C-15207D870429}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {24ADBCA2-7618-4333-86CA-ACE27F3AC3AB}
+	EndGlobalSection
+EndGlobal
