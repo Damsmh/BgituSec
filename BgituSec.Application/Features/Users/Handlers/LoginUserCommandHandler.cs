@@ -4,32 +4,40 @@ using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Domain.Entities;
 using BgituSec.Domain.Interfaces;
 using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace BgituSec.Application.Features.Users.Handlers
 {
-    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, UserDTO>
+    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, UserDTO?>
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public CreateUserCommandHandler(IUserRepository userRepository, IMapper mapper)
+        public LoginUserCommandHandler(IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
             _mapper = mapper;
         }
 
-        public async Task<UserDTO> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<UserDTO?> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
+            var user = await _userRepository.GetByNameAsync(request.Name);
+            if (user == null)
+                return null;
+
             SHA256 hash = SHA256.Create();
-            byte[] plainTextBytes = Encoding.UTF8.GetBytes(request.Name + request.Password);
+            byte[] plainTextBytes = Encoding.UTF8.GetBytes(user.Name + request.Password);
             byte[] hashBytes = hash.ComputeHash(plainTextBytes);
             string hashValue = Convert.ToBase64String(hashBytes);
-            request.Password = hashValue;
+            if (user.Password != hashValue)
+                return null;
 
-            User user = _mapper.Map<User>(request);
-            await _userRepository.AddAsync(user);
             return _mapper.Map<UserDTO>(user);
         }
     }

@@ -1,6 +1,8 @@
 ﻿using BgituSec.Domain.Entities;
 using BgituSec.Domain.Interfaces;
 using BgituSec.Infrastructure.Data;
+using BgituSec.Infrastructure.Utils;
+using Microsoft.EntityFrameworkCore;
 
 namespace BgituSec.Infrastructure.Repositories
 {
@@ -26,17 +28,24 @@ namespace BgituSec.Infrastructure.Repositories
 
         public async Task<ICollection<User>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _dbContext.Users.ToListAsync();
         }
 
-        public async Task<User> GetByIdAsync(int id)
+        public async Task<User?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Users.FindAsync(id);
+        }
+
+        public async Task<User?> GetByNameAsync(string name)
+        {
+            return await _dbContext.Users.Where(user => user.Name == name).FirstOrDefaultAsync();
         }
 
         public async Task UpdateAsync(User user)
         {
-            throw new NotImplementedException();
+            var finduser = await GetByIdAsync(user.Id) ?? throw new KeyNotFoundException(nameof(user));
+            finduser.CopyChanges(user);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

@@ -1,10 +1,11 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BgituSec.Api.Models.Users
 {
-    public class CreateUserRequest
+    public class GetUserRequest
     {
+        [Required]
+        public int Id { get; set; }
         [Required]
         [EmailAddress]
         public string Email { get; set; }
@@ -12,6 +13,5 @@ namespace BgituSec.Api.Models.Users
         public string Name { get; set; }
         [Required]
         public string Password { get; set; }
-        public string? Role { get; set; }
     }
 }

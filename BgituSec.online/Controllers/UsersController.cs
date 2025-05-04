@@ -1,8 +1,12 @@
 ﻿using AutoMapper;
 using BgituSec.Api.Models.Users;
+using BgituSec.Api.Services;
 using BgituSec.Application.Features.Users.Commands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace BgituSec.Api.Controllers
 {
@@ -12,49 +16,61 @@ namespace BgituSec.Api.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
+        private readonly ITokenService _tokenService;
 
-        public UsersController(IMediator mediator, IMapper mapper)
+        public UsersController(IMediator mediator, IMapper mapper,  ITokenService tokenService)
         {
             _mediator = mediator;
             _mapper = mapper;
+            _tokenService = tokenService;
         }
 
-
+        
+        [Authorize]
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("profile")]
+        public async Task<ActionResult<UsersResponse>> Profile()
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<UsersController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
+            var sub = User.FindFirstValue(JwtRegisteredClaimNames.Sub)
+               ?? User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int.TryParse(sub, out var userId);
+            var command = new GetUserCommand { Id = userId };
+            var userDto = await _mediator.Send(command);
+            if (userDto == null)
+                return NotFound(userId);
+            var response = _mapper.Map<UsersResponse>(userDto);
+            return Ok(response);
         }
 
         [HttpPost]
+        [Route("sign-up")]
         public async Task<ActionResult<UsersResponse>> Create([FromBody] CreateUserRequest model)
         {
             var command = _mapper.Map<CreateUserCommand>(model);
 
             var userDto = await _mediator.Send(command);
 
+            if (userDto is null)
+                return Unauthorized();
+            var token = _tokenService.CreateToken(userDto);
             var response = _mapper.Map<UsersResponse>(userDto);
 
-            return CreatedAtAction(nameof(Create), new { id = response.Id }, response);
+            return CreatedAtAction(nameof(Create), new { token }, response);
         }
 
-        // PUT api/<UsersController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPost]
+        [Route("sign-in")]
+        public async Task<ActionResult<string>> Login([FromBody] LoginUserRequest model)
         {
-        }
+            var command = _mapper.Map<LoginUserCommand>(model);
 
-        // DELETE api/<UsersController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            var userDto = await _mediator.Send(command);
+
+            if (userDto == null)
+                return Unauthorized();
+
+            var token = _tokenService.CreateToken(userDto);
+            return Ok(new { token });
         }
     }
 }

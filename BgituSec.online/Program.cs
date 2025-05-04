@@ -1,8 +1,14 @@
+using BgituSec.Api;
+using BgituSec.Api.Services;
 using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Domain.Interfaces;
 using BgituSec.Infrastructure.Data;
 using BgituSec.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Logging;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace BgituSec.online
 {
@@ -10,6 +16,7 @@ namespace BgituSec.online
     {
         public static void Main(string[] args)
         {
+            IdentityModelEventSource.ShowPII = true;
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddDbContext<AppDbContext>(options =>
@@ -23,10 +30,34 @@ namespace BgituSec.online
 
 
             builder.Services.AddControllers();
-
             builder.Services.AddSwaggerGen();
 
+            //Authorization
+            builder.Services.Configure<JWTConfig>(builder.Configuration.GetSection("Jwt"));
+            builder.Services.AddScoped<ITokenService, TokenService>();
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.IncludeErrorDetails = true;
 
+                var jwt = builder.Configuration.GetSection("Jwt").Get<JWTConfig>();
+                var key = Encoding.UTF8.GetBytes(jwt.Key);
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = true,
+                    ValidIssuer = jwt.Issuer,
+                    ValidateAudience = true,
+                    ValidAudience = jwt.Audience,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.FromMinutes(1)
+                };
+            });
+
+            builder.Services.AddAuthorization();
 
             var app = builder.Build();
 
@@ -48,9 +79,9 @@ namespace BgituSec.online
 
             app.UseHttpsRedirection();
 
+            app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
-
-
             app.MapControllers();
 
             app.Run();
