@@ -14,6 +14,7 @@ namespace BgituSec.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
+
         public async Task AddAsync(User user)
         {
             await _dbContext.AddAsync(user);
@@ -23,7 +24,9 @@ namespace BgituSec.Infrastructure.Repositories
 
         public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var finduser = await GetByIdAsync(id) ?? throw new KeyNotFoundException(nameof(id));
+            _dbContext.Remove(finduser);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<ICollection<User>> GetAllAsync()

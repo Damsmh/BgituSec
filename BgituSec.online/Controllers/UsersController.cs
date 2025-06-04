@@ -2,9 +2,12 @@
 using BgituSec.Api.Models.Users;
 using BgituSec.Api.Services;
 using BgituSec.Application.Features.Users.Commands;
+using FluentValidation;
+using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
@@ -17,12 +20,17 @@ namespace BgituSec.Api.Controllers
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
+        private readonly IValidator<CreateUserCommand> _createValidator;
+        private readonly IValidator<LoginUserCommand> _loginValidator;
 
-        public UsersController(IMediator mediator, IMapper mapper,  ITokenService tokenService)
+        public UsersController(IMediator mediator, IMapper mapper,  ITokenService tokenService, 
+            IValidator<CreateUserCommand> createValidator, IValidator<LoginUserCommand> loginValidator)
         {
             _mediator = mediator;
             _mapper = mapper;
             _tokenService = tokenService;
+            _createValidator = createValidator;
+            _loginValidator = loginValidator;
         }
 
         
@@ -47,6 +55,12 @@ namespace BgituSec.Api.Controllers
         public async Task<ActionResult<UsersResponse>> Create([FromBody] CreateUserRequest model)
         {
             var command = _mapper.Map<CreateUserCommand>(model);
+            ValidationResult result = await _createValidator.ValidateAsync(command);
+
+            if (!result.IsValid)
+            {
+                return BadRequest(result.Errors);
+            }
 
             var userDto = await _mediator.Send(command);
 
@@ -63,6 +77,12 @@ namespace BgituSec.Api.Controllers
         public async Task<ActionResult<string>> Login([FromBody] LoginUserRequest model)
         {
             var command = _mapper.Map<LoginUserCommand>(model);
+            ValidationResult result = await _loginValidator.ValidateAsync(command);
+
+            if (!result.IsValid)
+            {
+                return BadRequest(result.Errors);
+            }
 
             var userDto = await _mediator.Send(command);
 
