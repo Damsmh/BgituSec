@@ -22,8 +22,8 @@ namespace BgituSec.Application.Features.Users.Handlers
 
         public async Task<UserDTO> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            SHA256 hash = SHA256.Create();
-            byte[] plainTextBytes = Encoding.UTF8.GetBytes(request.Name + request.Password);
+            using SHA256 hash = SHA256.Create();
+            byte[] plainTextBytes = Encoding.UTF8.GetBytes(request.Password);
             byte[] hashBytes = hash.ComputeHash(plainTextBytes);
             string hashValue = Convert.ToBase64String(hashBytes);
             request.Password = hashValue;

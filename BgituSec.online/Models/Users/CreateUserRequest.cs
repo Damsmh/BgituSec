@@ -12,6 +12,6 @@ namespace BgituSec.Api.Models.Users
         public string Name { get; set; }
         [Required]
         public string Password { get; set; }
-        public Roles Role { get; set; }
+        public Roles Role { get; set; } = Roles.ROLE_USER;
     }
 }

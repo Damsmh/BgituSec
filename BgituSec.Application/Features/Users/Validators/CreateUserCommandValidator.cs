@@ -12,7 +12,7 @@ namespace BgituSec.Application.Features.Users.Validators
             RuleFor(CreateUserCommand =>
                 CreateUserCommand.Email).EmailAddress();
             RuleFor(CreateUserCommand =>
-                CreateUserCommand.Password).NotEmpty().Length(8, 20);
+                CreateUserCommand.Password).MinimumLength(8);
             RuleFor(CreateUserCommand =>
                 CreateUserCommand.Role).NotEmpty().IsInEnum();
         }

@@ -33,7 +33,7 @@ namespace BgituSec.Application.Features.Users.Handlers
                 return null;
 
             SHA256 hash = SHA256.Create();
-            byte[] plainTextBytes = Encoding.UTF8.GetBytes(user.Name + request.Password);
+            byte[] plainTextBytes = Encoding.UTF8.GetBytes(request.Password);
             byte[] hashBytes = hash.ComputeHash(plainTextBytes);
             string hashValue = Convert.ToBase64String(hashBytes);
             if (user.Password != hashValue)

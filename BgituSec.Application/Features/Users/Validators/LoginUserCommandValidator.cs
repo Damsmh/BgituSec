@@ -10,7 +10,7 @@ namespace BgituSec.Application.Features.Users.Validators
             RuleFor(LoginUserCommand =>
                 LoginUserCommand.Name).NotEmpty().MaximumLength(50);
             RuleFor(LoginUserCommand =>
-                LoginUserCommand.Password).NotEmpty().Length(8, 20);
+                LoginUserCommand.Password).NotEmpty().MinimumLength(8);
         }
     }
 }

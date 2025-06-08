@@ -4,12 +4,13 @@ using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Domain.Interfaces;
 using BgituSec.Infrastructure.Data;
 using BgituSec.Infrastructure.Repositories;
-using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization;
+using FluentValidation;
 using BgituSec.Application.Features.Users.Validators;
 
 namespace BgituSec.online
@@ -26,18 +27,20 @@ namespace BgituSec.online
                     builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddAutoMapper(typeof(Program));
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
             builder.Services.AddMediatR(cfg =>
                 cfg.RegisterServicesFromAssembly(typeof(CreateUserCommand).Assembly));
             builder.Services.AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>();
             builder.Services.AddValidatorsFromAssemblyContaining<LoginUserCommandValidator>();
 
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+                            .AddJsonOptions(options =>
+                                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
             builder.Services.AddSwaggerGen();
 
-            //Authorization
             builder.Services.Configure<JWTConfig>(builder.Configuration.GetSection("Jwt"));
-            builder.Services.AddScoped<ITokenService, TokenService>();
+            builder.Services.AddTransient<ITokenService, TokenService>();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
@@ -46,7 +49,7 @@ namespace BgituSec.online
                 options.IncludeErrorDetails = true;
 
                 var jwt = builder.Configuration.GetSection("Jwt").Get<JWTConfig>();
-                var key = Encoding.UTF8.GetBytes(jwt.Key);
+                var key = Encoding.UTF8.GetBytes(jwt!.Key);
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
@@ -60,7 +63,6 @@ namespace BgituSec.online
                 };
             });
 
-            builder.Services.AddAuthorization();
 
             var app = builder.Build();
 

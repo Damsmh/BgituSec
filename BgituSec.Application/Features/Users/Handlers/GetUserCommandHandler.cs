@@ -3,11 +3,6 @@ using BgituSec.Application.DTOs;
 using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Domain.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BgituSec.Application.Features.Users.Handlers
 {
