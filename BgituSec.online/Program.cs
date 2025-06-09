@@ -72,15 +72,12 @@ namespace BgituSec.online
                 db.Database.Migrate();
             }
 
-            if (app.Environment.IsDevelopment())
+            app.UseSwagger(options =>
             {
-                app.UseSwagger(options =>
-                {
-                    options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_0;
+                options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_0;
 
-                });
-                app.UseSwaggerUI();
-            }
+            });
+            app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
 
