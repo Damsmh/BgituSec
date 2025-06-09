@@ -362,3 +362,6 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /BgituSec.Infrastructure/appsettings.json
+/BgituSec.Infrastructure/Migrations/20250608151312_InitialCreate.cs
+/BgituSec.Infrastructure/Migrations/AppDbContextModelSnapshot.cs
+/BgituSec.online/appsettings.json
