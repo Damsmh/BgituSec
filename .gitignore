@@ -365,3 +365,4 @@ FodyWeavers.xsd
 /BgituSec.Infrastructure/Migrations/20250608151312_InitialCreate.cs
 /BgituSec.Infrastructure/Migrations/AppDbContextModelSnapshot.cs
 /BgituSec.online/appsettings.json
+/BgituSec.online/appsettings1.json
