@@ -57,7 +57,7 @@ namespace BgituSec.Infrastructure.Migrations
 
                     b.HasIndex("BuildingId");
 
-                    b.ToTable("Auditoriums");
+                    b.ToTable("Auditoriums", (string)null);
                 });
 
             modelBuilder.Entity("BgituSec.Domain.Entities.Breakdown", b =>
@@ -92,7 +92,7 @@ namespace BgituSec.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Breakdowns");
+                    b.ToTable("Breakdowns", (string)null);
                 });
 
             modelBuilder.Entity("BgituSec.Domain.Entities.Building", b =>
@@ -111,7 +111,7 @@ namespace BgituSec.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Buildings");
+                    b.ToTable("Buildings", (string)null);
                 });
 
             modelBuilder.Entity("BgituSec.Domain.Entities.Computer", b =>
@@ -142,7 +142,7 @@ namespace BgituSec.Infrastructure.Migrations
 
                     b.HasIndex("AuditoriumId");
 
-                    b.ToTable("Computers");
+                    b.ToTable("Computers", (string)null);
                 });
 
             modelBuilder.Entity("BgituSec.Domain.Entities.Notification", b =>
@@ -168,7 +168,7 @@ namespace BgituSec.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Notifications");
+                    b.ToTable("Notifications", (string)null);
                 });
 
             modelBuilder.Entity("BgituSec.Domain.Entities.RefreshToken", b =>
@@ -202,7 +202,7 @@ namespace BgituSec.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RefreshTokens");
+                    b.ToTable("RefreshTokens", (string)null);
                 });
 
             modelBuilder.Entity("BgituSec.Domain.Entities.User", b =>
@@ -231,7 +231,7 @@ namespace BgituSec.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("BgituSec.Domain.Entities.Auditorium", b =>

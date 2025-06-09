@@ -9,7 +9,7 @@ namespace BgituSec.Infrastructure.Data
         public AppDbContext CreateDbContext(string[] args)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../BgituSec.online"))
                 .AddJsonFile("appsettings.json")
                 .Build();
 
