@@ -5,6 +5,7 @@ using BgituSec.Api.Services;
 using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Domain.Entities;
 using BgituSec.Domain.Interfaces;
+using BgituSec.Infrastructure.Repositories;
 using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
@@ -23,23 +24,22 @@ namespace BgituSec.Api.Controllers
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
-        private readonly IValidator<CreateUserCommand> _createValidator;
-        private readonly IValidator<LoginUserCommand> _loginValidator;
-        private readonly IValidator<RefreshTokenRequest> _refreshTokenValidator;
+        private readonly IValidator<CreateUserRequest> _createValidator;
+        private readonly IValidator<LoginUserRequest> _loginValidator;
         private readonly IRefreshTokenRepository _tokenRepository;
-        private readonly ILogger<UsersController> _logger;
+        private readonly IUserRepository _userRepository;
 
         public UsersController(IMediator mediator, IMapper mapper,  ITokenService tokenService, 
-            IValidator<CreateUserCommand> createValidator, IValidator<LoginUserCommand> loginValidator, 
-            ILogger<UsersController> logger, IRefreshTokenRepository tokenRepository)
+            IValidator<CreateUserRequest> createValidator, IValidator<LoginUserRequest> loginValidator,
+            IRefreshTokenRepository tokenRepository, IUserRepository userRepository)
         {
             _mediator = mediator;
             _mapper = mapper;
+            _userRepository = userRepository;
             _tokenService = tokenService;
             _createValidator = createValidator;
             _loginValidator = loginValidator;
             _tokenRepository = tokenRepository;
-            _logger = logger;
         }
 
         
@@ -59,7 +59,6 @@ namespace BgituSec.Api.Controllers
             return Ok(response);
         }
 
-        [AllowAnonymous]
         [HttpPost]
         [Route("refresh-token")]
         public async Task<ActionResult<RefreshTokensResponse>> RefreshToken([FromBody] RefreshTokenRequest request)
@@ -117,18 +116,25 @@ namespace BgituSec.Api.Controllers
         [Route("sign-up")]
         public async Task<ActionResult<UsersResponse>> Create([FromBody] CreateUserRequest model)
         {
-            var command = _mapper.Map<CreateUserCommand>(model);
-            ValidationResult result = await _createValidator.ValidateAsync(command);
-
+            ValidationResult result = await _createValidator.ValidateAsync(model);
             if (!result.IsValid)
             {
                 return BadRequest(result.Errors);
             }
 
+            if (await _userRepository.IsUserNameExist(model.Name))
+            {
+                return BadRequest("Пользователь с таким именем уже существует");
+            }
+
+            model.Password = _tokenService.Hash(model.Password);
+            var command = _mapper.Map<CreateUserCommand>(model);
+
             var userDto = await _mediator.Send(command);
 
             if (userDto is null)
                 return Unauthorized();
+
             var token = _tokenService.CreateToken(userDto);
 
             var tokenDTO = _tokenService.GenerateRefreshToken(userDto.Id);
@@ -146,14 +152,15 @@ namespace BgituSec.Api.Controllers
         [Route("sign-in")]
         public async Task<ActionResult<string>> Login([FromBody] LoginUserRequest model)
         {
-            var command = _mapper.Map<LoginUserCommand>(model);
-            ValidationResult result = await _loginValidator.ValidateAsync(command);
+            ValidationResult result = await _loginValidator.ValidateAsync(model);
 
             if (!result.IsValid)
             {
                 return BadRequest(result.Errors);
             }
 
+            var command = _mapper.Map<LoginUserCommand>(model);
+            
             var userDto = await _mediator.Send(command);
 
             if (userDto == null)

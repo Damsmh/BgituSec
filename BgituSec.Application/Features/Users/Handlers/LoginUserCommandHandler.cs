@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BgituSec.Api.Services;
 using BgituSec.Application.DTOs;
 using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Domain.Interfaces;
@@ -12,10 +13,12 @@ namespace BgituSec.Application.Features.Users.Handlers
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
+        private readonly ITokenService _tokenService;
 
-        public LoginUserCommandHandler(IUserRepository userRepository, IMapper mapper)
+        public LoginUserCommandHandler(IUserRepository userRepository, IMapper mapper, ITokenService tokenService)
         {
             _userRepository = userRepository;
+            _tokenService = tokenService;
             _mapper = mapper;
         }
 
@@ -26,11 +29,7 @@ namespace BgituSec.Application.Features.Users.Handlers
             if (user == null)
                 return null;
 
-            SHA256 hash = SHA256.Create();
-            byte[] plainTextBytes = Encoding.UTF8.GetBytes(request.Password);
-            byte[] hashBytes = hash.ComputeHash(plainTextBytes);
-            string hashValue = Convert.ToBase64String(hashBytes);
-            if (user.Password != hashValue)
+            if (!_tokenService.Verify(request.Password, user.Password))
                 return null;
 
             return _mapper.Map<UserDTO>(user);

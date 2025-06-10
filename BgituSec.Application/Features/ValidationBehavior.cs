@@ -22,7 +22,7 @@ namespace BgituSec.Application.Features
             {
                 throw new ValidationException(failures);
             }
-            return next();
+            return next(cancellationToken);
         }
     }
 }

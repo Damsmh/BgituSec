@@ -30,8 +30,8 @@ namespace BgituSec.online
             builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
             builder.Services.AddMediatR(cfg =>
                 cfg.RegisterServicesFromAssembly(typeof(CreateUserCommand).Assembly));
-            builder.Services.AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>();
-            builder.Services.AddValidatorsFromAssemblyContaining<LoginUserCommandValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<CreateUserRequestValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<LoginUserRequestValidator>();
 
 
             builder.Services.AddControllers()
