@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using BgituSec.Application.DTOs;
 using BgituSec.Domain.Entities;
-using BgituSec.Domain.Interfaces;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using NuGet.Common;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -70,11 +67,11 @@ namespace BgituSec.Api.Services
             return RefreshToken;
         }
 
-        public string Hash(string item)
+        public string Hash(string token)
         {
             var salt = BCrypt.Net.BCrypt.GenerateSalt(_saltBytes);
-            var hashed = BCrypt.Net.BCrypt.HashPassword(item, salt);
-            return hashed;
+            var hashedToken = BCrypt.Net.BCrypt.HashPassword(token, salt);
+            return hashedToken;
         }
 
         public bool Verify(string newToken, string oldHash)

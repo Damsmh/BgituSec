@@ -1,5 +1,4 @@
-﻿
-using NpgsqlTypes;
+﻿using NpgsqlTypes;
 
 namespace BgituSec.Domain.Entities
 {

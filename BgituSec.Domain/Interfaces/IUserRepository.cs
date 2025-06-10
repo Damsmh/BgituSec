@@ -1,10 +1,4 @@
 ﻿using BgituSec.Domain.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BgituSec.Domain.Interfaces
 {
