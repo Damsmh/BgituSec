@@ -139,7 +139,7 @@ namespace BgituSec.Api.Controllers
 
             var response = _mapper.Map<UsersResponse>(userDto);
 
-            return CreatedAtAction(nameof(Create), new { token, refreshToken = newRefreshToken }, response);
+            return CreatedAtAction(nameof(Create), new { token, refreshToken = newRefreshToken, response});
         }
 
         [HttpPost]

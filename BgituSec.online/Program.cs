@@ -62,8 +62,6 @@ namespace BgituSec.online
                     ClockSkew = TimeSpan.FromMinutes(1)
                 };
             });
-
-
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())
@@ -71,21 +69,17 @@ namespace BgituSec.online
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 db.Database.Migrate();
             }
-
             app.UseSwagger(options =>
             {
                 options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_0;
 
             });
             app.UseSwaggerUI();
-
             app.UseHttpsRedirection();
-
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
-
             app.Run();
         }
     }
