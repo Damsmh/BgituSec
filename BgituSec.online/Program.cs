@@ -62,6 +62,7 @@ namespace BgituSec.online
                     ClockSkew = TimeSpan.FromMinutes(1)
                 };
             });
+            builder.Services.AddAuthorization();
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())

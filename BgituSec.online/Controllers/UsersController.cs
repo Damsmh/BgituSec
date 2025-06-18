@@ -5,7 +5,6 @@ using BgituSec.Api.Services;
 using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Domain.Entities;
 using BgituSec.Domain.Interfaces;
-using BgituSec.Infrastructure.Repositories;
 using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
@@ -48,9 +47,10 @@ namespace BgituSec.Api.Controllers
         [Route("profile")]
         public async Task<ActionResult<UsersResponse>> Profile()
         {
+
             var sub = User.FindFirstValue(JwtRegisteredClaimNames.Sub)
                ?? User.FindFirstValue(ClaimTypes.NameIdentifier);
-            int.TryParse(sub, out var userId);
+            int.TryParse(sub, out int userId);
             var command = new GetUserCommand { Id = userId };
             var userDto = await _mediator.Send(command);
             if (userDto == null)
@@ -66,27 +66,27 @@ namespace BgituSec.Api.Controllers
 
             if (string.IsNullOrEmpty(request.Token) || string.IsNullOrEmpty(request.RefreshToken))
             {
-                return BadRequest("AccessToken и RefreshToken обязательны.");
+                return BadRequest(new { response = "AccessToken и RefreshToken обязательны." });
             }
 
             var principal = _tokenService.GetPrincipalFromExpiredToken(request.Token);
             if (principal == null)
             {
-                return BadRequest("Недействительный токен доступа.");
+                return BadRequest(new { response = "Недействительный токен доступа." });
             }
 
             var sub = principal.FindFirstValue(JwtRegisteredClaimNames.Sub)
                 ?? principal.FindFirstValue(ClaimTypes.NameIdentifier);
             if (!int.TryParse(sub, out var userId))
             {
-                return BadRequest("Невозможно извлечь userId из токена.");
+                return BadRequest(new { response = "Невозможно извлечь userId из токена." });
             }
 
             var refreshToken = await _tokenRepository.GetAsync(userId);
 
             if (refreshToken == null || refreshToken.ExpiresAt < DateTime.UtcNow || !_tokenService.Verify(request.RefreshToken, refreshToken.Token))
             {
-                return BadRequest("Недействительный или истекший refresh token.");
+                return BadRequest(new { response = "Недействительный или истекший refresh token." });
             }
 
             refreshToken.IsRevoked = true;
@@ -97,7 +97,7 @@ namespace BgituSec.Api.Controllers
             var userDto = await _mediator.Send(getUserCommand);
             if (userDto == null)
             {
-                return NotFound("Пользователь не найден.");
+                return NotFound(new { response = "Пользователь не найден." });
             }
 
             var newJwtToken = _tokenService.CreateToken(userDto);
@@ -124,7 +124,7 @@ namespace BgituSec.Api.Controllers
 
             if (await _userRepository.IsUserNameExist(model.Name))
             {
-                return BadRequest("Пользователь с таким именем уже существует");
+                return BadRequest(new { response = "Пользователь с таким именем уже существует" });
             }
 
             model.Password = _tokenService.Hash(model.Password);
