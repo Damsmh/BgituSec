@@ -1,4 +1,4 @@
-﻿namespace BgituSec.Api.Models.RefreshTokens
+﻿namespace BgituSec.Api.Models.RefreshTokens.Response
 {
     public class RefreshTokenResponse
     {

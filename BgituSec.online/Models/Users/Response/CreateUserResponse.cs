@@ -1,4 +1,4 @@
-﻿namespace BgituSec.Api.Models.Users
+﻿namespace BgituSec.Api.Models.Users.Response
 {
     public class CreateUserResponse : UserResponse
     {

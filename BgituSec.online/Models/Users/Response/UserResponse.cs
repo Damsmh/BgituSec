@@ -1,6 +1,6 @@
 ﻿using BgituSec.Domain.Entities;
 
-namespace BgituSec.Api.Models.Users
+namespace BgituSec.Api.Models.Users.Response
 {
     public class UserResponse
     {

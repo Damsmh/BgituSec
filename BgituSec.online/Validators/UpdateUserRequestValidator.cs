@@ -1,16 +1,15 @@
 ﻿using BgituSec.Api.Models.Users.Request;
-using BgituSec.Domain.Entities;
 using BgituSec.Domain.Interfaces;
-using BgituSec.Infrastructure.Repositories;
 using FluentValidation;
+using System.Xml.Linq;
 
-namespace BgituSec.Application.Features.Users.Validators
+namespace BgituSec.Api.Validators
 {
-    public class CreateUserRequestValidator : AbstractValidator<CreateUserRequest>
+    public class UpdateUserRequestValidator : AbstractValidator<UpdateUserRequest>
     {
-        private readonly Roles[] allRoles = Enum.GetValues<Roles>(); 
         private readonly IUserRepository _userRepository;
-        public CreateUserRequestValidator(IUserRepository userRepository) {
+        public UpdateUserRequestValidator(IUserRepository userRepository)
+        {
             _userRepository = userRepository;
             RuleFor(CreateUserRequest =>
                 CreateUserRequest.Name).NotEmpty().MaximumLength(30)
@@ -20,10 +19,6 @@ namespace BgituSec.Application.Features.Users.Validators
                 CreateUserRequest.Email).EmailAddress();
             RuleFor(CreateUserRequest =>
                 CreateUserRequest.Password).MinimumLength(8);
-            RuleFor(CreateUserRequest =>
-                CreateUserRequest.Role)
-                .IsInEnum()
-                .WithMessage($"Неверная роль пользователя, доступные роли: {allRoles.Select(role => role.ToString())}");
         }
     }
 }

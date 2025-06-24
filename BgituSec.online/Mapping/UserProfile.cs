@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using BgituSec.Api.Models.Users;
+using BgituSec.Api.Models.Users.Request;
+using BgituSec.Api.Models.Users.Response;
 using BgituSec.Application.DTOs;
 using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Domain.Entities;
@@ -19,6 +20,9 @@ namespace BgituSec.Api.Mapping
             CreateMap<CreateUserCommand, User>();
             CreateMap<RefreshTokenDTO, CreateUserResponse>();
             CreateMap<UserDTO, CreateUserResponse>();
+
+            CreateMap<UpdateUserRequest, UpdateUserCommand>();
+            CreateMap<UpdateUserCommand, User>();
 
             CreateMap<LoginUserCommand, LoginUserRequest>();
             CreateMap<LoginUserRequest, LoginUserCommand>();

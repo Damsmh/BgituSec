@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
-using BgituSec.Api.Models.RefreshTokens;
-using BgituSec.Api.Models.Users;
+using BgituSec.Api.Models.RefreshTokens.Request;
+using BgituSec.Api.Models.RefreshTokens.Response;
+using BgituSec.Api.Models.Users.Request;
+using BgituSec.Api.Models.Users.Response;
 using BgituSec.Api.Services;
 using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Domain.Entities;
@@ -115,11 +117,6 @@ namespace BgituSec.Api.Controllers
             if (!result.IsValid)
             {
                 return BadRequest(result.Errors);
-            }
-
-            if (await _userRepository.IsUserNameExist(model.Name))
-            {
-                return BadRequest(new { response = "Пользователь с таким именем уже существует" });
             }
 
             model.Password = _tokenService.Hash(model.Password);

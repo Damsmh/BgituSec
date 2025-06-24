@@ -1,9 +1,9 @@
 ﻿using BgituSec.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace BgituSec.Api.Models.Users
+namespace BgituSec.Api.Models.Users.Request
 {
-    public class CreateUserRequest
+    public class UpdateUserRequest
     {
         [Required]
         [EmailAddress]
@@ -12,6 +12,6 @@ namespace BgituSec.Api.Models.Users
         public string Name { get; set; }
         [Required]
         public string Password { get; set; }
-        public Roles Role { get; set; } = Roles.ROLE_USER;
+        public Roles? Role { get; set; }
     }
 }

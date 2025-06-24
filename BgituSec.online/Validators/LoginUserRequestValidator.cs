@@ -1,4 +1,4 @@
-﻿using BgituSec.Api.Models.Users;
+﻿using BgituSec.Api.Models.Users.Request;
 using FluentValidation;
 
 namespace BgituSec.Application.Features.Users.Validators

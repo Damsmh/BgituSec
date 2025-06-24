@@ -4,8 +4,6 @@ using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Domain.Entities;
 using BgituSec.Domain.Interfaces;
 using MediatR;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace BgituSec.Application.Features.Users.Handlers
 {

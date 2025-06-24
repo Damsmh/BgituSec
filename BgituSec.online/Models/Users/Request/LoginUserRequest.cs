@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BgituSec.Api.Models.Users
+namespace BgituSec.Api.Models.Users.Request
 {
     public class LoginUserRequest
     {
