@@ -37,7 +37,10 @@ namespace BgituSec.online
             builder.Services.AddControllers()
                             .AddJsonOptions(options =>
                                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.EnableAnnotations();
+            });
 
             builder.Services.Configure<JWTConfig>(builder.Configuration.GetSection("Jwt"));
             builder.Services.AddTransient<ITokenService, TokenService>();

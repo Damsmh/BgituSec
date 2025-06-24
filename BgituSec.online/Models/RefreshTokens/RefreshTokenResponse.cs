@@ -1,8 +1,8 @@
 ﻿namespace BgituSec.Api.Models.RefreshTokens
 {
-    public class RefreshTokensResponse
+    public class RefreshTokenResponse
     {
-        public string JwtToken { get; set; }
         public string Token { get; set; }
+        public string RefreshToken { get; set; }
     }
 }
