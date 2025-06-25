@@ -131,7 +131,6 @@ namespace BgituSec.Api.Controllers
 
             var tokenDTO = _tokenService.GenerateRefreshToken(userDto.Id);
             var newRefreshToken = tokenDTO.Token;
-            tokenDTO.Token = _tokenService.Hash(tokenDTO.Token);
             var refreshToken = _mapper.Map<RefreshToken>(tokenDTO);
             await _tokenRepository.AddAsync(refreshToken);
 
@@ -171,7 +170,6 @@ namespace BgituSec.Api.Controllers
             var token = _tokenService.CreateToken(userDto);
             var tokenDTO = _tokenService.GenerateRefreshToken(userDto.Id);
             var newRefreshToken = tokenDTO.Token;
-            tokenDTO.Token = _tokenService.Hash(tokenDTO.Token);
             var refreshToken = _mapper.Map<RefreshToken>(tokenDTO);
             await _tokenRepository.AddAsync(refreshToken);
             var response = new RefreshTokenResponse

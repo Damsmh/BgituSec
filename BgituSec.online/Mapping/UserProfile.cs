@@ -24,6 +24,8 @@ namespace BgituSec.Api.Mapping
             CreateMap<UpdateUserRequest, UpdateUserCommand>();
             CreateMap<UpdateUserCommand, User>();
 
+            CreateMap<UpdateUserRequest, UpdateUserByIdRequest>();
+
             CreateMap<LoginUserCommand, LoginUserRequest>();
             CreateMap<LoginUserRequest, LoginUserCommand>();
         }

@@ -34,19 +34,16 @@ namespace BgituSec.Api.Services
             new Claim("fullName", user.Name),
             new Claim(ClaimTypes.Role, user.Role.ToString()),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-        };
-
+            };
             var creds = new SigningCredentials(
                 new SymmetricSecurityKey(_key),
                 SecurityAlgorithms.HmacSha256);
-
             var token = new JwtSecurityToken(
                 issuer: _jwt.Issuer,
                 audience: _jwt.Audience,
                 claims: claims,
                 expires: DateTime.UtcNow.AddMinutes(_jwt.ExpiresMinutes),
                 signingCredentials: creds);
-
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
@@ -77,8 +74,7 @@ namespace BgituSec.Api.Services
 
         public bool Verify(string newToken, string oldHash)
         {
-            bool isValid = BCrypt.Net.BCrypt.Verify(newToken, oldHash);
-            return isValid;
+            return BCrypt.Net.BCrypt.Verify(newToken, oldHash);
         }
 
         public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)

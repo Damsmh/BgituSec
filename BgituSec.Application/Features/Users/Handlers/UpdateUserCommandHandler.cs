@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BgituSec.Api.Services;
 using BgituSec.Application.DTOs;
 using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Domain.Entities;
@@ -11,16 +12,24 @@ namespace BgituSec.Application.Features.Users.Handlers
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
-        public UpdateUserCommandHandler(IUserRepository userRepository, IMapper mapper)
+        private readonly ITokenService _tokenService;
+        public UpdateUserCommandHandler(IUserRepository userRepository, ITokenService tokenService, IMapper mapper)
         {
             _userRepository = userRepository;
             _mapper = mapper;
+            _tokenService = tokenService;
         }
         public async Task<UserDTO> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetByIdAsync(request.Id) ?? throw new KeyNotFoundException(nameof(request.Id));
             var newUser = _mapper.Map<User>(request);
-            if (request.Role == null )
+            if (_tokenService.Verify(newUser.Password, user.Password))
+                newUser.Password = user.Password;
+            else
+            {
+                newUser.Password = _tokenService.Hash(newUser.Password);
+            }
+            if (request.Role == null)
             {
                 newUser.Role = user.Role;
             }

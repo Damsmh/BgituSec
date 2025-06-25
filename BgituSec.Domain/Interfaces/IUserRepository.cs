@@ -10,6 +10,6 @@ namespace BgituSec.Domain.Interfaces
         public Task<User?> GetByIdAsync(int id);
         public Task<User?> GetByNameAsync(string name);
         public Task<ICollection<User>> GetAllAsync();
-        public Task<bool> IsUserNameExist(string username);
+        public Task<bool> IsUserNameExist(string username, int? Id = null);
     }
 }

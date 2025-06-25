@@ -39,9 +39,17 @@ namespace BgituSec.Infrastructure.Repositories
             return await _dbContext.Users.FindAsync(id);
         }
 
-        public async Task<bool> IsUserNameExist(string username)
+        public async Task<bool> IsUserNameExist(string username, int? Id = null)
         {
-            return await _dbContext.Users.AnyAsync(user => user.Name == username);
+            if (Id != null)
+            {
+                return await _dbContext.Users.AnyAsync(user => user.Name == username && user.Id != Id);
+            }
+            else
+            {
+                return await _dbContext.Users.AnyAsync(user => user.Name == username);
+            }
+            
         }
 
         public async Task<User?> GetByNameAsync(string name)

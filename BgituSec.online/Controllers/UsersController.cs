@@ -8,9 +8,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using System.IdentityModel.Tokens.Jwt;
 using System.Net.Mime;
-using System.Security.Claims;
 
 
 namespace BgituSec.Api.Controllers
@@ -32,61 +30,6 @@ namespace BgituSec.Api.Controllers
         }
 
         [Authorize]
-        [HttpGet]
-        [Route("profile")]
-        [SwaggerOperation(
-            Description = "Возвращает список всех пользователей."
-        )]
-        [SwaggerResponse(200, "Возвращает информацию о пользователе.", typeof(UserResponse))]
-        [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
-        public async Task<ActionResult<UserResponse>> Profile()
-        {
-            var sub = User.FindFirstValue(JwtRegisteredClaimNames.Sub)
-               ?? User.FindFirstValue(ClaimTypes.NameIdentifier);
-            int.TryParse(sub, out int userId);
-            var command = new GetUserCommand { Id = userId };
-            var userDto = await _mediator.Send(command);
-            if (userDto == null)
-                return NotFound(userId);
-            var response = _mapper.Map<UserResponse>(userDto);
-            return Ok(response);
-        }
-
-        [Authorize]
-        [HttpPut]
-        [Route("profile")]
-        [SwaggerOperation(
-            Description = "Обновляет информацию о пользователе. Получает Id пользователя из переданного jwt."
-        )]
-        [SwaggerResponse(200, "Обновление выполнено успешно.")]
-        [SwaggerResponse(400, "Ошибки валидации.")]
-        [SwaggerResponse(404, "Пользователь не найден.")]
-        [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
-        public async Task<ActionResult> Update([FromBody] UpdateUserRequest request)
-        {
-            var sub = User.FindFirstValue(JwtRegisteredClaimNames.Sub)
-               ?? User.FindFirstValue(ClaimTypes.NameIdentifier);
-            int.TryParse(sub, out int userId);
-            ValidationResult result = await _updateValidator.ValidateAsync(request);
-            if (!result.IsValid)
-            {
-                return BadRequest(result.Errors);
-            }
-
-            var command = _mapper.Map<UpdateUserCommand>(request);
-            command.Id = userId;
-            try
-            {
-                await _mediator.Send(command);
-                return Ok();
-            }
-            catch (KeyNotFoundException)
-            {
-                return NotFound(userId);
-            }
-        }
-
-        [Authorize]
         [HttpPut]
         [Route("{id}")]
         [SwaggerOperation(
@@ -94,17 +37,18 @@ namespace BgituSec.Api.Controllers
             Description = "Обновляет информацию о пользователе по Id."
         )]
         [SwaggerResponse(200, "Обновление выполнено успешно.")]
-        [SwaggerResponse(400, "Ошибки валидации.")]
+        [SwaggerResponse(400, "Ошибки валидации.", typeof(ValidationFailure))]
         [SwaggerResponse(404, "Пользователь не найден.")]
         [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
         public async Task<ActionResult> Update([FromRoute] int Id, [FromBody] UpdateUserRequest request)
         {
-            ValidationResult result = await _updateValidator.ValidateAsync(request);
+            var validateRequest = _mapper.Map<UpdateUserByIdRequest>(request);
+            validateRequest.Id = Id;
+            ValidationResult result = await _updateValidator.ValidateAsync(validateRequest);
             if (!result.IsValid)
             {
                 return BadRequest(result.Errors);
             }
-
             var command = _mapper.Map<UpdateUserCommand>(request);
             command.Id = Id;
             try

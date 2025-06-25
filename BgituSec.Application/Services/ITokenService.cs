@@ -8,7 +8,7 @@ namespace BgituSec.Api.Services
         string CreateToken(UserDTO user);
         RefreshTokenDTO GenerateRefreshToken(int userId);
         string Hash(string refreshToken);
-        bool Verify(string stored, string old);
+        bool Verify(string newData, string oldData);
         ClaimsPrincipal GetPrincipalFromExpiredToken(string token);
     }
 }

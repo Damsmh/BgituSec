@@ -1,12 +1,12 @@
 ﻿using BgituSec.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.CodeAnalysis;
 
 namespace BgituSec.Api.Models.Users.Request
 {
-    public class UpdateUserRequest
+    public class UpdateUserByIdRequest
     {
+        [Required]
+        public int Id { get; set; }
         [Required]
         [EmailAddress]
         public string Email { get; set; }
@@ -14,6 +14,6 @@ namespace BgituSec.Api.Models.Users.Request
         public string Name { get; set; }
         [Required]
         public string Password { get; set; }
-        public Roles? Role { get; set; } = null;
+        public Roles? Role { get; set; }
     }
 }

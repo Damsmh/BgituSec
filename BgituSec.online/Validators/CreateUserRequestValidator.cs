@@ -1,7 +1,6 @@
 ﻿using BgituSec.Api.Models.Users.Request;
 using BgituSec.Domain.Entities;
 using BgituSec.Domain.Interfaces;
-using BgituSec.Infrastructure.Repositories;
 using FluentValidation;
 
 namespace BgituSec.Application.Features.Users.Validators
@@ -14,7 +13,7 @@ namespace BgituSec.Application.Features.Users.Validators
             _userRepository = userRepository;
             RuleFor(CreateUserRequest =>
                 CreateUserRequest.Name).NotEmpty().MaximumLength(30)
-                .MustAsync(async (request, context, cancellationToken) => await _userRepository.IsUserNameExist(request.Name))
+                .MustAsync(async (request, context, cancellationToken) => !await _userRepository.IsUserNameExist(username: request.Name))
                 .WithMessage("Пользователь с таким именем уже существует.");
             RuleFor(CreateUserRequest =>
                 CreateUserRequest.Email).EmailAddress();
