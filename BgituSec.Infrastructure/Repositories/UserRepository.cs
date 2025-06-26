@@ -6,20 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BgituSec.Infrastructure.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository(AppDbContext dbContext) : IUserRepository
     {
-        private readonly AppDbContext _dbContext;
-
-        public UserRepository(AppDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+        private readonly AppDbContext _dbContext = dbContext;
 
         public async Task AddAsync(User user)
         {
             await _dbContext.AddAsync(user);
             await _dbContext.SaveChangesAsync();
-
         }
 
         public async Task DeleteAsync(int id)
@@ -49,7 +43,6 @@ namespace BgituSec.Infrastructure.Repositories
             {
                 return await _dbContext.Users.AnyAsync(user => user.Name == username);
             }
-            
         }
 
         public async Task<User?> GetByNameAsync(string name)

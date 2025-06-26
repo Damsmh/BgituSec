@@ -5,12 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BgituSec.Infrastructure.Repositories
 {
-    public class RefreshTokenRepository : IRefreshTokenRepository
+    public class RefreshTokenRepository(AppDbContext dbContext) : IRefreshTokenRepository
     {
-        private readonly AppDbContext _dbContext;
-        public RefreshTokenRepository(AppDbContext dbContext) {
-            _dbContext = dbContext;
-        }
+        private readonly AppDbContext _dbContext = dbContext;
 
         public async Task AddAsync(RefreshToken token)
         {
