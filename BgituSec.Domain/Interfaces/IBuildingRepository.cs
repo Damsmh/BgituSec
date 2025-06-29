@@ -4,7 +4,7 @@ namespace BgituSec.Domain.Interfaces
 {
     public interface IBuildingRepository
     {
-        public Task<ICollection<Building>> GetAll();
+        public Task<ICollection<Building>> GetAllAsync();
         public Task<Building> GetByNumber(int number);
         public Task<Building> GetByIdAsync(int id);
         public Task AddAsync(Building building);

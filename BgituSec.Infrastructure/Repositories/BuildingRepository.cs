@@ -28,7 +28,7 @@ namespace BgituSec.Infrastructure.Repositories
             return await _dbContext.Buildings.FindAsync(id);
         }
 
-        public async Task<ICollection<Building>> GetAll()
+        public async Task<ICollection<Building>> GetAllAsync()
         {
             return await _dbContext.Buildings.ToListAsync();
         }

@@ -140,7 +140,7 @@ namespace BgituSec.Api.Controllers
             
 
 
-            return CreatedAtAction(nameof(Create), new { response });
+            return CreatedAtAction(nameof(Create), response);
         }
 
         [HttpPost]

@@ -14,7 +14,7 @@ namespace BgituSec.Application.Features.Buildings.Handlers
 
         public async Task<List<BuildingDTO>> Handle(GetAllBuildingsCommand request, CancellationToken cancellationToken)
         {
-            var buildings =  await _repository.GetAll();
+            var buildings =  await _repository.GetAllAsync();
             List<BuildingDTO> mappedBuildings = [];
             foreach (var building in buildings)
             {

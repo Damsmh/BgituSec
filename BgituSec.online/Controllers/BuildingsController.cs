@@ -2,6 +2,7 @@
 using BgituSec.Api.Models.Buildings.Request;
 using BgituSec.Api.Models.Buildings.Response;
 using BgituSec.Api.Validators;
+using BgituSec.Application.DTOs;
 using BgituSec.Application.Features.Buildings.Commands;
 using FluentValidation.Results;
 using MediatR;
@@ -45,7 +46,7 @@ namespace BgituSec.Api.Controllers
             Summary = "Only for ADMIN",
             Description = "Добавляет новый корпус."
         )]
-        [SwaggerResponse(200, "Добавление выполнено успешно.")]
+        [SwaggerResponse(200, "Добавление выполнено успешно.", typeof(BuildingResponse))]
         [SwaggerResponse(400, "Ошибки валидации.", typeof(List<ValidationFailure>))]
         [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
         [SwaggerResponse(403, "Ошибка доступа в связи с отсутствием роли админа.")]
@@ -58,7 +59,8 @@ namespace BgituSec.Api.Controllers
             }
             var command = _mapper.Map<CreateBuildingCommand>(request);
             var buildingDTO = await _mediator.Send(command);
-            return Ok(buildingDTO);
+            var buildingResponse = _mapper.Map<BuildingResponse>(buildingDTO);
+            return Ok(buildingResponse);
         }
 
         [Authorize(Roles = "ROLE_ADMIN")]
