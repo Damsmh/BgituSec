@@ -31,11 +31,6 @@ namespace BgituSec.Infrastructure.Repositories
             return await _dbContext.Auditoriums.FindAsync(id) ?? throw new KeyNotFoundException(nameof(id));
         }
 
-        public async Task<Auditorium?> GetByNameAsync(string name)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task UpdateAsync(Auditorium auditorium)
         {
             var storedAuditorium = await GetByIdAsync(auditorium.Id);

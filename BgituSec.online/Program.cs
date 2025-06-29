@@ -28,6 +28,7 @@ namespace BgituSec.online
             builder.Services.AddAutoMapper(typeof(Program));
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IBuildingRepository, BuildingRepository>();
+            builder.Services.AddScoped<IAuditoriumRepository, AuditoriumRepository>();
             builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
             builder.Services.AddMediatR(cfg =>
                 cfg.RegisterServicesFromAssembly(typeof(CreateUserCommand).Assembly));

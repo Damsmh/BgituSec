@@ -34,8 +34,4 @@
     <ProjectReference Include="..\BgituSec.Infrastructure\BgituSec.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Auditoriums\Response\" />
-  </ItemGroup>
-
 </Project>

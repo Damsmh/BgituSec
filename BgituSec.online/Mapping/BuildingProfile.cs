@@ -18,7 +18,8 @@ namespace BgituSec.Api.Mapping
             CreateMap<UpdateBuildingCommand, Building>();
 
             CreateMap<Building, BuildingDTO>();
-            CreateMap<BuildingDTO, BuildingResponse>();
+            CreateMap<BuildingDTO, CreateBuildingResponse>();
+            CreateMap<BuildingDTO, GetBuildingResponse>();
         }
     }
 }
