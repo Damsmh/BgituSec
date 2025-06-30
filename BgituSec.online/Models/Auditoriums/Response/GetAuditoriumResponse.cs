@@ -7,9 +7,8 @@ namespace BgituSec.Api.Models.Auditoriums.Response
         public int Floor { get; set; }
         public bool IsComputer { get; set; }
         public string Name { get; set; }
-        public NpgsqlPoint Position { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
+        public string Position { get; set; }
+        public string Size { get; set; }
         public int BuildingId { get; set; }
     }
 }

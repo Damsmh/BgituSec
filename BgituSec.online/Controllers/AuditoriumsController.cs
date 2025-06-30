@@ -34,7 +34,8 @@ namespace BgituSec.Api.Controllers
         public async Task<ActionResult<List<GetAuditoriumResponse>>> GetAll()
         {
             var command = new GetAllAuditoriumsCommand();
-            var response = _mapper.Map<List<GetAuditoriumResponse>>(await _mediator.Send(command));
+            var auditoriumsDTO = await _mediator.Send(command);
+            var response = _mapper.Map<List<GetAuditoriumResponse>>(auditoriumsDTO);
             return Ok(response);
         }
 

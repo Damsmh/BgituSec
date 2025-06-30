@@ -28,9 +28,9 @@ namespace BgituSec.Api.Mapping
             CreateMap<AuditoriumDTO, Auditorium>();
 
             CreateMap<AuditoriumDTO, CreateAuditoriumResponse>();
-            CreateMap<AuditoriumDTO, GetAuditoriumResponse>();
-
-         
+            CreateMap<AuditoriumDTO, GetAuditoriumResponse>()
+                .ForMember(command => command.Size, opt => opt.MapFrom(request => $"{request.Width}*{request.Height}"))
+                .ForMember(command => command.Position, opt => opt.MapFrom(request => $"{request.Position.X};{request.Position.Y}"));
         }
         private static (int Width, int Height) ParseSize(string size)
         {
