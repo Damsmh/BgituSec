@@ -12,7 +12,6 @@ using System.Text;
 using System.Text.Json.Serialization;
 using FluentValidation;
 using BgituSec.Application.Features.Users.Validators;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 namespace BgituSec.online
@@ -109,6 +108,11 @@ namespace BgituSec.online
             app.UseSwaggerUI();
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseCors(builder => builder
+                .SetIsOriginAllowed(_ => true)
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
