@@ -1,7 +1,7 @@
 ﻿using BgituSec.Api.Models.Buildings.Request;
 using FluentValidation;
 
-namespace BgituSec.Api.Validators
+namespace BgituSec.Api.Validators.Building
 {
     public class BuildingRequestValidator : AbstractValidator<BuildingRequest>
     {

@@ -3,7 +3,7 @@ using BgituSec.Domain.Entities;
 using BgituSec.Domain.Interfaces;
 using FluentValidation;
 
-namespace BgituSec.Api.Validators
+namespace BgituSec.Api.Validators.User
 {
     public class UpdateUserByIdRequestValidator : AbstractValidator<UpdateUserByIdRequest>
     {

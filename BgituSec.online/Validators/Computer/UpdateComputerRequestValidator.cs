@@ -1,14 +1,13 @@
 ﻿using BgituSec.Api.Models.Computers.Request;
 using BgituSec.Domain.Interfaces;
-using BgituSec.Infrastructure.Repositories;
 using FluentValidation;
 
-namespace BgituSec.Api.Validators
+namespace BgituSec.Api.Validators.Computer
 {
-    public class CreateComputerRequestValidator : AbstractValidator<CreateComputerRequest>
+    public class UpdateComputerRequestValidator : AbstractValidator<UpdateComputerRequest>
     {
         private readonly IAuditoriumRepository _auditoriumRepository;
-        public CreateComputerRequestValidator(IAuditoriumRepository auditoriumRepository)
+        public UpdateComputerRequestValidator(IAuditoriumRepository auditoriumRepository)
         {
             _auditoriumRepository = auditoriumRepository;
             RuleFor(CreateComputerRequest =>
@@ -31,7 +30,7 @@ namespace BgituSec.Api.Validators
                 {
                     try { await _auditoriumRepository.GetByIdAsync(request.AuditoriumId); return true; }
                     catch (KeyNotFoundException) { return false; }
-                }).WithMessage($"Такой AuditoriuId не найден.");
+                }).WithMessage($"Такой AuditoriumId не найден.");
         }
     }
 }

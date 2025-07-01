@@ -91,12 +91,10 @@ namespace BgituSec.Api.Controllers
 
             var newJwtToken = _tokenService.CreateToken(userDto);
             var tokenDTO = _tokenService.GenerateRefreshToken(userId);
-            var response = _mapper.Map<RefreshTokenResponse>(tokenDTO);
+            var response = new RefreshTokenResponse { RefreshToken = tokenDTO.Token, Token = newJwtToken };
             tokenDTO.Token = _tokenService.Hash(tokenDTO.Token);
             var newRefreshToken = _mapper.Map<RefreshToken>(tokenDTO);
             await _tokenRepository.AddAsync(newRefreshToken);
-
-            response.RefreshToken = newJwtToken;
 
             return Ok(response);
         }
@@ -130,14 +128,11 @@ namespace BgituSec.Api.Controllers
             var tokenDTO = _tokenService.GenerateRefreshToken(userDto.Id);
             var newRefreshToken = tokenDTO.Token;
             var refreshToken = _mapper.Map<RefreshToken>(tokenDTO);
-            await _tokenRepository.AddAsync(refreshToken);
-
             var response = _mapper.Map<CreateUserResponse>(userDto);
             response.RefreshToken = tokenDTO.Token;
             response.Token = token;
-            
-
-
+            refreshToken.Token = _tokenService.Hash(refreshToken.Token);
+            await _tokenRepository.AddAsync(refreshToken);
             return CreatedAtAction(nameof(Create), response);
         }
 
@@ -169,13 +164,13 @@ namespace BgituSec.Api.Controllers
             var tokenDTO = _tokenService.GenerateRefreshToken(userDto.Id);
             var newRefreshToken = tokenDTO.Token;
             var refreshToken = _mapper.Map<RefreshToken>(tokenDTO);
-            await _tokenRepository.AddAsync(refreshToken);
             var response = new RefreshTokenResponse
             {
                 RefreshToken = tokenDTO.Token,
                 Token = token
             };
-
+            refreshToken.Token = _tokenService.Hash(refreshToken.Token);
+            await _tokenRepository.AddAsync(refreshToken);
             return Ok(response);
         }
     }

@@ -1,9 +1,10 @@
-﻿namespace BgituSec.Application.DTOs
+﻿using BgituSec.Application.DTOs;
+using MediatR;
+
+namespace BgituSec.Application.Features.Breakdowns.Commands
 {
-    public class BreakdownDTO
+    public class CreateBreakdownCommand : IRequest<BreakdownDTO>
     {
-        public int Id { get; set; }
-        public DateTime CreatedAt { get; set; }
         public string? Description { get; set; }
         public bool IsSolved { get; set; }
         public int Level { get; set; }

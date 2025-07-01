@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BgituSec.Api.Models.Users.Request;
 using BgituSec.Api.Models.Users.Response;
-using BgituSec.Api.Validators;
+using BgituSec.Api.Validators.User;
 using BgituSec.Application.Features.Users.Commands;
 using FluentValidation.Results;
 using MediatR;

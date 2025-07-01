@@ -11,8 +11,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json.Serialization;
 using FluentValidation;
-using BgituSec.Application.Features.Users.Validators;
 using Microsoft.OpenApi.Models;
+using BgituSec.Api.Validators.User;
 
 namespace BgituSec.online
 {

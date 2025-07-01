@@ -1,7 +1,7 @@
 ﻿using BgituSec.Api.Models.Users.Request;
 using FluentValidation;
 
-namespace BgituSec.Application.Features.Users.Validators
+namespace BgituSec.Api.Validators.User
 {
     public class LoginUserRequestValidator : AbstractValidator<LoginUserRequest>
     {

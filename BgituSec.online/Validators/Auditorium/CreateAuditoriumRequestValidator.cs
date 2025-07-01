@@ -1,14 +1,13 @@
 ﻿using BgituSec.Api.Models.Auditoriums.Request;
 using BgituSec.Domain.Interfaces;
-using BgituSec.Infrastructure.Repositories;
 using FluentValidation;
 
-namespace BgituSec.Api.Validators
+namespace BgituSec.Api.Validators.Auditorium
 {
-    public class UpdateAuditoriumRequestValidator : AbstractValidator<UpdateAuditoriumRequest>
+    public class CreateAuditoriumRequestValidator : AbstractValidator<CreateAuditoriumRequest>
     {
         private readonly IBuildingRepository _buildingRepository;
-        public UpdateAuditoriumRequestValidator(IBuildingRepository buildingRepository)
+        public CreateAuditoriumRequestValidator(IBuildingRepository buildingRepository)
         {
             _buildingRepository = buildingRepository;
             RuleFor(auditoriumRequest =>
@@ -36,6 +35,7 @@ namespace BgituSec.Api.Validators
                 auditoriumRequest.Floor).NotEmpty().NotNull();
             RuleFor(auditoriumRequest =>
                 auditoriumRequest.Name).NotEmpty();
+
         }
     }
 }

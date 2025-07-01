@@ -1,9 +1,7 @@
-﻿namespace BgituSec.Application.DTOs
+﻿namespace BgituSec.Api.Models.Breakdowns.Request
 {
-    public class BreakdownDTO
+    public class CreateBreakdownRequest
     {
-        public int Id { get; set; }
-        public DateTime CreatedAt { get; set; }
         public string? Description { get; set; }
         public bool IsSolved { get; set; }
         public int Level { get; set; }

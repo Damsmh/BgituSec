@@ -15,11 +15,12 @@ namespace BgituSec.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<Breakdown> DeleteAsync(int id)
         {
             var breakdown = await GetByIdAsync(id);
             _dbContext.Breakdowns.Remove(breakdown);
             await _dbContext.SaveChangesAsync();
+            return breakdown;
         }
 
         public async Task<ICollection<Breakdown>> GetAllAsync()

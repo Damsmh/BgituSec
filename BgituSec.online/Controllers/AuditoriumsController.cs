@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BgituSec.Api.Models.Auditoriums.Request;
 using BgituSec.Api.Models.Auditoriums.Response;
-using BgituSec.Api.Validators;
+using BgituSec.Api.Validators.Auditorium;
 using BgituSec.Application.Features.Auditoriums.Commands;
 using FluentValidation.Results;
 using MediatR;
