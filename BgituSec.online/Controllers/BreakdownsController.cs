@@ -36,7 +36,7 @@ namespace BgituSec.Api.Controllers
             var command = new GetAllBreakdownsCommand();
             var BreakdownsDTO = await _mediator.Send(command);
             var response = _mapper.Map<List<GetBreakdownResponse>>(BreakdownsDTO);
-            return Ok(response);
+            return Ok(new { response });
         }
 
 

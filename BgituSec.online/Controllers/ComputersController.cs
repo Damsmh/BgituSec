@@ -36,7 +36,7 @@ namespace BgituSec.Api.Controllers
             var command = new GetAllComputersCommand();
             var computersDTO = await _mediator.Send(command);
             var response = _mapper.Map<List<GetComputerResponse>>(computersDTO);
-            return Ok(response);
+            return Ok(new { response });
         }
 
 

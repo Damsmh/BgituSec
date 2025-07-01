@@ -103,7 +103,7 @@ namespace BgituSec.Api.Controllers
             var command = new GetAllUsersCommand();
             var usersDto = await _mediator.Send(command);
             var response = _mapper.Map<List<UserResponse>>(usersDto);
-            return Ok(response);
+            return Ok(new { response });
         }
     }
 }

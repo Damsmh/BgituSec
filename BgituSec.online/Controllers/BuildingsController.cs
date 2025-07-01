@@ -34,8 +34,8 @@ namespace BgituSec.Api.Controllers
         public async Task<ActionResult<List<GetBuildingResponse>>> GetAll()
         {
             var command = new GetAllBuildingsCommand();
-            var buildings = _mapper.Map<List<GetBuildingResponse>>(await _mediator.Send(command));
-            return Ok(buildings);
+            var response = _mapper.Map<List<GetBuildingResponse>>(await _mediator.Send(command));
+            return Ok(new { response });
         }
 
         [Authorize(Roles = "ROLE_ADMIN")]

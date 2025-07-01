@@ -7,10 +7,11 @@ using MediatR;
 
 namespace BgituSec.Application.Features.Breakdowns.Handlers
 {
-    public class CreateBreakdownCommandHandler(IBreakdownRepository repository, IMapper mapper) : IRequestHandler<CreateBreakdownCommand, BreakdownDTO>
+    public class CreateBreakdownCommandHandler(IBreakdownRepository repository, IMapper mapper, IMediator mediator) : IRequestHandler<CreateBreakdownCommand, BreakdownDTO>
     {
         private readonly IBreakdownRepository _repository = repository;
         private readonly IMapper _mapper = mapper;
+        private readonly IMediator _mediator = mediator;
         public async Task<BreakdownDTO> Handle(CreateBreakdownCommand request, CancellationToken cancellationToken)
         {
             var breakdown = _mapper.Map<Breakdown>(request);

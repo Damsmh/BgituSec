@@ -36,7 +36,7 @@ namespace BgituSec.Api.Controllers
             var command = new GetAllAuditoriumsCommand();
             var auditoriumsDTO = await _mediator.Send(command);
             var response = _mapper.Map<List<GetAuditoriumResponse>>(auditoriumsDTO);
-            return Ok(response);
+            return Ok(new { response });
         }
 
 
