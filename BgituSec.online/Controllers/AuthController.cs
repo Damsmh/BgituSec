@@ -3,13 +3,14 @@ using BgituSec.Api.Models.RefreshTokens.Request;
 using BgituSec.Api.Models.RefreshTokens.Response;
 using BgituSec.Api.Models.Users.Request;
 using BgituSec.Api.Models.Users.Response;
-using BgituSec.Api.Services;
 using BgituSec.Application.Features.Users.Commands;
+using BgituSec.Application.Services.Token;
 using BgituSec.Domain.Entities;
 using BgituSec.Domain.Interfaces;
 using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Swashbuckle.AspNetCore.Annotations;
@@ -43,6 +44,7 @@ namespace BgituSec.Api.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Route("refresh-token")]
         [SwaggerOperation(
             Description = "Возвращает token и refreshToken при валидном переданном refreshToken'e." +

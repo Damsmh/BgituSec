@@ -3,24 +3,27 @@ using BgituSec.Api.Models.Breakdowns.Request;
 using BgituSec.Api.Models.Breakdowns.Response;
 using BgituSec.Api.Validators.Breakdown;
 using BgituSec.Application.Features.Breakdowns.Commands;
+using BgituSec.Application.Services.SSE;
 using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net.Mime;
+using System.Threading.Channels;
 
 namespace BgituSec.Api.Controllers
 {
     [Route("api/breakdown")]
     [Produces(MediaTypeNames.Application.Json)]
     [ApiController]
-    public class BreakdownsController(IMediator mediator, IMapper mapper, CreateBreakdownRequestValidator createValidator, UpdateBreakdownRequestValidator updateValidator) : ControllerBase
+    public class BreakdownsController(IMediator mediator, IMapper mapper, CreateBreakdownRequestValidator createValidator, UpdateBreakdownRequestValidator updateValidator, ISSEService sseService) : ControllerBase
     {
         private readonly IMapper _mapper = mapper;
         private readonly IMediator _mediator = mediator;
         private readonly CreateBreakdownRequestValidator _createValidator = createValidator;
         private readonly UpdateBreakdownRequestValidator _updateValidator = updateValidator;
+        private readonly ISSEService _sseService = sseService;
 
         [Authorize]
         [HttpGet]
@@ -118,6 +121,51 @@ namespace BgituSec.Api.Controllers
             catch (KeyNotFoundException)
             {
                 return NotFound(id);
+            }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("stream")]
+        [SwaggerOperation(
+            Description = "Отправляет список поломок при любом изменении."
+        )]
+        [SwaggerResponse(200)]
+        public async Task Stream()
+        {
+            Response.ContentType = "text/event-stream";
+            Response.Headers.Append("Cache-Control", "no-cache");
+            Response.Headers.Append("Connection", "keep-alive");
+
+            var clientId = Guid.NewGuid().ToString();
+            var channel = Channel.CreateUnbounded<string>();
+            var writer = channel.Writer;
+
+            Console.WriteLine($"Клиент {clientId} подключен к потоку");
+
+            var cancellationToken = HttpContext.RequestAborted;
+
+            try
+            {
+                await _sseService.RegisterClientAsync(clientId, writer, cancellationToken);
+
+                await foreach (var message in channel.Reader.ReadAllAsync(cancellationToken))
+                {
+                    await Response.WriteAsync(message, cancellationToken);
+                    await Response.Body.FlushAsync(cancellationToken);
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                Console.WriteLine($"Клиент {clientId} отключился");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка в SSE потоке для клиента {clientId}: {ex.Message}");
+            }
+            finally
+            {
+                writer.TryComplete();
             }
         }
     }

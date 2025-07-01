@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BgituSec.Api;
 using BgituSec.Application.DTOs;
 using BgituSec.Domain.Entities;
 using Microsoft.Extensions.Options;
@@ -8,7 +9,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace BgituSec.Api.Services
+namespace BgituSec.Application.Services.Token
 {
     public class TokenService : ITokenService
     {

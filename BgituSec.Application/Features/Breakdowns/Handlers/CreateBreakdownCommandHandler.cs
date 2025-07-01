@@ -15,8 +15,9 @@ namespace BgituSec.Application.Features.Breakdowns.Handlers
         public async Task<BreakdownDTO> Handle(CreateBreakdownCommand request, CancellationToken cancellationToken)
         {
             var breakdown = _mapper.Map<Breakdown>(request);
-            breakdown.CreatedAt = TimeZoneInfo.ConvertTime(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
+            breakdown.CreatedAt = DateTime.UtcNow;
             await _repository.AddAsync(breakdown);
+            await _mediator.Publish(new BreakdownResponseNotification(_mapper.Map<List<BreakdownDTO>>(await _repository.GetAllAsync())), cancellationToken);
             return _mapper.Map<BreakdownDTO>(breakdown);
         }
     }

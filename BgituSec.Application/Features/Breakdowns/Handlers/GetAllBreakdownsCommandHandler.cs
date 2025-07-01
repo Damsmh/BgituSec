@@ -16,6 +16,7 @@ namespace BgituSec.Application.Features.Breakdowns.Handlers
             List<BreakdownDTO> mappedBreakdowns = [];
             foreach (var breakdown in breakdowns)
             {
+                breakdown.CreatedAt = TimeZoneInfo.ConvertTimeFromUtc(breakdown.CreatedAt, TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
                 mappedBreakdowns.Add(_mapper.Map<BreakdownDTO>(breakdown));
             }
             return mappedBreakdowns;

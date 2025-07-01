@@ -1,7 +1,7 @@
 ﻿using BgituSec.Application.DTOs;
 using System.Security.Claims;
 
-namespace BgituSec.Api.Services
+namespace BgituSec.Application.Services.Token
 {
     public interface ITokenService
     {

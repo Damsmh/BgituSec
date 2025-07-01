@@ -1,5 +1,4 @@
 using BgituSec.Api;
-using BgituSec.Api.Services;
 using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Domain.Interfaces;
 using BgituSec.Infrastructure.Data;
@@ -13,6 +12,8 @@ using System.Text.Json.Serialization;
 using FluentValidation;
 using Microsoft.OpenApi.Models;
 using BgituSec.Api.Validators.User;
+using BgituSec.Application.Services.Token;
+using BgituSec.Application.Services.SSE;
 
 namespace BgituSec.online
 {
@@ -35,6 +36,7 @@ namespace BgituSec.online
             builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
             builder.Services.AddMediatR(cfg =>
                 cfg.RegisterServicesFromAssembly(typeof(CreateUserCommand).Assembly));
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SSEService).Assembly));
             builder.Services.AddValidatorsFromAssemblyContaining<CreateUserRequestValidator>();
             builder.Services.AddValidatorsFromAssemblyContaining<LoginUserRequestValidator>();
 
@@ -73,6 +75,7 @@ namespace BgituSec.online
 
             builder.Services.Configure<JWTConfig>(builder.Configuration.GetSection("Jwt"));
             builder.Services.AddTransient<ITokenService, TokenService>();
+            builder.Services.AddSingleton<ISSEService, SSEService>();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
