@@ -29,15 +29,13 @@ namespace BgituSec.Api.Controllers
         private readonly IValidator<CreateUserRequest> _createValidator;
         private readonly IValidator<LoginUserRequest> _loginValidator;
         private readonly IRefreshTokenRepository _tokenRepository;
-        private readonly IUserRepository _userRepository;
 
         public AuthController(IMediator mediator, IMapper mapper, ITokenService tokenService,
             IValidator<CreateUserRequest> createValidator, IValidator<LoginUserRequest> loginValidator,
-            IRefreshTokenRepository tokenRepository, IUserRepository userRepository)
+            IRefreshTokenRepository tokenRepository)
         {
             _mediator = mediator;
             _mapper = mapper;
-            _userRepository = userRepository;
             _tokenService = tokenService;
             _createValidator = createValidator;
             _loginValidator = loginValidator;
@@ -52,9 +50,9 @@ namespace BgituSec.Api.Controllers
         )]
         [SwaggerResponse(200, "Возвращает token и refreshToken.", typeof(RefreshTokenResponse))]
         [SwaggerResponse(400, "Невалидный/отсутствующий refreshToken в запросе.")]
+        [SwaggerResponse(404, "Пользователь не найден.")]
         public async Task<ActionResult<RefreshTokenResponse>> RefreshToken([FromBody] RefreshTokenRequest request)
         {
-
             if (string.IsNullOrEmpty(request.Token) || string.IsNullOrEmpty(request.RefreshToken))
             {
                 return BadRequest(new { response = "AccessToken и RefreshToken обязательны." });

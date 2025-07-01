@@ -30,6 +30,8 @@ namespace BgituSec.online
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IBuildingRepository, BuildingRepository>();
             builder.Services.AddScoped<IAuditoriumRepository, AuditoriumRepository>();
+            builder.Services.AddScoped<IComputerRepository, ComputerRepository>();
+            builder.Services.AddScoped<IBreakdownRepository, BreakdownRepository>();
             builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
             builder.Services.AddMediatR(cfg =>
                 cfg.RegisterServicesFromAssembly(typeof(CreateUserCommand).Assembly));

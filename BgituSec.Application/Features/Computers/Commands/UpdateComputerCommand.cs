@@ -1,8 +1,10 @@
-﻿using NpgsqlTypes;
+﻿using BgituSec.Application.DTOs;
+using MediatR;
+using NpgsqlTypes;
 
-namespace BgituSec.Domain.Entities
+namespace BgituSec.Application.Features.Computers.Commands
 {
-    public class Computer
+    public class UpdateComputerCommand : IRequest<ComputerDTO>
     {
         public int Id { get; set; }
         public NpgsqlPoint Position { get; set; }
@@ -10,7 +12,5 @@ namespace BgituSec.Domain.Entities
         public double Width { get; set; }
         public double Height { get; set; }
         public int AuditoriumId { get; set; }
-        public Auditorium Auditorium { get; set; }
-        public ICollection<Breakdown> Breakdowns { get; set; }
     }
 }

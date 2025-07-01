@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Mapping\BreakdownProfile.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="14.0.0" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.6" />
@@ -32,6 +36,11 @@
   <ItemGroup>
     <ProjectReference Include="..\BgituSec.Application\BgituSec.Application.csproj" />
     <ProjectReference Include="..\BgituSec.Infrastructure\BgituSec.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Breakdowns\Request\" />
+    <Folder Include="Models\Breakdowns\Response\" />
   </ItemGroup>
 
 </Project>

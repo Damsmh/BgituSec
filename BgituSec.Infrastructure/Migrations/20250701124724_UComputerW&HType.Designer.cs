@@ -3,6 +3,7 @@ using System;
 using BgituSec.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using NpgsqlTypes;
@@ -12,9 +13,11 @@ using NpgsqlTypes;
 namespace BgituSec.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250701124724_UComputerW&HType")]
+    partial class UComputerWHType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,8 +130,8 @@ namespace BgituSec.Infrastructure.Migrations
                     b.Property<int>("AuditoriumId")
                         .HasColumnType("integer");
 
-                    b.Property<double>("Height")
-                        .HasColumnType("double precision");
+                    b.Property<int>("Height")
+                        .HasColumnType("integer");
 
                     b.Property<NpgsqlPoint>("Position")
                         .HasColumnType("point");
@@ -137,8 +140,8 @@ namespace BgituSec.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<double>("Width")
-                        .HasColumnType("double precision");
+                    b.Property<int>("Width")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

@@ -13,7 +13,7 @@ using System.Net.Mime;
 
 namespace BgituSec.Api.Controllers
 {
-    [Route("api/users")]
+    [Route("api/user")]
     [Produces(MediaTypeNames.Application.Json)]
     [ApiController]
     public class UsersController : ControllerBase
@@ -90,7 +90,7 @@ namespace BgituSec.Api.Controllers
 
         [Authorize(Roles="ROLE_ADMIN")]
         [HttpGet]
-        [Route("get-all")]
+        [Route("")]
         [SwaggerOperation(
             Summary = "Only for ADMIN",
             Description = "Возвращает список всех пользователей."

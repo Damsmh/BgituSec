@@ -1,8 +1,8 @@
 ﻿using NpgsqlTypes;
 
-namespace BgituSec.Domain.Entities
+namespace BgituSec.Application.DTOs
 {
-    public class Computer
+    public class ComputerDTO
     {
         public int Id { get; set; }
         public NpgsqlPoint Position { get; set; }
@@ -10,7 +10,5 @@ namespace BgituSec.Domain.Entities
         public double Width { get; set; }
         public double Height { get; set; }
         public int AuditoriumId { get; set; }
-        public Auditorium Auditorium { get; set; }
-        public ICollection<Breakdown> Breakdowns { get; set; }
     }
 }
