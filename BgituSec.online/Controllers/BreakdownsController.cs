@@ -151,13 +151,14 @@ namespace BgituSec.Api.Controllers
 
                 await foreach (var message in channel.Reader.ReadAllAsync(cancellationToken))
                 {
+                    Console.WriteLine($"Отправка сообщения клиенту {clientId}: {message}");
                     await Response.WriteAsync(message, cancellationToken);
                     await Response.Body.FlushAsync(cancellationToken);
                 }
             }
             catch (OperationCanceledException)
             {
-                Console.WriteLine($"Клиент {clientId} отключился");
+                Console.WriteLine($"Клиент {clientId} отключился (OperationCanceledException)");
             }
             catch (Exception ex)
             {

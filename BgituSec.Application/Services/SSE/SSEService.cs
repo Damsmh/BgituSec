@@ -18,22 +18,24 @@ namespace BgituSec.Application.Services.SSE
 
             try
             {
+                Console.WriteLine($"Отправка тестового сообщения клиенту {clientId}");
                 await writer.WriteAsync("data: {\"message\": \"connected\"}\n\n", cancellationToken);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка отправки тестового сообщения клиенту {clientId}: {ex.Message}");
-                _clients.TryRemove(clientId, out _);
-                return;
-            }
 
-            try
-            {
-                await Task.Delay(Timeout.Infinite, cancellationToken);
+                while (!cancellationToken.IsCancellationRequested)
+                {
+                    Console.WriteLine($"Отправка пинга клиенту {clientId}");
+                    await writer.WriteAsync(": ping\n\n", cancellationToken);
+                    await Task.Delay(TimeSpan.FromSeconds(15), cancellationToken);
+                }
             }
             catch (OperationCanceledException)
             {
-                Console.WriteLine($"Клиент {clientId} отключился");
+                Console.WriteLine($"Клиент {clientId} отключился (OperationCanceledException)");
+                _clients.TryRemove(clientId, out _);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка для клиента {clientId}: {ex.Message}");
                 _clients.TryRemove(clientId, out _);
             }
         }
