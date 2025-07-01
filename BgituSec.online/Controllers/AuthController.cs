@@ -75,7 +75,7 @@ namespace BgituSec.Api.Controllers
 
             var refreshToken = await _tokenRepository.GetAsync(userId);
 
-            if (refreshToken == null || refreshToken.ExpiresAt < DateTime.UtcNow || !_tokenService.Verify(request.RefreshToken, refreshToken.Token))
+            if (refreshToken == null || !_tokenService.Verify(request.RefreshToken, refreshToken.Token))
             {
                 return BadRequest(new { response = "Недействительный или истекший refresh token." });
             }
