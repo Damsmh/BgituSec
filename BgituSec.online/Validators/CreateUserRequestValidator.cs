@@ -23,6 +23,8 @@ namespace BgituSec.Application.Features.Users.Validators
                 CreateUserRequest.Role)
                 .IsInEnum()
                 .WithMessage($"Неверная роль пользователя, доступные роли: {allRoles.Select(role => role.ToString())}");
+            RuleFor(CreateUserRequest =>
+                CreateUserRequest.SentNotifications).NotNull().WithMessage("Поддерживаются только булевы значения true/false.");
         }
     }
 }

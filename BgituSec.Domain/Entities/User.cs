@@ -10,6 +10,7 @@ namespace BgituSec.Domain.Entities
         public string Password { get; set; }
         public Roles Role { get; set; }
         public string Name { get; set; }
+        public bool SentNotifications { get; set; }
 
         public ICollection<Breakdown> Breakdowns { get; set; }
         public ICollection<Notification> Notifications { get; set; }

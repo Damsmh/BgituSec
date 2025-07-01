@@ -45,7 +45,7 @@ namespace BgituSec.Api.Controllers
             Summary = "Only for ADMIN",
             Description = "Добавляет новый корпус."
         )]
-        [SwaggerResponse(200, "Добавление выполнено успешно.", typeof(CreateBuildingResponse))]
+        [SwaggerResponse(201, "Добавление выполнено успешно.", typeof(CreateBuildingResponse))]
         [SwaggerResponse(400, "Ошибки валидации.", typeof(List<ValidationFailure>))]
         [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
         [SwaggerResponse(403, "Ошибка доступа в связи с отсутствием роли админа.")]
@@ -95,18 +95,18 @@ namespace BgituSec.Api.Controllers
 
         [Authorize(Roles = "ROLE_ADMIN")]
         [HttpDelete]
-        [Route("{Id}")]
+        [Route("{id}")]
         [SwaggerOperation(
             Summary = "Only for ADMIN",
             Description = "Удаляет корпус по Id."
         )]
-        [SwaggerResponse(200, "Удаление выполнено успешно.")]
+        [SwaggerResponse(204, "Удаление выполнено успешно.")]
         [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
         [SwaggerResponse(403, "Ошибка доступа в связи с отсутствием роли админа.")]
         [SwaggerResponse(404, "Корпус с таким номером не найден.")]
-        public async Task<ActionResult> Delete([FromRoute] int Id)
+        public async Task<ActionResult> Delete([FromRoute] int id)
         {
-            var command = new DeleteBuildingCommand { Id = Id };
+            var command = new DeleteBuildingCommand { Id = id };
             try
             {
                 await _mediator.Send(command);
@@ -114,7 +114,7 @@ namespace BgituSec.Api.Controllers
             }
             catch (KeyNotFoundException)
             {
-                return NotFound(Id);
+                return NotFound(id);
             }
         }
     }

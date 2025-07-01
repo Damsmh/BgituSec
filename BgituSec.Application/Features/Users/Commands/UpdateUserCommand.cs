@@ -11,5 +11,6 @@ namespace BgituSec.Application.Features.Users.Commands
         public string Password { get; set; }
         public string Name { get; set; }
         public Roles? Role { get; set; }
+        public bool SentNotifications { get; set; }
     }
 }

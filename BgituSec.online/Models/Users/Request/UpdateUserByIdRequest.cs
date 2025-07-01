@@ -15,5 +15,6 @@ namespace BgituSec.Api.Models.Users.Request
         [Required]
         public string Password { get; set; }
         public Roles? Role { get; set; }
+        public bool SentNotifications { get; set; }
     }
 }

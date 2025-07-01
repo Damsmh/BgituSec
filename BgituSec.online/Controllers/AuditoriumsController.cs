@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using BgituSec.Api.Models.Auditoriums.Request;
 using BgituSec.Api.Models.Auditoriums.Response;
-using BgituSec.Api.Models.Buildings.Response;
 using BgituSec.Api.Validators;
 using BgituSec.Application.Features.Auditoriums.Commands;
 using FluentValidation.Results;
@@ -9,11 +8,12 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-
+using System.Net.Mime;
 
 namespace BgituSec.Api.Controllers
 {
     [Route("api/aud")]
+    [Produces(MediaTypeNames.Application.Json)]
     [ApiController]
     public class AuditoriumsController(IMediator mediator, IMapper mapper, CreateAuditoriumRequestValidator createValidator, UpdateAuditoriumRequestValidator updateValidator) : ControllerBase
     {
@@ -28,7 +28,7 @@ namespace BgituSec.Api.Controllers
         [SwaggerOperation(
             Description = "Возвращает список аудиторий."
         )]
-        [SwaggerResponse(200, "Возвращает список аудиторий.", typeof(List<GetBuildingResponse>))]
+        [SwaggerResponse(200, "Возвращает список аудиторий.", typeof(List<GetAuditoriumResponse>))]
         [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
         [SwaggerResponse(403, "Ошибка доступа в связи с отсутствием роли админа.")]
         public async Task<ActionResult<List<GetAuditoriumResponse>>> GetAll()
@@ -47,7 +47,7 @@ namespace BgituSec.Api.Controllers
             Summary = "Only for ADMIN",
             Description = "Добавляет новую аудиторию."
         )]
-        [SwaggerResponse(200, "Добавление выполнено успешно.", typeof(CreateBuildingResponse))]
+        [SwaggerResponse(201, "Добавление выполнено успешно.", typeof(CreateAuditoriumResponse))]
         [SwaggerResponse(400, "Ошибки валидации.", typeof(List<ValidationFailure>))]
         [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
         [SwaggerResponse(403, "Ошибка доступа в связи с отсутствием роли админа.")]
@@ -76,7 +76,7 @@ namespace BgituSec.Api.Controllers
         [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
         [SwaggerResponse(403, "Ошибка доступа в связи с отсутствием роли админа.")]
         [SwaggerResponse(404, "Аудитория с таким Id не найдена.")]
-        public async Task<ActionResult> Update([FromRoute]int Id, [FromBody] UpdateAuditoriumRequest request)
+        public async Task<ActionResult> Update([FromRoute] int id, [FromBody] UpdateAuditoriumRequest request)
         {
             ValidationResult result = await _updateValidator.ValidateAsync(request);
             if (!result.IsValid)
@@ -84,7 +84,7 @@ namespace BgituSec.Api.Controllers
                 return BadRequest(result.Errors);
             }
             var command = _mapper.Map<UpdateAuditoriumCommand>(request);
-            command.Id = Id;
+            command.Id = id;
             try
             {
                 await _mediator.Send(command);
@@ -92,24 +92,24 @@ namespace BgituSec.Api.Controllers
             }
             catch (KeyNotFoundException)
             {
-                return NotFound(Id);
+                return NotFound(id);
             }
         }
 
         [Authorize(Roles = "ROLE_ADMIN")]
         [HttpDelete]
-        [Route("{Id}")]
+        [Route("{id}")]
         [SwaggerOperation(
             Summary = "Only for ADMIN",
             Description = "Удаляет аудиторию по Id."
         )]
-        [SwaggerResponse(200, "Удаление выполнено успешно.")]
+        [SwaggerResponse(204, "Удаление выполнено успешно.")]
         [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
         [SwaggerResponse(403, "Ошибка доступа в связи с отсутствием роли админа.")]
         [SwaggerResponse(404, "Аудитория с таким Id не найдена.")]
-        public async Task<ActionResult> Delete([FromRoute] int Id)
+        public async Task<ActionResult> Delete([FromRoute] int id)
         {
-            var command = new DeleteAuditoriumCommand { Id = Id };
+            var command = new DeleteAuditoriumCommand { Id = id };
             try
             {
                 await _mediator.Send(command);
@@ -117,7 +117,7 @@ namespace BgituSec.Api.Controllers
             }
             catch (KeyNotFoundException)
             {
-                return NotFound(Id);
+                return NotFound(id);
             }
         }
     }

@@ -109,7 +109,7 @@ namespace BgituSec.Api.Controllers
             Description = "Возвращает token, refreshToken и информацию о созданном пользователе при успешной аутентификации."
         )]
         [SwaggerResponse(200, "Возвращает token и refreshToken.", (typeof(CreateUserResponse)))]
-        [SwaggerResponse(400, "Ошибки валидации.", typeof(ValidationResult))]
+        [SwaggerResponse(400, "Ошибки валидации.", typeof(List<ValidationFailure>))]
         [SwaggerResponse(401, "Ошибка добавления записи в базу данных.")]
         public async Task<ActionResult<UserResponse>> Create([FromBody] CreateUserRequest model)
         {
@@ -149,7 +149,7 @@ namespace BgituSec.Api.Controllers
             Description = "Возвращает token и refreshToken при успешной аутентификации."
         )]
         [SwaggerResponse(200, "Возвращает token и refreshToken.", typeof(RefreshTokenResponse))]
-        [SwaggerResponse(400, "Ошибки валидации.", typeof(ValidationResult))]
+        [SwaggerResponse(400, "Ошибки валидации.", typeof(List<ValidationFailure>))]
         [SwaggerResponse(401, "Неправильный логин/пароль.")]
         
         public async Task<ActionResult<string>> Login([FromBody] LoginUserRequest model)

@@ -1,18 +1,21 @@
 ﻿using BgituSec.Api.Models.Auditoriums.Request;
+using BgituSec.Domain.Interfaces;
 using FluentValidation;
 
 namespace BgituSec.Api.Validators
 {
     public class CreateAuditoriumRequestValidator : AbstractValidator<CreateAuditoriumRequest>
     {
-        public CreateAuditoriumRequestValidator()
+        private readonly IBuildingRepository _buildingRepository;
+        public CreateAuditoriumRequestValidator(IBuildingRepository buildingRepository)
         {
+            _buildingRepository = buildingRepository;
             RuleFor(auditoriumRequest =>
                 auditoriumRequest.Position).NotEmpty().Must((request, context, cancellationToken) =>
                 {
                     var pos = request.Position.Split(';');
-                    return int.TryParse(pos[0], out var x) && int.TryParse(pos[1], out var y);
-                }).WithMessage("Это не числа/не целые числа.");
+                    return double.TryParse(pos[0], out var x) && double.TryParse(pos[1], out var y);
+                }).WithMessage("Это не числа.");
             RuleFor(auditoriumRequest =>
                 auditoriumRequest.Size).NotEmpty().Must((request, context, cancellationToken) =>
                 {
@@ -20,7 +23,12 @@ namespace BgituSec.Api.Validators
                     return int.TryParse(size[0], out var w) && int.TryParse(size[1], out var h);
                 }).WithMessage("Это не числа/не целые числа.");
             RuleFor(auditoriumRequest =>
-                auditoriumRequest.BuildingId).NotEmpty().NotNull();
+                auditoriumRequest.BuildingId).NotEmpty().NotNull()
+                .MustAsync(async (request, context, cancellationToken) =>
+                {
+                    try { await _buildingRepository.GetByIdAsync(request.BuildingId); return true; }
+                    catch (KeyNotFoundException) { return false; }
+                }).WithMessage($"Такой BuildingId не найден.");
             RuleFor(auditoriumRequest =>
                 auditoriumRequest.IsComputer).NotNull().WithMessage("Поддерживаются только булевы значения true/false.");
             RuleFor(auditoriumRequest =>

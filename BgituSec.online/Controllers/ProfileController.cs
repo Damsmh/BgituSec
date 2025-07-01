@@ -56,7 +56,7 @@ namespace BgituSec.Api.Controllers
             Description = "Обновляет информацию о пользователе. Получает Id пользователя из переданного jwt."
         )]
         [SwaggerResponse(200, "Обновление выполнено успешно.")]
-        [SwaggerResponse(400, "Ошибки валидации.")]
+        [SwaggerResponse(400, "Ошибки валидации.", typeof(List<ValidationFailure>))]
         [SwaggerResponse(404, "Пользователь не найден.")]
         [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
         public async Task<ActionResult> Update([FromBody] UpdateUserRequest request)

@@ -8,5 +8,6 @@ namespace BgituSec.Application.DTOs
         public string Name { get; set; }
         public string Email { get; set; }
         public Roles Role { get; set; }
+        public bool SentNotifications { get; set; }
     }
 }

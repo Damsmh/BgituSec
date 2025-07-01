@@ -22,7 +22,10 @@ namespace BgituSec.Api.Mapping
                 .ForMember(command => command.Position, opt => opt.MapFrom(request => new NpgsqlPoint { X = ParsePosition(request.Position).x, Y = ParsePosition(request.Position).y }));
 
             CreateMap<CreateAuditoriumCommand, Auditorium>();
+            CreateMap<CreateAuditoriumCommand, AuditoriumDTO>();
             CreateMap<UpdateAuditoriumCommand, Auditorium>();
+            CreateMap<UpdateAuditoriumCommand, AuditoriumDTO>();
+
 
             CreateMap<Auditorium, AuditoriumDTO>();
             CreateMap<AuditoriumDTO, Auditorium>();
@@ -37,10 +40,10 @@ namespace BgituSec.Api.Mapping
             var parts = size.Split('*');
             return (int.Parse(parts[0]), int.Parse(parts[1]));
         }
-        private static (int x, int y) ParsePosition(string point)
+        private static (double x, double y) ParsePosition(string point)
         {
             var parts = point.Split(';');
-            return (int.Parse(parts[0]), int.Parse(parts[1]));
+            return (double.Parse(parts[0]), double.Parse(parts[1]));
         }
     }
 }

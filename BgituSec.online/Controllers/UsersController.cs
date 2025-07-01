@@ -20,9 +20,9 @@ namespace BgituSec.Api.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
-        private readonly UpdateUserRequestValidator _updateValidator;
+        private readonly UpdateUserByIdRequestValidator _updateValidator;
 
-        public UsersController(IMediator mediator, IMapper mapper, UpdateUserRequestValidator updateValidator)
+        public UsersController(IMediator mediator, IMapper mapper, UpdateUserByIdRequestValidator updateValidator)
         {
             _mediator = mediator;
             _mapper = mapper;
@@ -37,7 +37,7 @@ namespace BgituSec.Api.Controllers
             Description = "Обновляет информацию о пользователе по Id."
         )]
         [SwaggerResponse(200, "Обновление выполнено успешно.")]
-        [SwaggerResponse(400, "Ошибки валидации.", typeof(ValidationFailure))]
+        [SwaggerResponse(400, "Ошибки валидации.", typeof(List<ValidationFailure>))]
         [SwaggerResponse(404, "Пользователь не найден.")]
         [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
         public async Task<ActionResult> Update([FromRoute] int Id, [FromBody] UpdateUserRequest request)
