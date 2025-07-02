@@ -21,7 +21,7 @@ namespace BgituSec.Application.Features.Breakdowns.Handlers
             breakdown.CreatedAt = DateTime.UtcNow;
             await _repository.AddAsync(breakdown);
 
-            var message = JsonSerializer.Serialize(await _mediator.Send(new GetAllBreakdownsCommand(), CancellationToken.None));
+            var message = JsonSerializer.Serialize(await _mediator.Send(new GetAllBreakdowns(), CancellationToken.None));
             await _sseService.NotifyClientsAsync(message);
 
             return _mapper.Map<BreakdownDTO>(breakdown);

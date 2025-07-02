@@ -8,7 +8,7 @@ namespace BgituSec.Application.Features.Breakdowns.Handlers
         private readonly IMediator _mediator = mediator;
         public async Task<BreakdownResponse> Handle(GetAllBreakdowns request, CancellationToken cancellationToken)
         {
-            return new BreakdownResponse { Breakdowns = await _mediator.Send(new GetAllBreakdownsCommand()) };
+            return new BreakdownResponse { breakdowns = await _mediator.Send(new GetAllBreakdownsCommand()) };
         }
     }
 }

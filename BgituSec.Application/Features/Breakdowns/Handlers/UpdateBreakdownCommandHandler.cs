@@ -19,7 +19,7 @@ namespace BgituSec.Application.Features.Breakdowns.Handlers
         {
             var breakdown = _mapper.Map<BreakdownDTO>(request);
             await _repository.UpdateAsync(_mapper.Map<Breakdown>(breakdown));
-            var message = JsonSerializer.Serialize(await _mediator.Send(new GetAllBreakdownsCommand(), CancellationToken.None));
+            var message = JsonSerializer.Serialize(await _mediator.Send(new GetAllBreakdowns(), CancellationToken.None));
             await _sseService.NotifyClientsAsync(message);
             return breakdown;
         }

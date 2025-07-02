@@ -2,7 +2,6 @@
 using BgituSec.Api.Models.Breakdowns.Request;
 using BgituSec.Api.Models.Breakdowns.Response;
 using BgituSec.Api.Validators.Breakdown;
-using BgituSec.Application.DTOs;
 using BgituSec.Application.Features.Breakdowns.Commands;
 using BgituSec.Application.Services.SSE;
 using FluentValidation.Results;
@@ -126,13 +125,13 @@ namespace BgituSec.Api.Controllers
             }
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpGet]
         [Route("stream")]
         [SwaggerOperation(
             Description = "Присылает список ошибок при изменении."
         )]
-        [SwaggerResponse(200, "Присылает список ошибок при изменении.", typeof(List<BreakdownDTO>))]
+        [SwaggerResponse(200, "Присылает список ошибок при изменении.", typeof(BreakdownResponse))]
         public async Task SubscribeToFailures()
         {
             Response.Headers.ContentType = "text/event-stream";
@@ -145,8 +144,8 @@ namespace BgituSec.Api.Controllers
             {
                 while (!HttpContext.RequestAborted.IsCancellationRequested)
                 {
-                    var failures = await _mediator.Send(new GetAllBreakdownsCommand());
-                    var data = JsonSerializer.Serialize(failures);
+                    var response = await _mediator.Send(new GetAllBreakdowns());
+                    var data = JsonSerializer.Serialize(response);
                     var message = $"data: {data}\n\n";
 
                     await Response.WriteAsync(message, Encoding.UTF8);

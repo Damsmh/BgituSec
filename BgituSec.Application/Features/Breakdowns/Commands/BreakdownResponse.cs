@@ -4,6 +4,6 @@ namespace BgituSec.Application.Features.Breakdowns.Commands
 {
     public class BreakdownResponse
     {
-        public List<BreakdownDTO> Breakdowns { get; set; }
+        public List<BreakdownDTO> breakdowns { get; set; }
     }
 }

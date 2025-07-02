@@ -17,7 +17,7 @@ namespace BgituSec.Application.Features.Breakdowns.Handlers
         public async Task<BreakdownDTO> Handle(DeleteBreakdownCommand request, CancellationToken cancellationToken)
         {
             var breakdown = await _repository.DeleteAsync(request.Id);
-            var message = JsonSerializer.Serialize(await _mediator.Send(new GetAllBreakdownsCommand(), CancellationToken.None));
+            var message = JsonSerializer.Serialize(await _mediator.Send(new GetAllBreakdowns(), CancellationToken.None));
             await _sseService.NotifyClientsAsync(message);
             return _mapper.Map<BreakdownDTO>(breakdown);
         }
