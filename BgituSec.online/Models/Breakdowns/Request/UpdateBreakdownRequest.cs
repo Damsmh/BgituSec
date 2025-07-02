@@ -2,7 +2,6 @@
 {
     public class UpdateBreakdownRequest
     {
-        public int Id { get; set; }
         public bool IsSolved { get; set; }
     }
 }
