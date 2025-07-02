@@ -2,6 +2,7 @@
 using BgituSec.Api.Models.Breakdowns.Request;
 using BgituSec.Api.Models.Breakdowns.Response;
 using BgituSec.Api.Validators.Breakdown;
+using BgituSec.Application.DTOs;
 using BgituSec.Application.Features.Breakdowns.Commands;
 using BgituSec.Application.Services.SSE;
 using FluentValidation.Results;
@@ -10,7 +11,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net.Mime;
-using System.Threading.Channels;
+using System.Text;
+using System.Text.Json;
 
 namespace BgituSec.Api.Controllers
 {
@@ -124,49 +126,38 @@ namespace BgituSec.Api.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet]
-        [AllowAnonymous]
         [Route("stream")]
         [SwaggerOperation(
-            Description = "Отправляет список поломок при любом изменении."
+            Description = "Присылает список ошибок при изменении."
         )]
-        [SwaggerResponse(200)]
-        public async Task Stream()
+        [SwaggerResponse(200, "Присылает список ошибок при изменении.", typeof(List<BreakdownDTO>))]
+        public async Task SubscribeToFailures()
         {
-            Response.ContentType = "text/event-stream";
-            Response.Headers.Append("Cache-Control", "no-cache");
-            Response.Headers.Append("Connection", "keep-alive");
+            Response.Headers.ContentType = "text/event-stream";
+            Response.Headers.CacheControl = "no-cache";
+            Response.Headers.Connection = "keep-alive";
 
-            var clientId = Guid.NewGuid().ToString();
-            var channel = Channel.CreateUnbounded<string>();
-            var writer = channel.Writer;
-
-            Console.WriteLine($"Клиент {clientId} подключен к потоку");
-
-            var cancellationToken = HttpContext.RequestAborted;
+            _sseService.AddClient(Response);
 
             try
             {
-                await _sseService.RegisterClientAsync(clientId, writer, cancellationToken);
-
-                await foreach (var message in channel.Reader.ReadAllAsync(cancellationToken))
+                while (!HttpContext.RequestAborted.IsCancellationRequested)
                 {
-                    Console.WriteLine($"Отправка сообщения клиенту {clientId}: {message}");
-                    await Response.WriteAsync(message, cancellationToken);
-                    await Response.Body.FlushAsync(cancellationToken);
+                    var failures = await _mediator.Send(new GetAllBreakdownsCommand());
+                    var data = JsonSerializer.Serialize(failures);
+                    var message = $"data: {data}\n\n";
+
+                    await Response.WriteAsync(message, Encoding.UTF8);
+                    await Response.Body.FlushAsync();
+
+                    await Task.Delay(Timeout.Infinite, HttpContext.RequestAborted);
                 }
-            }
-            catch (OperationCanceledException)
-            {
-                Console.WriteLine($"Клиент {clientId} отключился (OperationCanceledException)");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка в SSE потоке для клиента {clientId}: {ex.Message}");
             }
             finally
             {
-                writer.TryComplete();
+                _sseService.RemoveClient(Response);
             }
         }
     }

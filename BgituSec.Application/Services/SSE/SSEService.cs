@@ -1,78 +1,50 @@
-﻿using BgituSec.Application.Features.Breakdowns.Commands;
-using MediatR;
-using System.Collections.Concurrent;
-using System.Text.Encodings.Web;
-using System.Text.Json;
-using System.Threading.Channels;
+﻿using Microsoft.AspNetCore.Http;
+using System.Text;
 
 namespace BgituSec.Application.Services.SSE
 {
-    public class SSEService : ISSEService, INotificationHandler<BreakdownResponseNotification>
+    public class SSEService : ISSEService
     {
-        private readonly ConcurrentDictionary<string, ChannelWriter<string>> _clients = new();
+        private readonly List<HttpResponse> _clients = [];
 
-        public async Task RegisterClientAsync(string clientId, ChannelWriter<string> writer, CancellationToken cancellationToken)
+        public void AddClient(HttpResponse response)
         {
-            Console.WriteLine($"Клиент {clientId} зарегистрирован");
-            _clients.TryAdd(clientId, writer);
-
-            try
+            lock (_clients)
             {
-                Console.WriteLine($"Отправка тестового сообщения клиенту {clientId}");
-                await writer.WriteAsync("data: {\"message\": \"connected\"}\n\n", cancellationToken);
-
-                while (!cancellationToken.IsCancellationRequested)
-                {
-                    Console.WriteLine($"Отправка пинга клиенту {clientId}");
-                    await writer.WriteAsync(": ping\n\n", cancellationToken);
-                    await Task.Delay(TimeSpan.FromSeconds(15), cancellationToken);
-                }
-            }
-            catch (OperationCanceledException)
-            {
-                Console.WriteLine($"Клиент {clientId} отключился (OperationCanceledException)");
-                _clients.TryRemove(clientId, out _);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Ошибка для клиента {clientId}: {ex.Message}");
-                _clients.TryRemove(clientId, out _);
+                _clients.Add(response);
             }
         }
 
-        public async Task Handle(BreakdownResponseNotification notification, CancellationToken cancellationToken)
+        public void RemoveClient(HttpResponse response)
         {
-            Console.WriteLine($"Отправка уведомления. Количество клиентов: {_clients.Count}");
-            var data = JsonSerializer.Serialize(notification.Breakdowns, new JsonSerializerOptions
+            lock (_clients)
             {
-                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-            });
-            var message = $"data: {data}\n\n";
-            var failedClients = new List<string>();
+                _clients.Remove(response);
+            }
+        }
 
-            foreach (var client in _clients)
+        public async Task NotifyClientsAsync(string message)
+        {
+            var tasks = new List<Task>();
+            lock (_clients)
             {
-                try
+                foreach (var client in _clients.ToList())
                 {
-                    Console.WriteLine($"Отправка клиенту {client.Key}");
-                    if (!client.Value.TryWrite(message))
+                    if (client.HttpContext.RequestAborted.IsCancellationRequested)
                     {
-                        Console.WriteLine($"Не удалось записать клиенту {client.Key}");
-                        failedClients.Add(client.Key);
+                        continue;
                     }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Ошибка отправки клиенту {client.Key}: {ex.Message}");
-                    failedClients.Add(client.Key);
+
+                    var data = $"data: {message}\n\n";
+                    tasks.Add(Task.Run(async () =>
+                    {
+                        await client.WriteAsync(data, Encoding.UTF8);
+                        await client.Body.FlushAsync();
+                    }));
                 }
             }
 
-            foreach (var clientId in failedClients)
-            {
-                Console.WriteLine($"Удаление клиента {clientId}");
-                _clients.TryRemove(clientId, out _);
-            }
+            await Task.WhenAll(tasks);
         }
     }
 }

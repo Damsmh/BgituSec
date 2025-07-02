@@ -1,5 +1,4 @@
 using BgituSec.Api;
-using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Domain.Interfaces;
 using BgituSec.Infrastructure.Data;
 using BgituSec.Infrastructure.Repositories;
@@ -14,6 +13,8 @@ using Microsoft.OpenApi.Models;
 using BgituSec.Api.Validators.User;
 using BgituSec.Application.Services.Token;
 using BgituSec.Application.Services.SSE;
+using MediatR;
+using BgituSec.Application.Features.Users.Commands;
 
 namespace BgituSec.online
 {
@@ -23,6 +24,7 @@ namespace BgituSec.online
         {
             IdentityModelEventSource.ShowPII = true;
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(LoginUserCommand).Assembly));
 
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(
@@ -34,9 +36,6 @@ namespace BgituSec.online
             builder.Services.AddScoped<IComputerRepository, ComputerRepository>();
             builder.Services.AddScoped<IBreakdownRepository, BreakdownRepository>();
             builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
-            builder.Services.AddMediatR(cfg =>
-                cfg.RegisterServicesFromAssembly(typeof(CreateUserCommand).Assembly));
-            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SSEService).Assembly));
             builder.Services.AddValidatorsFromAssemblyContaining<CreateUserRequestValidator>();
             builder.Services.AddValidatorsFromAssemblyContaining<LoginUserRequestValidator>();
 
@@ -44,6 +43,13 @@ namespace BgituSec.online
             builder.Services.AddControllers()
                             .AddJsonOptions(options =>
                                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+            builder.WebHost.ConfigureKestrel(serverOptions =>
+            {
+                serverOptions.ConfigureEndpointDefaults(listenOptions =>
+                {
+                    listenOptions.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http1AndHttp2;
+                });
+            });
             builder.Services.AddSwaggerGen(c =>
             {
                 c.EnableAnnotations();
@@ -77,6 +83,7 @@ namespace BgituSec.online
             builder.Services.AddTransient<ITokenService, TokenService>();
             builder.Services.AddSingleton<ISSEService, SSEService>();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+
             .AddJwtBearer(options =>
             {
                 options.RequireHttpsMetadata = false;
@@ -113,7 +120,7 @@ namespace BgituSec.online
             app.UseSwaggerUI();
             app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseCors(builder => builder
+            app.UseCors(cfg => cfg
                 .SetIsOriginAllowed(_ => true)
                 .AllowAnyMethod()
                 .AllowAnyHeader()
