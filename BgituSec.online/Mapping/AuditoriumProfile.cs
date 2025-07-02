@@ -6,6 +6,7 @@ using BgituSec.Application.Features.Auditoriums.Commands;
 using BgituSec.Domain.Entities;
 using BgituSec.Infrastructure.Utils;
 using NpgsqlTypes;
+using System.Globalization;
 
 namespace BgituSec.Api.Mapping
 {
@@ -13,6 +14,7 @@ namespace BgituSec.Api.Mapping
     {
         public AuditoriumProfile()
         {
+            var culture = new CultureInfo("ru-RU");
             CreateMap<CreateAuditoriumRequest, CreateAuditoriumCommand>()
                 .ForMember(command => command.Width, opt => opt.MapFrom(request => EntityExtensions.ParseIntSize(request.Size).Width))
                 .ForMember(command => command.Height, opt => opt.MapFrom(request => EntityExtensions.ParseIntSize(request.Size).Height))
@@ -33,8 +35,8 @@ namespace BgituSec.Api.Mapping
 
             CreateMap<AuditoriumDTO, CreateAuditoriumResponse>();
             CreateMap<AuditoriumDTO, GetAuditoriumResponse>()
-                .ForMember(command => command.Size, opt => opt.MapFrom(request => $"{request.Width}*{request.Height}"))
-                .ForMember(command => command.Position, opt => opt.MapFrom(request => $"{request.Position.X};{request.Position.Y}"));
+                .ForMember(command => command.Size, opt => opt.MapFrom(request => $"{request.Width.ToString(culture)};{request.Height.ToString(culture)}"))
+                .ForMember(command => command.Position, opt => opt.MapFrom(request => $"{request.Position.X.ToString(culture)};{request.Position.Y.ToString(culture)}"));
         }
     }
 }

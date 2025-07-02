@@ -43,13 +43,6 @@ namespace BgituSec.online
             builder.Services.AddControllers()
                             .AddJsonOptions(options =>
                                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-            builder.WebHost.ConfigureKestrel(serverOptions =>
-            {
-                serverOptions.ConfigureEndpointDefaults(listenOptions =>
-                {
-                    listenOptions.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http1AndHttp2;
-                });
-            });
             builder.Services.AddSwaggerGen(c =>
             {
                 c.EnableAnnotations();
