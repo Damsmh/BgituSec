@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Globalization;
+using System.Reflection;
 
 namespace BgituSec.Infrastructure.Utils
 {
@@ -21,18 +22,21 @@ namespace BgituSec.Infrastructure.Utils
         }
         public static (int Width, int Height) ParseIntSize(string size)
         {
+            var culture = new CultureInfo("ru-RU");
             var parts = size.Split(';');
             return (int.Parse(parts[0]), int.Parse(parts[1]));
         }
         public static (double Width, double Height) ParseDoubleSize(string size)
         {
+            var culture = new CultureInfo("ru-RU");
             var parts = size.Split(';');
-            return (double.Parse(parts[0]), double.Parse(parts[1]));
+            return (double.Parse(parts[0], culture), double.Parse(parts[1], culture));
         }
         public static (double x, double y) ParsePosition(string point)
         {
+            var culture = new CultureInfo("ru-RU");
             var parts = point.Split(';');
-            return (double.Parse(parts[0]), double.Parse(parts[1]));
+            return (double.Parse(parts[0], culture), double.Parse(parts[1], culture));
         }
     }
 }

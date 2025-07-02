@@ -24,7 +24,7 @@ namespace BgituSec.Api.Validators.Computer
                 {
                     var size = request.Size.Split(";");
                     return double.TryParse(size[0], out var w) && double.TryParse(size[1], out var h);
-                }).WithMessage("Это не числа/не целые числа.");
+                }).WithMessage("Это не числа.");
             RuleFor(CreateComputerRequest =>
                 CreateComputerRequest.AuditoriumId).NotEmpty().NotNull()
                 .MustAsync(async (request, context, cancellationToken) =>

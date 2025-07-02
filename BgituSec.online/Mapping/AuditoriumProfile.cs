@@ -16,19 +16,18 @@ namespace BgituSec.Api.Mapping
         {
             var culture = new CultureInfo("ru-RU");
             CreateMap<CreateAuditoriumRequest, CreateAuditoriumCommand>()
-                .ForMember(command => command.Width, opt => opt.MapFrom(request => EntityExtensions.ParseIntSize(request.Size).Width))
-                .ForMember(command => command.Height, opt => opt.MapFrom(request => EntityExtensions.ParseIntSize(request.Size).Height))
+                .ForMember(command => command.Width, opt => opt.MapFrom(request => EntityExtensions.ParseDoubleSize(request.Size).Width))
+                .ForMember(command => command.Height, opt => opt.MapFrom(request => EntityExtensions.ParseDoubleSize(request.Size).Height))
                 .ForMember(command => command.Position, opt => opt.MapFrom(request => new NpgsqlPoint { X = EntityExtensions.ParsePosition(request.Position).x, Y = EntityExtensions.ParsePosition(request.Position).y }));
             CreateMap<UpdateAuditoriumRequest, UpdateAuditoriumCommand>()
-                .ForMember(command => command.Width, opt => opt.MapFrom(request => EntityExtensions.ParseIntSize(request.Size).Width))
-                .ForMember(command => command.Height, opt => opt.MapFrom(request => EntityExtensions.ParseIntSize(request.Size).Height))
+                .ForMember(command => command.Width, opt => opt.MapFrom(request => EntityExtensions.ParseDoubleSize(request.Size).Width))
+                .ForMember(command => command.Height, opt => opt.MapFrom(request => EntityExtensions.ParseDoubleSize(request.Size).Height))
                 .ForMember(command => command.Position, opt => opt.MapFrom(request => new NpgsqlPoint { X = EntityExtensions.ParsePosition(request.Position).x, Y = EntityExtensions.ParsePosition(request.Position).y }));
 
             CreateMap<CreateAuditoriumCommand, Auditorium>();
             CreateMap<CreateAuditoriumCommand, AuditoriumDTO>();
             CreateMap<UpdateAuditoriumCommand, Auditorium>();
             CreateMap<UpdateAuditoriumCommand, AuditoriumDTO>();
-
 
             CreateMap<Auditorium, AuditoriumDTO>();
             CreateMap<AuditoriumDTO, Auditorium>();

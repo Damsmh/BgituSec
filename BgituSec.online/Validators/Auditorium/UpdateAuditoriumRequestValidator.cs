@@ -21,8 +21,8 @@ namespace BgituSec.Api.Validators.Auditorium
                 auditoriumRequest.Size).NotEmpty().Must((request, context, cancellationToken) =>
                 {
                     var size = request.Size.Split(";");
-                    return int.TryParse(size[0], out var w) && int.TryParse(size[1], out var h);
-                }).WithMessage("Это не числа/не целые числа.");
+                    return  double.TryParse(size[0], out var w) && double.TryParse(size[1], out var h);
+                }).WithMessage("Это не числа.");
             RuleFor(auditoriumRequest =>
                 auditoriumRequest.BuildingId).NotEmpty().NotNull()
                 .MustAsync(async (request, context, cancellationToken) =>
