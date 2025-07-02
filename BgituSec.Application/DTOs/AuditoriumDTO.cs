@@ -9,8 +9,8 @@ namespace BgituSec.Application.DTOs
         public bool IsComputer { get; set; }
         public string Name { get; set; }
         public NpgsqlPoint Position { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
+        public double Width { get; set; }
+        public double Height { get; set; }
         public int BuildingId { get; set; }
     }
 }
