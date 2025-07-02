@@ -2,7 +2,6 @@
 using BgituSec.Application.DTOs;
 using BgituSec.Application.Features.Breakdowns.Commands;
 using BgituSec.Application.Services.SSE;
-using BgituSec.Domain.Entities;
 using BgituSec.Domain.Interfaces;
 using MediatR;
 using System.Text.Json;
@@ -17,11 +16,12 @@ namespace BgituSec.Application.Features.Breakdowns.Handlers
         private readonly ISSEService _sseService = sseService;
         public async Task<BreakdownDTO> Handle(UpdateBreakdownCommand request, CancellationToken cancellationToken)
         {
-            var breakdown = _mapper.Map<BreakdownDTO>(request);
-            await _repository.UpdateAsync(_mapper.Map<Breakdown>(breakdown));
+            var breakdown = await _repository.GetByIdAsync(request.Id);
+            breakdown.IsSolved = request.IsSolved;
+            await _repository.UpdateAsync(breakdown);
             var message = JsonSerializer.Serialize(await _mediator.Send(new GetAllBreakdowns(), CancellationToken.None));
             await _sseService.NotifyClientsAsync(message);
-            return breakdown;
+            return _mapper.Map<BreakdownDTO>(breakdown);
         }
     }
 }
