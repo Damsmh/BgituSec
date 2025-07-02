@@ -20,9 +20,10 @@ namespace BgituSec.Application.Features.Breakdowns.Handlers
             var breakdown = _mapper.Map<Breakdown>(request);
             breakdown.CreatedAt = DateTime.UtcNow;
             await _repository.AddAsync(breakdown);
-            
+
             var message = JsonSerializer.Serialize(await _mediator.Send(new GetAllBreakdownsCommand(), CancellationToken.None));
             await _sseService.NotifyClientsAsync(message);
+
             return _mapper.Map<BreakdownDTO>(breakdown);
         }
     }

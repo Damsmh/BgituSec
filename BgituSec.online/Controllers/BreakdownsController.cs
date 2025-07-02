@@ -126,7 +126,7 @@ namespace BgituSec.Api.Controllers
             }
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet]
         [Route("stream")]
         [SwaggerOperation(

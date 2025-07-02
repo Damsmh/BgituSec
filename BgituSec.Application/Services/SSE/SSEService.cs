@@ -23,7 +23,7 @@ namespace BgituSec.Application.Services.SSE
             }
         }
 
-        public async Task NotifyClientsAsync(string message)
+        public async Task NotifyClientsAsync(string breakdowns)
         {
             var tasks = new List<Task>();
             lock (_clients)
@@ -35,7 +35,7 @@ namespace BgituSec.Application.Services.SSE
                         continue;
                     }
 
-                    var data = $"data: {message}\n\n";
+                    var data = $"data: {breakdowns}\n\n";
                     tasks.Add(Task.Run(async () =>
                     {
                         await client.WriteAsync(data, Encoding.UTF8);

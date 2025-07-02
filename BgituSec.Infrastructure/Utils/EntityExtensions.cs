@@ -21,12 +21,12 @@ namespace BgituSec.Infrastructure.Utils
         }
         public static (int Width, int Height) ParseIntSize(string size)
         {
-            var parts = size.Split('*');
+            var parts = size.Split(';');
             return (int.Parse(parts[0]), int.Parse(parts[1]));
         }
         public static (double Width, double Height) ParseDoubleSize(string size)
         {
-            var parts = size.Split('*');
+            var parts = size.Split(';');
             return (double.Parse(parts[0]), double.Parse(parts[1]));
         }
         public static (double x, double y) ParsePosition(string point)
