@@ -8,6 +8,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Collections.Generic;
 using System.Net.Mime;
 
 
@@ -88,22 +89,30 @@ namespace BgituSec.Api.Controllers
         }
 
 
-        [Authorize(Roles="ROLE_ADMIN")]
-        [HttpGet]
-        [Route("")]
+        [Authorize]
+        [HttpGet("")]
         [SwaggerOperation(
-            Summary = "Only for ADMIN",
-            Description = "Возвращает список всех пользователей."
+         Description = "Для ROLE_ADMIN возвращает полные данные пользователей, для ROLE_USER — только имена пользователей."
         )]
-        [SwaggerResponse(200, "Возвращает список всех пользователей.", typeof(List<UserResponse>))]
-        [SwaggerResponse(403, "Ошибка доступа в связи с отсутствием роли админа.")]
+        [SwaggerResponse(200, "Возвращает список пользователей.", typeof(List<UserResponse>))]
         [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
-        public async Task<ActionResult<List<UserResponse>>> GetAll()
+        [SwaggerResponse(403, "Ошибка доступа в связи с отсутствием роли админа.")]
+        public async Task<ActionResult> GetAll()
         {
             var command = new GetAllUsersCommand();
             var usersDto = await _mediator.Send(command);
-            var response = _mapper.Map<List<UserResponse>>(usersDto);
-            return Ok(new { response });
+
+            if (User.IsInRole("ROLE_ADMIN"))
+            {
+                var response = _mapper.Map<List<UserResponse>>(usersDto);
+                return Ok(new { response });
+            }
+            else if (User.IsInRole("ROLE_USER"))
+            {
+                var response = _mapper.Map<List<LimitedUserResponse>>(usersDto);
+                return Ok(new { response });
+            }
+            return Forbid();
         }
     }
 }

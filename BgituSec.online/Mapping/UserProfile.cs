@@ -13,7 +13,9 @@ namespace BgituSec.Api.Mapping
         {
             CreateMap<CreateUserRequest, CreateUserCommand>();
             CreateMap<UserDTO, UserResponse>();
+            CreateMap<UserDTO, LimitedUserResponse>();
             CreateMap<UserResponse, UserDTO>();
+            CreateMap<LimitedUserResponse, UserDTO>();
             CreateMap<User, UserDTO>();
             CreateMap<UserDTO, User>();
             CreateMap<User, CreateUserCommand>();
