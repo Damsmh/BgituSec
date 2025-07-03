@@ -7,5 +7,6 @@ namespace BgituSec.Domain.Interfaces
         public Task AddAsync(RefreshToken token);
         public Task<RefreshToken?> GetAsync(int userId);
         public Task UpdateAsync(RefreshToken token);
+        public Task DeleteByUserIdAsync(int userId);
     }
 }

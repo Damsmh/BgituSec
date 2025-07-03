@@ -80,10 +80,7 @@ namespace BgituSec.Api.Controllers
                 Console.WriteLine($"{refreshToken.ExpiresAt}  {DateTime.UtcNow}");
                 return BadRequest(new { response = "Недействительный или истекший refresh token." });
             }
-
-            refreshToken.IsRevoked = true;
-            refreshToken.RevokedAt = DateTime.UtcNow;
-            await _tokenRepository.UpdateAsync(refreshToken);
+            await _tokenRepository.DeleteByUserIdAsync(userId);
 
             var getUserCommand = new GetUserCommand { Id = userId };
             var userDto = await _mediator.Send(getUserCommand);
@@ -173,6 +170,7 @@ namespace BgituSec.Api.Controllers
                 Token = token
             };
             refreshToken.Token = _tokenService.Hash(refreshToken.Token);
+            await _tokenRepository.DeleteByUserIdAsync(userDto.Id);
             await _tokenRepository.AddAsync(refreshToken);
             return Ok(response);
         }
