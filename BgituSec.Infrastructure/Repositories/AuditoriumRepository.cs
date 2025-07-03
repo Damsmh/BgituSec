@@ -19,6 +19,7 @@ namespace BgituSec.Infrastructure.Repositories
         {
             var auditorium = await GetByIdAsync(id);
             _dbContext.Auditoriums.Remove(auditorium);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<ICollection<Auditorium>> GetAllAsync()
