@@ -10,6 +10,7 @@ namespace BgituSec.Api.Models.Auditoriums.Response
         public string Name { get; set; }
         public string Position { get; set; }
         public string Size { get; set; }
+        public bool IsStairs { get; set; }
         public int BuildingId { get; set; }
     }
 }

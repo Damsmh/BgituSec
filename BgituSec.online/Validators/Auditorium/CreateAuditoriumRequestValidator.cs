@@ -32,6 +32,8 @@ namespace BgituSec.Api.Validators.Auditorium
             RuleFor(auditoriumRequest =>
                 auditoriumRequest.IsComputer).NotNull().WithMessage("Поддерживаются только булевы значения true/false.");
             RuleFor(auditoriumRequest =>
+                auditoriumRequest.IsStairs).NotNull().WithMessage("Поддерживаются только булевы значения true/false.");
+            RuleFor(auditoriumRequest =>
                 auditoriumRequest.Floor).NotEmpty().NotNull();
             RuleFor(auditoriumRequest =>
                 auditoriumRequest.Name).NotEmpty();

@@ -11,8 +11,8 @@ namespace BgituSec.Domain.Entities
         public NpgsqlPoint Position { get; set; }
         public double Width { get; set; }
         public double Height { get; set; }
+        public bool IsStairs { get; set; }
         public int BuildingId { get; set; }
-
         public Building Building { get; set; }
         public ICollection<Computer> Computers { get; set; }
     }

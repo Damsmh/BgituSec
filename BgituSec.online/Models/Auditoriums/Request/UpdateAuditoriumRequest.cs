@@ -16,6 +16,8 @@ namespace BgituSec.Api.Models.Auditoriums.Request
         [Required]
         public string Size { get; set; }
         [Required]
+        public bool IsStairs { get; set; }
+        [Required]
         public int BuildingId { get; set; }
     }
 }

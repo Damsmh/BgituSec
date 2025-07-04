@@ -10,6 +10,7 @@ namespace BgituSec.Application.Features.Computers.Commands
         public string SerialNumber { get; set; }
         public double Width { get; set; }
         public double Height { get; set; }
+        public int Type { get; set; }
         public int AuditoriumId { get; set; }
     }
 }
