@@ -44,11 +44,10 @@ namespace BgituSec.Api.Controllers
         }
 
 
-        [Authorize(Roles = "ROLE_ADMIN")]
+        [Authorize]
         [HttpPost]
         [Route("")]
         [SwaggerOperation(
-            Summary = "Only for ADMIN",
             Description = "Добавляет новую поломку."
         )]
         [SwaggerResponse(201, "Добавление выполнено успешно.", typeof(CreateBreakdownResponse))]
