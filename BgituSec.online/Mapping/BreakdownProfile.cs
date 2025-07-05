@@ -4,6 +4,7 @@ using BgituSec.Api.Models.Breakdowns.Response;
 using BgituSec.Application.DTOs;
 using BgituSec.Application.Features.Breakdowns.Commands;
 using BgituSec.Domain.Entities;
+using System.Text.RegularExpressions;
 
 namespace BgituSec.Api.Mapping
 {
@@ -24,7 +25,8 @@ namespace BgituSec.Api.Mapping
             CreateMap<BreakdownDTO, Breakdown>();
 
             CreateMap<BreakdownDTO, CreateBreakdownResponse>();
-            CreateMap<BreakdownDTO, GetBreakdownResponse>();
+            CreateMap<BreakdownDTO, GetBreakdownResponse>()
+                .ForMember(response => response.CreatedAt, opt => opt.MapFrom(dto => dto.createdAt.ToString("dd.MM.yyyy HH:mm")));
         }
     }
 }
