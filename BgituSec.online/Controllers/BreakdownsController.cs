@@ -143,7 +143,8 @@ namespace BgituSec.Api.Controllers
             {
                 while (!HttpContext.RequestAborted.IsCancellationRequested)
                 {
-                    var response = await _mediator.Send(new GetAllBreakdowns());
+                    var responseDto = await _mediator.Send(new GetAllBreakdowns());
+                    var response = _mapper.Map<GetBreakdownResponseSSE>(responseDto);
                     var data = JsonSerializer.Serialize(response);
                     var message = $"data: {data}\n\n";
 

@@ -2,12 +2,12 @@
 {
     public class GetBreakdownResponse
     {
-        public int Id { get; set; }
-        public string? Description { get; set; }
-        public bool IsSolved { get; set; }
-        public int Level { get; set; }
-        public string CreatedAt { get; set; }
-        public int ComputerId { get; set; }
-        public int UserId { get; set; }
+        public int id { get; set; }
+        public string? description { get; set; }
+        public bool isSolved { get; set; }
+        public int level { get; set; }
+        public string createdAt { get; set; }
+        public int computerId { get; set; }
+        public int userId { get; set; }
     }
 }

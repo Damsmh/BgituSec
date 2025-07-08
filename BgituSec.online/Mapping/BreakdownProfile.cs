@@ -26,7 +26,8 @@ namespace BgituSec.Api.Mapping
 
             CreateMap<BreakdownDTO, CreateBreakdownResponse>();
             CreateMap<BreakdownDTO, GetBreakdownResponse>()
-                .ForMember(response => response.CreatedAt, opt => opt.MapFrom(dto => dto.createdAt.ToString("dd.MM.yyyy HH:mm")));
+                .ForMember(response => response.createdAt, opt => opt.MapFrom(dto => dto.CreatedAt.ToString("dd.MM.yyyy HH:mm")));
+            CreateMap<BreakdownResponse, GetBreakdownResponseSSE>();
         }
     }
 }

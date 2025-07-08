@@ -15,6 +15,7 @@ using BgituSec.Application.Services.Token;
 using BgituSec.Application.Services.SSE;
 using MediatR;
 using BgituSec.Application.Features.Users.Commands;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 namespace BgituSec.online
 {
@@ -38,8 +39,6 @@ namespace BgituSec.online
             builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
             builder.Services.AddValidatorsFromAssemblyContaining<CreateUserRequestValidator>();
             builder.Services.AddValidatorsFromAssemblyContaining<LoginUserRequestValidator>();
-
-
             builder.Services.AddControllers()
                             .AddJsonOptions(options =>
                                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
