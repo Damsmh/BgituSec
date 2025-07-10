@@ -25,7 +25,7 @@ namespace BgituSec.Api.Validators.Computer
                     return double.TryParse(size[0], out var w) && double.TryParse(size[1], out var h);
                 }).WithMessage("Это не числа.");
             RuleFor(UpdateComputerRequest =>
-                UpdateComputerRequest.Type).NotEmpty().InclusiveBetween(0, 3);
+                UpdateComputerRequest.Type).InclusiveBetween(0, 3);
             RuleFor(UpdateComputerRequest =>
                 UpdateComputerRequest.AuditoriumId).NotEmpty().NotNull()
                 .MustAsync(async (request, context, cancellationToken) =>
