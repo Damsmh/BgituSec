@@ -77,10 +77,8 @@ namespace BgituSec.Api.Controllers
 
             if (refreshToken == null || refreshToken.ExpiresAt < DateTime.UtcNow || !_tokenService.Verify(request.RefreshToken, refreshToken.Token))
             {
-                Console.WriteLine($"{refreshToken.ExpiresAt}  {DateTime.UtcNow}");
                 return BadRequest(new { response = "Недействительный или истекший refresh token." });
             }
-            await _tokenRepository.DeleteByUserIdAsync(userId);
 
             var getUserCommand = new GetUserCommand { Id = userId };
             var userDto = await _mediator.Send(getUserCommand);
@@ -89,6 +87,7 @@ namespace BgituSec.Api.Controllers
                 return NotFound(new { response = "Пользователь не найден." });
             }
 
+            await _tokenRepository.DeleteByUserIdAsync(userId);
             var newJwtToken = _tokenService.CreateToken(userDto);
             var tokenDTO = _tokenService.GenerateRefreshToken(userId);
             var response = new RefreshTokenResponse { RefreshToken = tokenDTO.Token, Token = newJwtToken };
