@@ -1,6 +1,5 @@
 ﻿using BgituSec.Api.Models.Computers.Request;
 using BgituSec.Domain.Interfaces;
-using BgituSec.Infrastructure.Repositories;
 using FluentValidation;
 
 namespace BgituSec.Api.Validators.Computer
@@ -26,14 +25,14 @@ namespace BgituSec.Api.Validators.Computer
                     return double.TryParse(size[0], out var w) && double.TryParse(size[1], out var h);
                 }).WithMessage("Это не числа.");
             RuleFor(CreateComputerRequest =>
-                CreateComputerRequest.Type).NotEmpty().NotNull().InclusiveBetween(0, 3);
+                CreateComputerRequest.Type).NotEmpty().InclusiveBetween(0, 3);
             RuleFor(CreateComputerRequest =>
                 CreateComputerRequest.AuditoriumId).NotEmpty().NotNull()
                 .MustAsync(async (request, context, cancellationToken) =>
                 {
                     try { await _auditoriumRepository.GetByIdAsync(request.AuditoriumId); return true; }
                     catch (KeyNotFoundException) { return false; }
-                }).WithMessage($"Такой AuditoriuId не найден.");
+                }).WithMessage($"Такой AuditoriumId не найден.");
         }
     }
 }
