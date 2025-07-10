@@ -90,7 +90,8 @@ namespace BgituSec.Api.Controllers
 
 
         [Authorize]
-        [HttpGet("")]
+        [HttpGet]
+        [Route("")]
         [SwaggerOperation(
          Description = "Для ROLE_ADMIN возвращает полные данные пользователей, для ROLE_USER — только имена пользователей."
         )]
@@ -110,6 +111,33 @@ namespace BgituSec.Api.Controllers
             else if (User.IsInRole("ROLE_USER"))
             {
                 var response = _mapper.Map<List<LimitedUserResponse>>(usersDto);
+                return Ok(new { response });
+            }
+            return Forbid();
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("{id}")]
+        [SwaggerOperation(
+         Description = "Для ROLE_ADMIN возвращает полные данные пользователя по Id, для ROLE_USER — только имя пользователя."
+        )]
+        [SwaggerResponse(200, "Возвращает данные пользователя.", typeof(UserResponse))]
+        [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
+        [SwaggerResponse(403, "Ошибка доступа в связи с отсутствием роли админа.")]
+        public async Task<ActionResult> GetById([FromRoute] int id)
+        {
+            var command = new GetUserCommand { Id = id };
+            var usersDto = await _mediator.Send(command);
+
+            if (User.IsInRole("ROLE_ADMIN"))
+            {
+                var response = _mapper.Map<UserResponse>(usersDto);
+                return Ok(new { response });
+            }
+            else if (User.IsInRole("ROLE_USER"))
+            {
+                var response = _mapper.Map<LimitedUserResponse>(usersDto);
                 return Ok(new { response });
             }
             return Forbid();

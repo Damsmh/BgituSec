@@ -4,7 +4,6 @@ using BgituSec.Api.Models.Breakdowns.Response;
 using BgituSec.Application.DTOs;
 using BgituSec.Application.Features.Breakdowns.Commands;
 using BgituSec.Domain.Entities;
-using System.Text.RegularExpressions;
 
 namespace BgituSec.Api.Mapping
 {
