@@ -1,5 +1,4 @@
-﻿
-namespace BgituSec.Domain.Entities
+﻿namespace BgituSec.Domain.Entities
 {
     public class Breakdown
     {

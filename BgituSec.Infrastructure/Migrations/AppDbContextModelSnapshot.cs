@@ -18,7 +18,7 @@ namespace BgituSec.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.4")
+                .HasAnnotation("ProductVersion", "9.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -37,10 +37,13 @@ namespace BgituSec.Infrastructure.Migrations
                     b.Property<int>("Floor")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Height")
-                        .HasColumnType("integer");
+                    b.Property<double>("Height")
+                        .HasColumnType("double precision");
 
                     b.Property<bool>("IsComputer")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsStairs")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Name")
@@ -50,14 +53,14 @@ namespace BgituSec.Infrastructure.Migrations
                     b.Property<NpgsqlPoint>("Position")
                         .HasColumnType("point");
 
-                    b.Property<int>("Width")
-                        .HasColumnType("integer");
+                    b.Property<double>("Width")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BuildingId");
 
-                    b.ToTable("Auditoriums", (string)null);
+                    b.ToTable("Auditoriums");
                 });
 
             modelBuilder.Entity("BgituSec.Domain.Entities.Breakdown", b =>
@@ -92,7 +95,7 @@ namespace BgituSec.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Breakdowns", (string)null);
+                    b.ToTable("Breakdowns");
                 });
 
             modelBuilder.Entity("BgituSec.Domain.Entities.Building", b =>
@@ -111,7 +114,9 @@ namespace BgituSec.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Buildings", (string)null);
+                    b.HasIndex(new[] { "Number" }, "IX_Number");
+
+                    b.ToTable("Buildings");
                 });
 
             modelBuilder.Entity("BgituSec.Domain.Entities.Computer", b =>
@@ -125,8 +130,8 @@ namespace BgituSec.Infrastructure.Migrations
                     b.Property<int>("AuditoriumId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Height")
-                        .HasColumnType("integer");
+                    b.Property<double>("Height")
+                        .HasColumnType("double precision");
 
                     b.Property<NpgsqlPoint>("Position")
                         .HasColumnType("point");
@@ -135,14 +140,17 @@ namespace BgituSec.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Width")
+                    b.Property<int>("Type")
                         .HasColumnType("integer");
+
+                    b.Property<double>("Width")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AuditoriumId");
 
-                    b.ToTable("Computers", (string)null);
+                    b.ToTable("Computers");
                 });
 
             modelBuilder.Entity("BgituSec.Domain.Entities.Notification", b =>
@@ -168,7 +176,7 @@ namespace BgituSec.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Notifications", (string)null);
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("BgituSec.Domain.Entities.RefreshToken", b =>
@@ -200,9 +208,9 @@ namespace BgituSec.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex(new[] { "UserId" }, "IX_UserId");
 
-                    b.ToTable("RefreshTokens", (string)null);
+                    b.ToTable("RefreshTokens");
                 });
 
             modelBuilder.Entity("BgituSec.Domain.Entities.User", b =>
@@ -229,9 +237,15 @@ namespace BgituSec.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<bool>("SentNotifications")
+                        .HasColumnType("boolean");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.HasIndex(new[] { "Name" }, "IX_Name")
+                        .IsUnique();
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("BgituSec.Domain.Entities.Auditorium", b =>

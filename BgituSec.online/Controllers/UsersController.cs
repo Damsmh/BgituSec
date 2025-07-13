@@ -1,173 +1,146 @@
 ﻿using AutoMapper;
-using BgituSec.Api.Models.RefreshTokens;
-using BgituSec.Api.Models.Users;
-using BgituSec.Api.Services;
+using BgituSec.Api.Models.Users.Request;
+using BgituSec.Api.Models.Users.Response;
+using BgituSec.Api.Validators.User;
 using BgituSec.Application.Features.Users.Commands;
-using BgituSec.Domain.Entities;
-using BgituSec.Domain.Interfaces;
-using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
+using Swashbuckle.AspNetCore.Annotations;
+using System.Collections.Generic;
+using System.Net.Mime;
 
 
 namespace BgituSec.Api.Controllers
 {
-    [Route("api/users")]
+    [Route("api/user")]
+    [Produces(MediaTypeNames.Application.Json)]
     [ApiController]
     public class UsersController : ControllerBase
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
-        private readonly ITokenService _tokenService;
-        private readonly IValidator<CreateUserCommand> _createValidator;
-        private readonly IValidator<LoginUserCommand> _loginValidator;
-        private readonly IValidator<RefreshTokenRequest> _refreshTokenValidator;
-        private readonly IRefreshTokenRepository _tokenRepository;
-        private readonly ILogger<UsersController> _logger;
+        private readonly UpdateUserByIdRequestValidator _updateValidator;
 
-        public UsersController(IMediator mediator, IMapper mapper,  ITokenService tokenService, 
-            IValidator<CreateUserCommand> createValidator, IValidator<LoginUserCommand> loginValidator, 
-            ILogger<UsersController> logger, IRefreshTokenRepository tokenRepository)
+        public UsersController(IMediator mediator, IMapper mapper, UpdateUserByIdRequestValidator updateValidator)
         {
             _mediator = mediator;
             _mapper = mapper;
-            _tokenService = tokenService;
-            _createValidator = createValidator;
-            _loginValidator = loginValidator;
-            _tokenRepository = tokenRepository;
-            _logger = logger;
+            _updateValidator = updateValidator;
         }
 
-        
+        [Authorize]
+        [HttpPut]
+        [Route("{id}")]
+        [SwaggerOperation(
+            Summary = "Only for ADMIN",
+            Description = "Обновляет информацию о пользователе по Id."
+        )]
+        [SwaggerResponse(200, "Обновление выполнено успешно.")]
+        [SwaggerResponse(400, "Ошибки валидации.", typeof(List<ValidationFailure>))]
+        [SwaggerResponse(404, "Пользователь не найден.")]
+        [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
+        public async Task<ActionResult> Update([FromRoute] int Id, [FromBody] UpdateUserRequest request)
+        {
+            var validateRequest = _mapper.Map<UpdateUserByIdRequest>(request);
+            validateRequest.Id = Id;
+            ValidationResult result = await _updateValidator.ValidateAsync(validateRequest);
+            if (!result.IsValid)
+            {
+                return BadRequest(result.Errors);
+            }
+            var command = _mapper.Map<UpdateUserCommand>(request);
+            command.Id = Id;
+            try
+            {
+                await _mediator.Send(command);
+                return Ok();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound(Id);
+            }
+        }
+
+        [Authorize(Roles = "ROLE_ADMIN")]
+        [HttpDelete]
+        [Route("{id}")]
+        [SwaggerOperation(
+            Summary = "Only for ADMIN",
+            Description = "Удаляет пользователя по Id"
+        )]
+        [SwaggerResponse(204, "Удаление выполнено успешно.")]
+        [SwaggerResponse(404, "Пользователь не найден.")]
+        [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
+        [SwaggerResponse(403, "Ошибка доступа в связи с отсутствием роли админа.")]
+        public async Task<ActionResult> Delete([FromRoute] int Id)
+        {
+            var command = new DeleteUserCommand { Id = Id };
+            try
+            {
+                await _mediator.Send(command);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound(Id);
+            }
+        }
+
+
         [Authorize]
         [HttpGet]
-        [Route("profile")]
-        public async Task<ActionResult<UsersResponse>> Profile()
+        [Route("")]
+        [SwaggerOperation(
+         Description = "Для ROLE_ADMIN возвращает полные данные пользователей, для ROLE_USER — только имена пользователей."
+        )]
+        [SwaggerResponse(200, "Возвращает список пользователей.", typeof(List<UserResponse>))]
+        [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
+        [SwaggerResponse(403, "Ошибка доступа в связи с отсутствием роли админа.")]
+        public async Task<ActionResult> GetAll()
         {
-            var sub = User.FindFirstValue(JwtRegisteredClaimNames.Sub)
-               ?? User.FindFirstValue(ClaimTypes.NameIdentifier);
-            int.TryParse(sub, out var userId);
-            var command = new GetUserCommand { Id = userId };
-            var userDto = await _mediator.Send(command);
-            if (userDto == null)
-                return NotFound(userId);
-            var response = _mapper.Map<UsersResponse>(userDto);
-            return Ok(response);
+            var command = new GetAllUsersCommand();
+            var usersDto = await _mediator.Send(command);
+
+            if (User.IsInRole("ROLE_ADMIN"))
+            {
+                var response = _mapper.Map<List<UserResponse>>(usersDto);
+                return Ok(new { response });
+            }
+            else if (User.IsInRole("ROLE_USER"))
+            {
+                var response = _mapper.Map<List<LimitedUserResponse>>(usersDto);
+                return Ok(new { response });
+            }
+            return Forbid();
         }
 
-        [AllowAnonymous]
-        [HttpPost]
-        [Route("refresh-token")]
-        public async Task<ActionResult<RefreshTokensResponse>> RefreshToken([FromBody] RefreshTokenRequest request)
+        [Authorize]
+        [HttpGet]
+        [Route("{id}")]
+        [SwaggerOperation(
+         Description = "Для ROLE_ADMIN возвращает полные данные пользователя по Id, для ROLE_USER — только имя пользователя."
+        )]
+        [SwaggerResponse(200, "Возвращает данные пользователя.", typeof(UserResponse))]
+        [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
+        [SwaggerResponse(403, "Ошибка доступа в связи с отсутствием роли админа.")]
+        public async Task<ActionResult> GetById([FromRoute] int id)
         {
+            var command = new GetUserCommand { Id = id };
+            var usersDto = await _mediator.Send(command);
 
-            if (string.IsNullOrEmpty(request.Token) || string.IsNullOrEmpty(request.RefreshToken))
+            if (User.IsInRole("ROLE_ADMIN"))
             {
-                return BadRequest("AccessToken и RefreshToken обязательны.");
+                var response = _mapper.Map<UserResponse>(usersDto);
+                return Ok(new { response });
             }
-
-            var principal = _tokenService.GetPrincipalFromExpiredToken(request.Token);
-            if (principal == null)
+            else if (User.IsInRole("ROLE_USER"))
             {
-                return BadRequest("Недействительный токен доступа.");
+                var response = _mapper.Map<LimitedUserResponse>(usersDto);
+                return Ok(new { response });
             }
-
-            var sub = principal.FindFirstValue(JwtRegisteredClaimNames.Sub)
-                ?? principal.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (!int.TryParse(sub, out var userId))
-            {
-                return BadRequest("Невозможно извлечь userId из токена.");
-            }
-
-            var refreshToken = await _tokenRepository.GetAsync(userId);
-
-            if (refreshToken == null || refreshToken.ExpiresAt < DateTime.UtcNow || !_tokenService.Verify(request.RefreshToken, refreshToken.Token))
-            {
-                return BadRequest("Недействительный или истекший refresh token.");
-            }
-
-            refreshToken.IsRevoked = true;
-            refreshToken.RevokedAt = DateTime.UtcNow;
-            await _tokenRepository.UpdateAsync(refreshToken);
-
-            var getUserCommand = new GetUserCommand { Id = userId };
-            var userDto = await _mediator.Send(getUserCommand);
-            if (userDto == null)
-            {
-                return NotFound("Пользователь не найден.");
-            }
-
-            var newJwtToken = _tokenService.CreateToken(userDto);
-            var tokenDTO = _tokenService.GenerateRefreshToken(userId);
-            var response = _mapper.Map<RefreshTokensResponse>(tokenDTO);
-            tokenDTO.Token = _tokenService.Hash(tokenDTO.Token);
-            var newRefreshToken = _mapper.Map<RefreshToken>(tokenDTO);
-            await _tokenRepository.AddAsync(newRefreshToken);
-
-            response.JwtToken = newJwtToken;
-
-            return Ok(response);
-        }
-
-        [HttpPost]
-        [Route("sign-up")]
-        public async Task<ActionResult<UsersResponse>> Create([FromBody] CreateUserRequest model)
-        {
-            var command = _mapper.Map<CreateUserCommand>(model);
-            ValidationResult result = await _createValidator.ValidateAsync(command);
-
-            if (!result.IsValid)
-            {
-                return BadRequest(result.Errors);
-            }
-
-            var userDto = await _mediator.Send(command);
-
-            if (userDto is null)
-                return Unauthorized();
-            var token = _tokenService.CreateToken(userDto);
-
-            var tokenDTO = _tokenService.GenerateRefreshToken(userDto.Id);
-            var newRefreshToken = tokenDTO.Token;
-            tokenDTO.Token = _tokenService.Hash(tokenDTO.Token);
-            var refreshToken = _mapper.Map<RefreshToken>(tokenDTO);
-            await _tokenRepository.AddAsync(refreshToken);
-
-            var response = _mapper.Map<UsersResponse>(userDto);
-
-            return CreatedAtAction(nameof(Create), new { token, refreshToken = newRefreshToken }, response);
-        }
-
-        [HttpPost]
-        [Route("sign-in")]
-        public async Task<ActionResult<string>> Login([FromBody] LoginUserRequest model)
-        {
-            var command = _mapper.Map<LoginUserCommand>(model);
-            ValidationResult result = await _loginValidator.ValidateAsync(command);
-
-            if (!result.IsValid)
-            {
-                return BadRequest(result.Errors);
-            }
-
-            var userDto = await _mediator.Send(command);
-
-            if (userDto == null)
-                return Unauthorized();
-
-            var token = _tokenService.CreateToken(userDto);
-
-            var tokenDTO = _tokenService.GenerateRefreshToken(userDto.Id);
-            var newRefreshToken = tokenDTO.Token;
-            tokenDTO.Token = _tokenService.Hash(tokenDTO.Token);
-            var refreshToken = _mapper.Map<RefreshToken>(tokenDTO);
-            await _tokenRepository.AddAsync(refreshToken);
-
-            return Ok(new { token, refreshToken = newRefreshToken });
+            return Forbid();
         }
     }
 }

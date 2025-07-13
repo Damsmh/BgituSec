@@ -1,6 +1,4 @@
 using BgituSec.Api;
-using BgituSec.Api.Services;
-using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Domain.Interfaces;
 using BgituSec.Infrastructure.Data;
 using BgituSec.Infrastructure.Repositories;
@@ -11,7 +9,13 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json.Serialization;
 using FluentValidation;
-using BgituSec.Application.Features.Users.Validators;
+using Microsoft.OpenApi.Models;
+using BgituSec.Api.Validators.User;
+using BgituSec.Application.Services.Token;
+using BgituSec.Application.Services.SSE;
+using MediatR;
+using BgituSec.Application.Features.Users.Commands;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 namespace BgituSec.online
 {
@@ -21,27 +25,57 @@ namespace BgituSec.online
         {
             IdentityModelEventSource.ShowPII = true;
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(LoginUserCommand).Assembly));
 
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(
                     builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddAutoMapper(typeof(Program));
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IBuildingRepository, BuildingRepository>();
+            builder.Services.AddScoped<IAuditoriumRepository, AuditoriumRepository>();
+            builder.Services.AddScoped<IComputerRepository, ComputerRepository>();
+            builder.Services.AddScoped<IBreakdownRepository, BreakdownRepository>();
             builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
-            builder.Services.AddMediatR(cfg =>
-                cfg.RegisterServicesFromAssembly(typeof(CreateUserCommand).Assembly));
-            builder.Services.AddValidatorsFromAssemblyContaining<CreateUserCommandValidator>();
-            builder.Services.AddValidatorsFromAssemblyContaining<LoginUserCommandValidator>();
-
-
+            builder.Services.AddValidatorsFromAssemblyContaining<CreateUserRequestValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<LoginUserRequestValidator>();
             builder.Services.AddControllers()
                             .AddJsonOptions(options =>
                                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.EnableAnnotations();
+                c.AddSecurityDefinition(name: "Bearer", securityScheme: new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Description = "Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
+                            Reference = new OpenApiReference
+                            {
+                                Id = "Bearer",
+                                Type = ReferenceType.SecurityScheme
+                            }
+                        },
+                        new List<string>()
+                    }
+                });
+            });
 
             builder.Services.Configure<JWTConfig>(builder.Configuration.GetSection("Jwt"));
             builder.Services.AddTransient<ITokenService, TokenService>();
+            builder.Services.AddSingleton<ISSEService, SSEService>();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+
             .AddJwtBearer(options =>
             {
                 options.RequireHttpsMetadata = false;
@@ -62,8 +96,7 @@ namespace BgituSec.online
                     ClockSkew = TimeSpan.FromMinutes(1)
                 };
             });
-
-
+            builder.Services.AddAuthorization();
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())
@@ -71,24 +104,22 @@ namespace BgituSec.online
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 db.Database.Migrate();
             }
-
-            if (app.Environment.IsDevelopment())
+            app.UseSwagger(options =>
             {
-                app.UseSwagger(options =>
-                {
-                    options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_0;
+                options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_0;
 
-                });
-                app.UseSwaggerUI();
-            }
-
+            });
+            app.UseSwaggerUI();
             app.UseHttpsRedirection();
-
             app.UseRouting();
+            app.UseCors(cfg => cfg
+                .SetIsOriginAllowed(_ => true)
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
-
             app.Run();
         }
     }

@@ -5,12 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BgituSec.Infrastructure.Repositories
 {
-    public class RefreshTokenRepository : IRefreshTokenRepository
+    public class RefreshTokenRepository(AppDbContext dbContext) : IRefreshTokenRepository
     {
-        private readonly AppDbContext _dbContext;
-        public RefreshTokenRepository(AppDbContext dbContext) {
-            _dbContext = dbContext;
-        }
+        private readonly AppDbContext _dbContext = dbContext;
 
         public async Task AddAsync(RefreshToken token)
         {
@@ -31,6 +28,18 @@ namespace BgituSec.Infrastructure.Repositories
         {
             _dbContext.RefreshTokens.Update(token);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteByUserIdAsync(int userId)
+        {
+
+            var token = await GetAsync(userId);
+            if (token != null)
+            {
+                _dbContext.RefreshTokens.Remove(token!);
+                await _dbContext.SaveChangesAsync();
+            }
+            await Task.CompletedTask;
         }
     }
 }
