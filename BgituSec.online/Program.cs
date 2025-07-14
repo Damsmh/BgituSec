@@ -1,4 +1,3 @@
-using BgituSec.Api;
 using BgituSec.Domain.Interfaces;
 using BgituSec.Infrastructure.Data;
 using BgituSec.Infrastructure.Repositories;
@@ -17,7 +16,7 @@ using MediatR;
 using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Api.Hubs;
 
-namespace BgituSec.online
+namespace BgituSec.Api
 {
     public class Program
     {
