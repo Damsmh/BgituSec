@@ -369,3 +369,5 @@ FodyWeavers.xsd
 /BgituSec.online/appsettings.json
 /BgituSec.online/Dockerfile
 /BgituSec.online/Tests
+/_site
+/api
