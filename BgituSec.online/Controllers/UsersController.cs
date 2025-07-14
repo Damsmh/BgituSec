@@ -8,7 +8,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using System.Collections.Generic;
 using System.Net.Mime;
 
 
@@ -17,18 +16,11 @@ namespace BgituSec.Api.Controllers
     [Route("api/user")]
     [Produces(MediaTypeNames.Application.Json)]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController(IMediator mediator, IMapper mapper, UpdateUserByIdRequestValidator updateValidator) : ControllerBase
     {
-        private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
-        private readonly UpdateUserByIdRequestValidator _updateValidator;
-
-        public UsersController(IMediator mediator, IMapper mapper, UpdateUserByIdRequestValidator updateValidator)
-        {
-            _mediator = mediator;
-            _mapper = mapper;
-            _updateValidator = updateValidator;
-        }
+        private readonly IMediator _mediator = mediator;
+        private readonly IMapper _mapper = mapper;
+        private readonly UpdateUserByIdRequestValidator _updateValidator = updateValidator;
 
         [Authorize]
         [HttpPut]

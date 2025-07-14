@@ -126,8 +126,10 @@ namespace BgituSec.online
             app.UseCors();
             app.UseAuthentication();
             app.UseAuthorization();
-            //app.MapControllers();
+            app.MapControllers();
             app.MapHub<BuildingHub>("/hubs/building");
+            app.MapHub<AuditoriumHub>("/hubs/auditorium");
+            app.MapHub<UserHub>("/hubs/user");
             app.Run();
         }
     }

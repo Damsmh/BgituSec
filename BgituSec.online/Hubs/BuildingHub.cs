@@ -21,17 +21,11 @@ namespace BgituSec.Api.Hubs
         private readonly IMapper _mapper = mapper;
         private readonly BuildingRequestValidator _validator = validator;
 
-        public async Task Test()
-        {
-            await Clients.Caller.SendAsync("Ping", "pong");
-        }
-
-
         /// <summary>
         /// Получает список всех корпусов.
         /// </summary>
         /// <returns>Отправляет клиенту сообщение "Receive" со списком объектов <see cref="GetBuildingResponse"/>.</returns>
-        /// [Authorize]
+        [Authorize]
         public async Task GetAll()
         {
             var command = new GetAllBuildingsCommand();
@@ -48,7 +42,7 @@ namespace BgituSec.Api.Hubs
         /// "ValidationError" с ошибками валидации при некорректных данных,
         /// или уведомляет всех клиентов сообщением "Added".
         /// </returns>
-        //[Authorize(Roles = "ROLE_ADMIN")]
+        [Authorize(Roles = "ROLE_ADMIN")]
         public async Task Create(BuildingRequest request)
         {
             ValidationResult result = await _validator.ValidateAsync(request);
@@ -73,7 +67,7 @@ namespace BgituSec.Api.Hubs
         /// "NotFound" если корпус не найден,
         /// или уведомляет всех клиентов сообщением "Modified".
         /// </returns>
-        //[Authorize(Roles = "ROLE_ADMIN")]
+        [Authorize(Roles = "ROLE_ADMIN")]
         public async Task Update(BuildingRequest request)
         {
             ValidationResult result = await _validator.ValidateAsync(request);
@@ -103,7 +97,7 @@ namespace BgituSec.Api.Hubs
         /// "NotFound" если корпус не найден,
         /// или уведомляет всех клиентов сообщением "Removed".
         /// </returns>
-        //[Authorize(Roles = "ROLE_ADMIN")]
+        [Authorize(Roles = "ROLE_ADMIN")]
         public async Task Delete(int id)
         {
             var command = new DeleteBuildingCommand { Id = id };
