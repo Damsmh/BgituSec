@@ -32,7 +32,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "BgituSec.Api.Hubs.AuditoriumHub",
-      "Summary": "<p sourcefile=\"api/BgituSec.Api.Hubs.AuditoriumHub.yml\" sourcestartlinenumber=\"1\">SignalR Hub для управления аудиториями через WebSocket.\nТребуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.</p>\n"
+      "Summary": "<p sourcefile=\"api/BgituSec.Api.Hubs.AuditoriumHub.yml\" sourcestartlinenumber=\"1\">SignalR Hub для управления аудиториями через WebSocket.\nТребуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.\n<a href=\"https://bgitu-fix.ru:7111/hubs/auditorium\" sourcefile=\"api/BgituSec.Api.Hubs.AuditoriumHub.yml\" sourcestartlinenumber=\"3\">https://bgitu-fix.ru:7111/hubs/auditorium</a></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -60,7 +60,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "BgituSec.Api.Hubs.BuildingHub",
-      "Summary": "<p sourcefile=\"api/BgituSec.Api.Hubs.BuildingHub.yml\" sourcestartlinenumber=\"1\">SignalR Hub для управления корпусами через WebSocket.\nТребуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.</p>\n"
+      "Summary": "<p sourcefile=\"api/BgituSec.Api.Hubs.BuildingHub.yml\" sourcestartlinenumber=\"1\">SignalR Hub для управления корпусами через WebSocket.\nТребуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.\n<a href=\"https://bgitu-fix.ru:7111/hubs/building\" sourcefile=\"api/BgituSec.Api.Hubs.BuildingHub.yml\" sourcestartlinenumber=\"3\">https://bgitu-fix.ru:7111/hubs/building</a></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -88,7 +88,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "BgituSec.Api.Hubs.UserHub",
-      "Summary": "<p sourcefile=\"api/BgituSec.Api.Hubs.UserHub.yml\" sourcestartlinenumber=\"1\">SignalR Hub для управления пользователями через WebSocket.\nТребуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.</p>\n"
+      "Summary": "<p sourcefile=\"api/BgituSec.Api.Hubs.UserHub.yml\" sourcestartlinenumber=\"1\">SignalR Hub для управления пользователями через WebSocket.\nТребуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.\n<a href=\"https://bgitu-fix.ru:7111/hubs/user\" sourcefile=\"api/BgituSec.Api.Hubs.UserHub.yml\" sourcestartlinenumber=\"3\">https://bgitu-fix.ru:7111/hubs/user</a></p>\n"
     },
     {
       "type": "ManagedReference",
