@@ -13,6 +13,7 @@ namespace BgituSec.Api.Hubs
     /// <summary>
     /// SignalR Hub для управления аудиториями через WebSocket.
     /// Требуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.
+    /// https://bgitu-fix.ru:7111/hubs/auditorium
     /// </summary>
     ///
     public class AuditoriumHub(IMediator mediator, IMapper mapper, CreateAuditoriumRequestValidator createValidator, UpdateAuditoriumRequestValidator updateValidator) : Hub
