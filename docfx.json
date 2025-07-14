@@ -3,8 +3,8 @@
     {
       "src": [
         {
-          "files": [ "**/*.csproj" ],
-          "src": "/BgituSec.online"
+          "files": [ "BgituSec.Api.csproj" ],
+          "src": "BgituSec.online"
         }
       ],
       "dest": "api",
@@ -16,7 +16,11 @@
   "build": {
     "content": [
       {
-        "files": [ "api/**.yml", "api/**/*.md", "toc.yml", "*.md" ],
+        "files": [ "api/**.yml", "api/**/*.md" ],
+        "src": "."
+      },
+      {
+        "files": [ "toc.yml", "*.md" ],
         "src": "."
       }
     ],
