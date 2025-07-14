@@ -22,13 +22,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BgituSec.Infrastructure", "
 		{B6CB0DE6-CAA7-4211-B587-760685586AEC} = {B6CB0DE6-CAA7-4211-B587-760685586AEC}
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{455407D7-4440-4599-8C4B-CC0EBEC5CCFC}"
-	ProjectSection(SolutionItems) = preProject
-		docfx.yml = docfx.yml
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{754FC069-D67B-A9D7-50A1-8D1CA196D8F1}"
 	ProjectSection(SolutionItems) = preProject
 		docfx.json = docfx.json
@@ -61,9 +54,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{455407D7-4440-4599-8C4B-CC0EBEC5CCFC} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {24ADBCA2-7618-4333-86CA-ACE27F3AC3AB}
