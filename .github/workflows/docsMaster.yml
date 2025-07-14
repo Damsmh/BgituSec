@@ -1,0 +1,41 @@
+name: deploy DocFX
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v4
+
+      - name: install .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: install DocFX
+        run: dotnet tool install -g docfx
+
+      - name: build docs
+        run: docfx docfx.json
+
+      - name: add .nojekyll
+        run: |
+          mkdir -p _site
+          touch _site/.nojekyll
+          ls -la _site
+
+      - name: publish
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: _site
+          publish_branch: gh-pages
+          keep_files: false
