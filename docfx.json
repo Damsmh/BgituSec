@@ -3,8 +3,8 @@
     {
       "src": [
         {
-          "files": [ "**/BgituSec.Api.csproj" ],
-          "src": "src"
+          "files": [ "**/*.csproj" ],
+          "src": "."
         }
       ],
       "dest": "api",
@@ -36,7 +36,7 @@
     "globalMetadata": {
       "_appTitle": "BGITUFIX API Documentation",
       "_appName": "BGITUFIX",
-      "_appFooter": "© 2025 VDK",
+      "_appFooter": "2025 VDK",
       "_enableSearch": true,
       "_enableNewTab": true
     },
