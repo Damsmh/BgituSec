@@ -4,16 +4,11 @@
       "src": [
         {
           "files": [ "BgituSec.Api.csproj" ],
-          "src": "BgituSec.online",
-          "exclude": [
-            "**/Controllers/**",
-            "**/Models/**",
-            "**/Validators/**",
-            "**/Program.cs"
-          ]
+          "src": "BgituSec.online"
         }
       ],
       "dest": "api",
+      "filter": "filter.yml",
       "properties": {
         "TargetFramework": "net9.0"
       }
