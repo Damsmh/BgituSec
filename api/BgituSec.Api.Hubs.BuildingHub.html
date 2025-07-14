@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class BuildingHub | BGITUFIX API Documentation </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class BuildingHub | BGITUFIX API Documentation ">
+    
+    <meta name="description" content="SignalR Hub для управления корпусами через WebSocket. Требуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    <meta property="docfx:newtab" content="true">
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="BGITUFIX">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="BgituSec.Api.Hubs.BuildingHub">
+
+
+
+  <h1 id="BgituSec_Api_Hubs_BuildingHub" data-uid="BgituSec.Api.Hubs.BuildingHub" class="text-break">Class BuildingHub</h1>
+  <div class="markdown level0 summary"><p>SignalR Hub для управления корпусами через WebSocket.
+Требуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub">Hub</a></div>
+    <div class="level2"><span class="xref">BuildingHub</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.onconnectedasync">Hub.OnConnectedAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.ondisconnectedasync">Hub.OnDisconnectedAsync(Exception)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.dispose#microsoft-aspnetcore-signalr-hub-dispose(system-boolean)">Hub.Dispose(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.dispose#microsoft-aspnetcore-signalr-hub-dispose">Hub.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.clients">Hub.Clients</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.context">Hub.Context</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.groups">Hub.Groups</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="BgituSec.html">BgituSec</a>.<a class="xref" href="BgituSec.Api.html">Api</a>.<a class="xref" href="BgituSec.Api.Hubs.html">Hubs</a></h6>
+  <h6><strong>Assembly</strong>: BgituSec.Api.dll</h6>
+  <h5 id="BgituSec_Api_Hubs_BuildingHub_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class BuildingHub : Hub, IDisposable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Damsmh/BgituSec/new/5/merge/apiSpec/new?filename=BgituSec_Api_Hubs_BuildingHub__ctor_MediatR_IMediator_AutoMapper_IMapper_BgituSec_Api_Validators_Building_BuildingRequestValidator_.md&amp;value=---%0Auid%3A%20BgituSec.Api.Hubs.BuildingHub.%23ctor(MediatR.IMediator%2CAutoMapper.IMapper%2CBgituSec.Api.Validators.Building.BuildingRequestValidator)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Damsmh/BgituSec/blob/5/merge/BgituSec.online/Hubs/BuildingHub.cs/#L18">View Source</a>
+  </span>
+  <a id="BgituSec_Api_Hubs_BuildingHub__ctor_" data-uid="BgituSec.Api.Hubs.BuildingHub.#ctor*"></a>
+  <h4 id="BgituSec_Api_Hubs_BuildingHub__ctor_MediatR_IMediator_AutoMapper_IMapper_BgituSec_Api_Validators_Building_BuildingRequestValidator_" data-uid="BgituSec.Api.Hubs.BuildingHub.#ctor(MediatR.IMediator,AutoMapper.IMapper,BgituSec.Api.Validators.Building.BuildingRequestValidator)">BuildingHub(IMediator, IMapper, BuildingRequestValidator)</h4>
+  <div class="markdown level1 summary"><p>SignalR Hub для управления корпусами через WebSocket.
+Требуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BuildingHub(IMediator mediator, IMapper mapper, BuildingRequestValidator validator)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IMediator</span></td>
+        <td><span class="parametername">mediator</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">IMapper</span></td>
+        <td><span class="parametername">mapper</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="BgituSec.Api.Validators.Building.BuildingRequestValidator.html">BuildingRequestValidator</a></td>
+        <td><span class="parametername">validator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Damsmh/BgituSec/new/5/merge/apiSpec/new?filename=BgituSec_Api_Hubs_BuildingHub_Create_BgituSec_Api_Models_Buildings_Request_BuildingRequest_.md&amp;value=---%0Auid%3A%20BgituSec.Api.Hubs.BuildingHub.Create(BgituSec.Api.Models.Buildings.Request.BuildingRequest)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Damsmh/BgituSec/blob/5/merge/BgituSec.online/Hubs/BuildingHub.cs/#L45">View Source</a>
+  </span>
+  <a id="BgituSec_Api_Hubs_BuildingHub_Create_" data-uid="BgituSec.Api.Hubs.BuildingHub.Create*"></a>
+  <h4 id="BgituSec_Api_Hubs_BuildingHub_Create_BgituSec_Api_Models_Buildings_Request_BuildingRequest_" data-uid="BgituSec.Api.Hubs.BuildingHub.Create(BgituSec.Api.Models.Buildings.Request.BuildingRequest)">Create(BuildingRequest)</h4>
+  <div class="markdown level1 summary"><p>Создает новый корпус. Доступно только для ROLE_ADMIN.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Authorize(Roles = &quot;ROLE_ADMIN&quot;)]
+public Task Create(BuildingRequest request)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="BgituSec.Api.Models.Buildings.Request.BuildingRequest.html">BuildingRequest</a></td>
+        <td><span class="parametername">request</span></td>
+        <td><p>Данные корпуса для создания (<a class="xref" href="BgituSec.Api.Models.Buildings.Request.BuildingRequest.html">BuildingRequest</a>).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p>Отправляет клиенту сообщение &quot;Created&quot; с объектом <a class="xref" href="BgituSec.Api.Models.Buildings.Response.CreateBuildingResponse.html">CreateBuildingResponse</a> при успехе,
+&quot;ValidationError&quot; с ошибками валидации при некорректных данных,
+или уведомляет всех клиентов сообщением &quot;Added&quot;.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Damsmh/BgituSec/new/5/merge/apiSpec/new?filename=BgituSec_Api_Hubs_BuildingHub_Delete_System_Int32_.md&amp;value=---%0Auid%3A%20BgituSec.Api.Hubs.BuildingHub.Delete(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Damsmh/BgituSec/blob/5/merge/BgituSec.online/Hubs/BuildingHub.cs/#L100">View Source</a>
+  </span>
+  <a id="BgituSec_Api_Hubs_BuildingHub_Delete_" data-uid="BgituSec.Api.Hubs.BuildingHub.Delete*"></a>
+  <h4 id="BgituSec_Api_Hubs_BuildingHub_Delete_System_Int32_" data-uid="BgituSec.Api.Hubs.BuildingHub.Delete(System.Int32)">Delete(int)</h4>
+  <div class="markdown level1 summary"><p>Удаляет корпус по его id. Доступно только для ROLE_ADMIN.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Authorize(Roles = &quot;ROLE_ADMIN&quot;)]
+public Task Delete(int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>id корпуса.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p>Отправляет клиенту сообщение &quot;Deleted&quot; при успехе,
+&quot;NotFound&quot; если корпус не найден,
+или уведомляет всех клиентов сообщением &quot;Removed&quot;.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Damsmh/BgituSec/new/5/merge/apiSpec/new?filename=BgituSec_Api_Hubs_BuildingHub_GetAll.md&amp;value=---%0Auid%3A%20BgituSec.Api.Hubs.BuildingHub.GetAll%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Damsmh/BgituSec/blob/5/merge/BgituSec.online/Hubs/BuildingHub.cs/#L28">View Source</a>
+  </span>
+  <a id="BgituSec_Api_Hubs_BuildingHub_GetAll_" data-uid="BgituSec.Api.Hubs.BuildingHub.GetAll*"></a>
+  <h4 id="BgituSec_Api_Hubs_BuildingHub_GetAll" data-uid="BgituSec.Api.Hubs.BuildingHub.GetAll">GetAll()</h4>
+  <div class="markdown level1 summary"><p>Получает список всех корпусов.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Authorize]
+public Task GetAll()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p>Отправляет клиенту сообщение &quot;Receive&quot; со списком объектов <a class="xref" href="BgituSec.Api.Models.Buildings.Response.GetBuildingResponse.html">GetBuildingResponse</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Damsmh/BgituSec/new/5/merge/apiSpec/new?filename=BgituSec_Api_Hubs_BuildingHub_Update_BgituSec_Api_Models_Buildings_Request_BuildingRequest_.md&amp;value=---%0Auid%3A%20BgituSec.Api.Hubs.BuildingHub.Update(BgituSec.Api.Models.Buildings.Request.BuildingRequest)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Damsmh/BgituSec/blob/5/merge/BgituSec.online/Hubs/BuildingHub.cs/#L70">View Source</a>
+  </span>
+  <a id="BgituSec_Api_Hubs_BuildingHub_Update_" data-uid="BgituSec.Api.Hubs.BuildingHub.Update*"></a>
+  <h4 id="BgituSec_Api_Hubs_BuildingHub_Update_BgituSec_Api_Models_Buildings_Request_BuildingRequest_" data-uid="BgituSec.Api.Hubs.BuildingHub.Update(BgituSec.Api.Models.Buildings.Request.BuildingRequest)">Update(BuildingRequest)</h4>
+  <div class="markdown level1 summary"><p>Обновляет существующий корпус по его id. Доступно только для ROLE_ADMIN.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Authorize(Roles = &quot;ROLE_ADMIN&quot;)]
+public Task Update(BuildingRequest request)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="BgituSec.Api.Models.Buildings.Request.BuildingRequest.html">BuildingRequest</a></td>
+        <td><span class="parametername">request</span></td>
+        <td><p>Данные корпуса для обновления (<a class="xref" href="BgituSec.Api.Models.Buildings.Request.BuildingRequest.html">BuildingRequest</a>).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><p>Отправляет клиенту сообщение &quot;Updated&quot; при успехе,
+&quot;ValidationError&quot; с ошибками валидации при некорректных данных,
+&quot;NotFound&quot; если корпус не найден,
+или уведомляет всех клиентов сообщением &quot;Modified&quot;.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
+  </div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Damsmh/BgituSec/new/5/merge/apiSpec/new?filename=BgituSec_Api_Hubs_BuildingHub.md&amp;value=---%0Auid%3A%20BgituSec.Api.Hubs.BuildingHub%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Damsmh/BgituSec/blob/5/merge/BgituSec.online/Hubs/BuildingHub.cs/#L18" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      2025 VDK
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

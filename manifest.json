@@ -1,0 +1,1143 @@
+{
+  "source_base_path": "/home/runner/work/BgituSec/BgituSec",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Controllers.AuditoriumsController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Controllers.AuditoriumsController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Controllers.AuditoriumsController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Controllers.AuthController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Controllers.AuthController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Controllers.AuthController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Controllers.BreakdownsController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Controllers.BreakdownsController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Controllers.BreakdownsController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Controllers.BuildingsController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Controllers.BuildingsController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Controllers.BuildingsController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Controllers.ComputersController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Controllers.ComputersController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Controllers.ComputersController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Controllers.ProfileController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Controllers.ProfileController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Controllers.ProfileController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Controllers.UsersController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Controllers.UsersController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Controllers.UsersController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Controllers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Controllers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Controllers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Hubs.AuditoriumHub.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Hubs.AuditoriumHub.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Hubs.AuditoriumHub",
+      "Summary": "<p sourcefile=\"api/BgituSec.Api.Hubs.AuditoriumHub.yml\" sourcestartlinenumber=\"1\">SignalR Hub для управления аудиториями через WebSocket.\nТребуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Hubs.BreakdownHub.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Hubs.BreakdownHub.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Hubs.BreakdownHub",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Hubs.BuildingHub.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Hubs.BuildingHub.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Hubs.BuildingHub",
+      "Summary": "<p sourcefile=\"api/BgituSec.Api.Hubs.BuildingHub.yml\" sourcestartlinenumber=\"1\">SignalR Hub для управления корпусами через WebSocket.\nТребуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Hubs.ComputerHub.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Hubs.ComputerHub.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Hubs.ComputerHub",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Hubs.UserHub.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Hubs.UserHub.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Hubs.UserHub",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Hubs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Hubs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Hubs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Mapping.AuditoriumProfile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Mapping.AuditoriumProfile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Mapping.AuditoriumProfile",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Mapping.BreakdownProfile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Mapping.BreakdownProfile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Mapping.BreakdownProfile",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Mapping.BuildingProfile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Mapping.BuildingProfile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Mapping.BuildingProfile",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Mapping.ComputerProfile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Mapping.ComputerProfile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Mapping.ComputerProfile",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Mapping.RefreshTokenProfile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Mapping.RefreshTokenProfile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Mapping.RefreshTokenProfile",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Mapping.UserProfile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Mapping.UserProfile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Mapping.UserProfile",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Mapping.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Mapping.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Mapping",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Auditoriums.Request.CreateAuditoriumRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Auditoriums.Request.CreateAuditoriumRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Auditoriums.Request.CreateAuditoriumRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Auditoriums.Request.UpdateAuditoriumRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Auditoriums.Request.UpdateAuditoriumRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Auditoriums.Request.UpdateAuditoriumRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Auditoriums.Request.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Auditoriums.Request.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Auditoriums.Request",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Auditoriums.Response.CreateAuditoriumResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Auditoriums.Response.CreateAuditoriumResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Auditoriums.Response.CreateAuditoriumResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Auditoriums.Response.GetAuditoriumResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Auditoriums.Response.GetAuditoriumResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Auditoriums.Response.GetAuditoriumResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Auditoriums.Response.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Auditoriums.Response.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Auditoriums.Response",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Breakdowns.Request.CreateBreakdownRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Breakdowns.Request.CreateBreakdownRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Breakdowns.Request.CreateBreakdownRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Breakdowns.Request.UpdateBreakdownRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Breakdowns.Request.UpdateBreakdownRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Breakdowns.Request.UpdateBreakdownRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Breakdowns.Request.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Breakdowns.Request.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Breakdowns.Request",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Breakdowns.Response.CreateBreakdownResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Breakdowns.Response.CreateBreakdownResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Breakdowns.Response.CreateBreakdownResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Breakdowns.Response.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Breakdowns.Response.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Breakdowns.Response",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Buildings.Request.BuildingRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Buildings.Request.BuildingRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Buildings.Request.BuildingRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Buildings.Request.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Buildings.Request.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Buildings.Request",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Buildings.Response.CreateBuildingResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Buildings.Response.CreateBuildingResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Buildings.Response.CreateBuildingResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Buildings.Response.GetBuildingResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Buildings.Response.GetBuildingResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Buildings.Response.GetBuildingResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Buildings.Response.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Buildings.Response.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Buildings.Response",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Computers.Request.CreateComputerRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Computers.Request.CreateComputerRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Computers.Request.CreateComputerRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Computers.Request.UpdateComputerRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Computers.Request.UpdateComputerRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Computers.Request.UpdateComputerRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Computers.Request.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Computers.Request.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Computers.Request",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Computers.Response.CreateComputerResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Computers.Response.CreateComputerResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Computers.Response.CreateComputerResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Computers.Response.GetComputerResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Computers.Response.GetComputerResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Computers.Response.GetComputerResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Computers.Response.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Computers.Response.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Computers.Response",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.RefreshTokens.Request.RefreshTokenRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.RefreshTokens.Request.RefreshTokenRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.RefreshTokens.Request.RefreshTokenRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.RefreshTokens.Request.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.RefreshTokens.Request.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.RefreshTokens.Request",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.RefreshTokens.Response.RefreshTokenResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.RefreshTokens.Response.RefreshTokenResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.RefreshTokens.Response.RefreshTokenResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.RefreshTokens.Response.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.RefreshTokens.Response.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.RefreshTokens.Response",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Users.Request.CreateUserRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Users.Request.CreateUserRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Users.Request.CreateUserRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Users.Request.GetUserRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Users.Request.GetUserRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Users.Request.GetUserRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Users.Request.LoginUserRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Users.Request.LoginUserRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Users.Request.LoginUserRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Users.Request.UpdateUserByIdRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Users.Request.UpdateUserByIdRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Users.Request.UpdateUserByIdRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Users.Request.UpdateUserRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Users.Request.UpdateUserRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Users.Request.UpdateUserRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Users.Request.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Users.Request.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Users.Request",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Users.Response.CreateUserResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Users.Response.CreateUserResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Users.Response.CreateUserResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Users.Response.LimitedUserResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Users.Response.LimitedUserResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Users.Response.LimitedUserResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Users.Response.UserResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Users.Response.UserResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Users.Response.UserResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Models.Users.Response.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Models.Users.Response.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Models.Users.Response",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Program.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Program.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Program",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Validators.Auditorium.CreateAuditoriumRequestValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Validators.Auditorium.CreateAuditoriumRequestValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Validators.Auditorium.CreateAuditoriumRequestValidator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Validators.Auditorium.UpdateAuditoriumRequestValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Validators.Auditorium.UpdateAuditoriumRequestValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Validators.Auditorium.UpdateAuditoriumRequestValidator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Validators.Auditorium.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Validators.Auditorium.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Validators.Auditorium",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Validators.Breakdown.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Validators.Breakdown.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Validators.Breakdown",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Validators.Building.BuildingRequestValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Validators.Building.BuildingRequestValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Validators.Building.BuildingRequestValidator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Validators.Building.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Validators.Building.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Validators.Building",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Validators.Computer.CreateComputerRequestValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Validators.Computer.CreateComputerRequestValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Validators.Computer.CreateComputerRequestValidator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Validators.Computer.UpdateComputerRequestValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Validators.Computer.UpdateComputerRequestValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Validators.Computer.UpdateComputerRequestValidator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Validators.Computer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Validators.Computer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Validators.Computer",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Validators.User.CreateUserRequestValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Validators.User.CreateUserRequestValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Validators.User.CreateUserRequestValidator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Validators.User.LoginUserRequestValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Validators.User.LoginUserRequestValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Validators.User.LoginUserRequestValidator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Validators.User.UpdateUserByIdRequestValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Validators.User.UpdateUserByIdRequestValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Validators.User.UpdateUserByIdRequestValidator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Validators.User.UpdateUserRequestValidator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Validators.User.UpdateUserRequestValidator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Validators.User.UpdateUserRequestValidator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Validators.User.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Validators.User.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Validators.User",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
