@@ -1,0 +1,48 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [ "**/BgituSec.Api.csproj" ],
+          "src": "src"
+        }
+      ],
+      "dest": "api",
+      "properties": {
+        "TargetFramework": "net9.0"
+      }
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [ "api/**.yml", "api/**/*.md", "toc.yml", "*.md" ],
+        "src": "."
+      }
+    ],
+    "resource": [
+      {
+        "files": [ "images/**" ],
+        "src": "."
+      }
+    ],
+    "overwrite": [
+      {
+        "files": [ "overwrite/*.md" ],
+        "src": "."
+      }
+    ],
+    "dest": "_site",
+    "globalMetadata": {
+      "_appTitle": "BGITUFIX API Documentation",
+      "_appName": "BGITUFIX",
+      "_appFooter": "© 2025 VDK",
+      "_enableSearch": true,
+      "_enableNewTab": true
+    },
+    "fileMetadata": {},
+    "template": [ "default" ],
+    "theme": [],
+    "xref": []
+  }
+}
