@@ -1,3 +1,3 @@
-# ƒобро пожаловать в документацию API BGITUFIX
+# API BGITUFIX DOCS
 
-Ёта документаци€ охватывает API BGITUFIX, включа€ хабы SignalR и REST-контроллеры.
+This documentation covers the BGITUFIX API, including SignalR hubs and REST controllers.

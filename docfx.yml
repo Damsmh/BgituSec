@@ -10,21 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Клонирование
+      - name: clone
         uses: actions/checkout@v4
 
-      - name: Установка .NET
+      - name: install .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'
 
-      - name: Установка DocFX
+      - name: install DocFX
         run: dotnet tool install -g docfx
 
-      - name: Сборка документации
+      - name: build docs
         run: docfx docfx.json
 
-      - name: Публикация на GitHub Pages
+      - name: publish
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
