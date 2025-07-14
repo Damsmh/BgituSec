@@ -62,6 +62,7 @@ namespace BgituSec.Api.Hubs
         /// <summary>
         /// Обновляет существующую аудиторию по её id. Доступно только для ROLE_ADMIN.
         /// </summary>
+        /// <param name="id">Id аудитории  для обновления</param>
         /// <param name="request">Данные аудитории для обновления (<see cref="UpdateAuditoriumRequest"/>).</param>
         /// <returns>
         /// Отправляет клиенту сообщение "Updated" при успехе,

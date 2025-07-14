@@ -10,12 +10,27 @@ using Microsoft.AspNetCore.SignalR;
 
 namespace BgituSec.Api.Hubs
 {
+    /// <summary>
+    /// SignalR Hub для управления пользователями через WebSocket.
+    /// Требуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.
+    /// </summary>
     public class UserHub(IMediator mediator, IMapper mapper, UpdateUserByIdRequestValidator updateValidator) : Hub
     {
         private readonly IMediator _mediator = mediator;
         private readonly IMapper _mapper = mapper;
         private readonly UpdateUserByIdRequestValidator _updateValidator = updateValidator;
 
+        /// <summary>
+        /// Обновляет существующего пользователя по его id. Доступно только для ROLE_ADMIN.
+        /// </summary>
+        /// <param name="Id">Id пользователя для обновления</param>
+        /// <param name="request">Данные пользователя для обновления (<see cref="UpdateUserRequest"/>).</param>
+        /// <returns>
+        /// Отправляет клиенту сообщение "Updated" при успехе,
+        /// "ValidationError" с ошибками валидации при некорректных данных,
+        /// "NotFound" если пользователь не найден,
+        /// или уведомляет всех клиентов сообщением "Modified".
+        /// </returns>
         [Authorize(Roles = "ROLE_ADMIN")]
         public async Task Update(int Id, UpdateUserRequest request)
         {
@@ -40,6 +55,15 @@ namespace BgituSec.Api.Hubs
             }
         }
 
+        /// <summary>
+        /// Удаляет пользователя по его id. Доступно только для ROLE_ADMIN.
+        /// </summary>
+        /// <param name="Id">id пользователя.</param>
+        /// <returns>
+        /// Отправляет клиенту сообщение "Deleted" при успехе,
+        /// "NotFound" если пользователь не найден,
+        /// или уведомляет всех клиентов сообщением "Removed".
+        /// </returns>
         [Authorize(Roles = "ROLE_ADMIN")]
         public async Task Delete(int Id)
         {
@@ -56,7 +80,11 @@ namespace BgituSec.Api.Hubs
             }
         }
 
-
+        /// <summary>
+        /// Получает список всех пользователей.
+        /// </summary>
+        /// <returns>Отправляет админу сообщение "Receive" со списком объектов <see cref="UserResponse"/>.</returns>
+        /// <returns>Отправляет пользователю сообщение "Receive" со списком объектов <see cref="LimitedUserResponse"/>.</returns>
         [Authorize]
         public async Task GetAll()
         {
@@ -75,6 +103,12 @@ namespace BgituSec.Api.Hubs
             }
         }
 
+        /// <summary>
+        /// Получает поьзователя по id.
+        /// </summary>
+        /// <param name="id">id пользователя</param>
+        /// <returns>Отправляет админу сообщение "Receive" с объектом <see cref="UserResponse"/>.</returns>
+        /// <returns>Отправляет пользователю сообщение "Receive" с объектом <see cref="LimitedUserResponse"/>.</returns>
         [Authorize]
         public async Task GetById(int id)
         {

@@ -15,8 +15,9 @@ using BgituSec.Application.Services.SSE;
 using MediatR;
 using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Api.Hubs;
+using BgituSec.Api;
 
-namespace BgituSec.Api
+namespace BgituSec.Online
 {
     public class Program
     {

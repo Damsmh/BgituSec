@@ -1,0 +1,13 @@
+apiRules:
+  - include:
+      uidRegex: ^BgituSec\.Api\.Hubs\.
+  - exclude:
+      uidRegex: ^BgituSec\.Api\.Controllers\.
+  - include:
+      uidRegex: ^BgituSec\.Api\.Models\.
+  - exclude:
+      uidRegex: ^BgituSec\.Api\.Validators\.
+  - exclude:
+      uidRegex: ^BgituSec\.Api\.Mapping\.
+  - exclude:
+      uidRegex: ^BgituSec\.Online\.
