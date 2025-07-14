@@ -1,4 +1,4 @@
-- name: Главная
+- name: About
   href: index.md
 - name: API Docs
   href: api/
