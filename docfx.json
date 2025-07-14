@@ -4,7 +4,13 @@
       "src": [
         {
           "files": [ "BgituSec.Api.csproj" ],
-          "src": "BgituSec.online"
+          "src": "BgituSec.online",
+          "exclude": [
+            "**/Controllers/**",
+            "**/Models/**",
+            "**/Validators/**",
+            "**/Program.cs"
+          ]
         }
       ],
       "dest": "api",
