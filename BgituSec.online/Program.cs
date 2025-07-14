@@ -1,4 +1,3 @@
-using BgituSec.Api;
 using BgituSec.Domain.Interfaces;
 using BgituSec.Infrastructure.Data;
 using BgituSec.Infrastructure.Repositories;
@@ -15,9 +14,9 @@ using BgituSec.Application.Services.Token;
 using BgituSec.Application.Services.SSE;
 using MediatR;
 using BgituSec.Application.Features.Users.Commands;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
+using BgituSec.Api.Hubs;
 
-namespace BgituSec.online
+namespace BgituSec.Api
 {
     public class Program
     {
@@ -25,6 +24,17 @@ namespace BgituSec.online
         {
             IdentityModelEventSource.ShowPII = true;
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddSignalR();
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
+                    });
+            });
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(LoginUserCommand).Assembly));
 
             builder.Services.AddDbContext<AppDbContext>(options =>
@@ -42,6 +52,7 @@ namespace BgituSec.online
             builder.Services.AddControllers()
                             .AddJsonOptions(options =>
                                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+            
             builder.Services.AddSwaggerGen(c =>
             {
                 c.EnableAnnotations();
@@ -75,7 +86,6 @@ namespace BgituSec.online
             builder.Services.AddTransient<ITokenService, TokenService>();
             builder.Services.AddSingleton<ISSEService, SSEService>();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-
             .AddJwtBearer(options =>
             {
                 options.RequireHttpsMetadata = false;
@@ -112,14 +122,13 @@ namespace BgituSec.online
             app.UseSwaggerUI();
             app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseCors(cfg => cfg
-                .SetIsOriginAllowed(_ => true)
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .AllowCredentials());
+            app.UseCors();
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
+            app.MapHub<BuildingHub>("/hubs/building");
+            app.MapHub<AuditoriumHub>("/hubs/auditorium");
+            app.MapHub<UserHub>("/hubs/user");
             app.Run();
         }
     }
