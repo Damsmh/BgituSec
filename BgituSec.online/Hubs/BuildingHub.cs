@@ -13,8 +13,8 @@ namespace BgituSec.Api.Hubs
     /// <summary>
     /// SignalR Hub для управления корпусами через WebSocket.
     /// Требуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.
+    /// https://bgitu-fix.ru:7111/hubs/building
     /// </summary>
-    /// 
     public class BuildingHub(IMediator mediator, IMapper mapper, BuildingRequestValidator validator) : Hub
     {
         private readonly IMediator _mediator = mediator;
