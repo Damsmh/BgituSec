@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Class BreakdownHub | BGITUFIX API Documentation ">
     
-    
+    <meta name="description" content="SignalR Hub для управления поломками через WebSocket. Требуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN. https://bgitu-fix.ru:7111/hubs/breakdown">
       <link rel="shortcut icon" href="../favicon.ico">
       <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../styles/docfx.css">
@@ -81,15 +81,44 @@
 
 
   <h1 id="BgituSec_Api_Hubs_BreakdownHub" data-uid="BgituSec.Api.Hubs.BreakdownHub" class="text-break">Class BreakdownHub</h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>SignalR Hub для управления поломками через WebSocket.
+Требуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.
+<a href="https://bgitu-fix.ru:7111/hubs/breakdown">https://bgitu-fix.ru:7111/hubs/breakdown</a></p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">BreakdownHub</span></div>
+    <div class="level1"><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub">Hub</a></div>
+    <div class="level2"><span class="xref">BreakdownHub</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.onconnectedasync">Hub.OnConnectedAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.ondisconnectedasync">Hub.OnDisconnectedAsync(Exception)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.dispose#microsoft-aspnetcore-signalr-hub-dispose(system-boolean)">Hub.Dispose(bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.dispose#microsoft-aspnetcore-signalr-hub-dispose">Hub.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.clients">Hub.Clients</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.context">Hub.Context</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.signalr.hub.groups">Hub.Groups</a>
+    </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -116,7 +145,250 @@
   <h6><strong>Assembly</strong>: BgituSec.Api.dll</h6>
   <h5 id="BgituSec_Api_Hubs_BreakdownHub_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class BreakdownHub</code></pre>
+    <pre><code class="lang-csharp hljs">public class BreakdownHub : Hub, IDisposable</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Damsmh/BgituSec/new/9/merge/apiSpec/new?filename=BgituSec_Api_Hubs_BreakdownHub__ctor_MediatR_IMediator_AutoMapper_IMapper_BgituSec_Api_Validators_Breakdown_CreateBreakdownRequestValidator_BgituSec_Api_Validators_Breakdown_UpdateBreakdownRequestValidator_BgituSec_Application_Services_SSE_ISSEService_.md&amp;value=---%0Auid%3A%20BgituSec.Api.Hubs.BreakdownHub.%23ctor(MediatR.IMediator%2CAutoMapper.IMapper%2CBgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator%2CBgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator%2CBgituSec.Application.Services.SSE.ISSEService)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Damsmh/BgituSec/blob/9/merge/BgituSec.online/Hubs/BreakdownHub.cs/#L19">View Source</a>
+  </span>
+  <a id="BgituSec_Api_Hubs_BreakdownHub__ctor_" data-uid="BgituSec.Api.Hubs.BreakdownHub.#ctor*"></a>
+  <h4 id="BgituSec_Api_Hubs_BreakdownHub__ctor_MediatR_IMediator_AutoMapper_IMapper_BgituSec_Api_Validators_Breakdown_CreateBreakdownRequestValidator_BgituSec_Api_Validators_Breakdown_UpdateBreakdownRequestValidator_BgituSec_Application_Services_SSE_ISSEService_" data-uid="BgituSec.Api.Hubs.BreakdownHub.#ctor(MediatR.IMediator,AutoMapper.IMapper,BgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator,BgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator,BgituSec.Application.Services.SSE.ISSEService)">BreakdownHub(IMediator, IMapper, CreateBreakdownRequestValidator, UpdateBreakdownRequestValidator, ISSEService)</h4>
+  <div class="markdown level1 summary"><p>SignalR Hub для управления поломками через WebSocket.
+Требуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.
+<a href="https://bgitu-fix.ru:7111/hubs/breakdown">https://bgitu-fix.ru:7111/hubs/breakdown</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BreakdownHub(IMediator mediator, IMapper mapper, CreateBreakdownRequestValidator createValidator, UpdateBreakdownRequestValidator updateValidator, ISSEService sseService)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IMediator</span></td>
+        <td><span class="parametername">mediator</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">IMapper</span></td>
+        <td><span class="parametername">mapper</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">CreateBreakdownRequestValidator</span></td>
+        <td><span class="parametername">createValidator</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">UpdateBreakdownRequestValidator</span></td>
+        <td><span class="parametername">updateValidator</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">ISSEService</span></td>
+        <td><span class="parametername">sseService</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Damsmh/BgituSec/new/9/merge/apiSpec/new?filename=BgituSec_Api_Hubs_BreakdownHub_Create_BgituSec_Api_Models_Breakdowns_Request_CreateBreakdownRequest_.md&amp;value=---%0Auid%3A%20BgituSec.Api.Hubs.BreakdownHub.Create(BgituSec.Api.Models.Breakdowns.Request.CreateBreakdownRequest)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Damsmh/BgituSec/blob/9/merge/BgituSec.online/Hubs/BreakdownHub.cs/#L36">View Source</a>
+  </span>
+  <a id="BgituSec_Api_Hubs_BreakdownHub_Create_" data-uid="BgituSec.Api.Hubs.BreakdownHub.Create*"></a>
+  <h4 id="BgituSec_Api_Hubs_BreakdownHub_Create_BgituSec_Api_Models_Breakdowns_Request_CreateBreakdownRequest_" data-uid="BgituSec.Api.Hubs.BreakdownHub.Create(BgituSec.Api.Models.Breakdowns.Request.CreateBreakdownRequest)">Create(CreateBreakdownRequest)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Authorize]
+public Task Create(CreateBreakdownRequest request)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="BgituSec.Api.Models.Breakdowns.Request.CreateBreakdownRequest.html">CreateBreakdownRequest</a></td>
+        <td><span class="parametername">request</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Damsmh/BgituSec/new/9/merge/apiSpec/new?filename=BgituSec_Api_Hubs_BreakdownHub_Delete_System_Int32_.md&amp;value=---%0Auid%3A%20BgituSec.Api.Hubs.BreakdownHub.Delete(System.Int32)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Damsmh/BgituSec/blob/9/merge/BgituSec.online/Hubs/BreakdownHub.cs/#L73">View Source</a>
+  </span>
+  <a id="BgituSec_Api_Hubs_BreakdownHub_Delete_" data-uid="BgituSec.Api.Hubs.BreakdownHub.Delete*"></a>
+  <h4 id="BgituSec_Api_Hubs_BreakdownHub_Delete_System_Int32_" data-uid="BgituSec.Api.Hubs.BreakdownHub.Delete(System.Int32)">Delete(int)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Authorize(Roles = &quot;ROLE_ADMIN&quot;)]
+public Task Delete(int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Damsmh/BgituSec/new/9/merge/apiSpec/new?filename=BgituSec_Api_Hubs_BreakdownHub_GetAll.md&amp;value=---%0Auid%3A%20BgituSec.Api.Hubs.BreakdownHub.GetAll%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Damsmh/BgituSec/blob/9/merge/BgituSec.online/Hubs/BreakdownHub.cs/#L26">View Source</a>
+  </span>
+  <a id="BgituSec_Api_Hubs_BreakdownHub_GetAll_" data-uid="BgituSec.Api.Hubs.BreakdownHub.GetAll*"></a>
+  <h4 id="BgituSec_Api_Hubs_BreakdownHub_GetAll" data-uid="BgituSec.Api.Hubs.BreakdownHub.GetAll">GetAll()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Authorize]
+public Task GetAll()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Damsmh/BgituSec/new/9/merge/apiSpec/new?filename=BgituSec_Api_Hubs_BreakdownHub_Update_System_Int32_BgituSec_Api_Models_Breakdowns_Request_UpdateBreakdownRequest_.md&amp;value=---%0Auid%3A%20BgituSec.Api.Hubs.BreakdownHub.Update(System.Int32%2CBgituSec.Api.Models.Breakdowns.Request.UpdateBreakdownRequest)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Damsmh/BgituSec/blob/9/merge/BgituSec.online/Hubs/BreakdownHub.cs/#L51">View Source</a>
+  </span>
+  <a id="BgituSec_Api_Hubs_BreakdownHub_Update_" data-uid="BgituSec.Api.Hubs.BreakdownHub.Update*"></a>
+  <h4 id="BgituSec_Api_Hubs_BreakdownHub_Update_System_Int32_BgituSec_Api_Models_Breakdowns_Request_UpdateBreakdownRequest_" data-uid="BgituSec.Api.Hubs.BreakdownHub.Update(System.Int32,BgituSec.Api.Models.Breakdowns.Request.UpdateBreakdownRequest)">Update(int, UpdateBreakdownRequest)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Authorize(Roles = &quot;ROLE_ADMIN&quot;)]
+public Task Update(int id, UpdateBreakdownRequest request)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="BgituSec.Api.Models.Breakdowns.Request.UpdateBreakdownRequest.html">UpdateBreakdownRequest</a></td>
+        <td><span class="parametername">request</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
   </div>
 
 </article>
@@ -127,10 +399,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Damsmh/BgituSec/new/main/apiSpec/new?filename=BgituSec_Api_Hubs_BreakdownHub.md&amp;value=---%0Auid%3A%20BgituSec.Api.Hubs.BreakdownHub%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/Damsmh/BgituSec/new/9/merge/apiSpec/new?filename=BgituSec_Api_Hubs_BreakdownHub.md&amp;value=---%0Auid%3A%20BgituSec.Api.Hubs.BreakdownHub%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/Damsmh/BgituSec/blob/main/BgituSec.online/Hubs/BreakdownHub.cs/#L3" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Damsmh/BgituSec/blob/9/merge/BgituSec.online/Hubs/BreakdownHub.cs/#L19" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

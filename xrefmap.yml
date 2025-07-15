@@ -96,6 +96,83 @@ references:
   commentId: T:BgituSec.Api.Hubs.BreakdownHub
   fullName: BgituSec.Api.Hubs.BreakdownHub
   nameWithType: BreakdownHub
+- uid: BgituSec.Api.Hubs.BreakdownHub.#ctor(MediatR.IMediator,AutoMapper.IMapper,BgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator,BgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator,BgituSec.Application.Services.SSE.ISSEService)
+  name: BreakdownHub(IMediator, IMapper, CreateBreakdownRequestValidator, UpdateBreakdownRequestValidator, ISSEService)
+  href: api/BgituSec.Api.Hubs.BreakdownHub.html#BgituSec_Api_Hubs_BreakdownHub__ctor_MediatR_IMediator_AutoMapper_IMapper_BgituSec_Api_Validators_Breakdown_CreateBreakdownRequestValidator_BgituSec_Api_Validators_Breakdown_UpdateBreakdownRequestValidator_BgituSec_Application_Services_SSE_ISSEService_
+  commentId: M:BgituSec.Api.Hubs.BreakdownHub.#ctor(MediatR.IMediator,AutoMapper.IMapper,BgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator,BgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator,BgituSec.Application.Services.SSE.ISSEService)
+  name.vb: New(IMediator, IMapper, CreateBreakdownRequestValidator, UpdateBreakdownRequestValidator, ISSEService)
+  fullName: BgituSec.Api.Hubs.BreakdownHub.BreakdownHub(MediatR.IMediator, AutoMapper.IMapper, BgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator, BgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator, BgituSec.Application.Services.SSE.ISSEService)
+  fullName.vb: BgituSec.Api.Hubs.BreakdownHub.New(MediatR.IMediator, AutoMapper.IMapper, BgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator, BgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator, BgituSec.Application.Services.SSE.ISSEService)
+  nameWithType: BreakdownHub.BreakdownHub(IMediator, IMapper, CreateBreakdownRequestValidator, UpdateBreakdownRequestValidator, ISSEService)
+  nameWithType.vb: BreakdownHub.New(IMediator, IMapper, CreateBreakdownRequestValidator, UpdateBreakdownRequestValidator, ISSEService)
+- uid: BgituSec.Api.Hubs.BreakdownHub.#ctor*
+  name: BreakdownHub
+  href: api/BgituSec.Api.Hubs.BreakdownHub.html#BgituSec_Api_Hubs_BreakdownHub__ctor_
+  commentId: Overload:BgituSec.Api.Hubs.BreakdownHub.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: BgituSec.Api.Hubs.BreakdownHub.BreakdownHub
+  fullName.vb: BgituSec.Api.Hubs.BreakdownHub.New
+  nameWithType: BreakdownHub.BreakdownHub
+  nameWithType.vb: BreakdownHub.New
+- uid: BgituSec.Api.Hubs.BreakdownHub.Create(BgituSec.Api.Models.Breakdowns.Request.CreateBreakdownRequest)
+  name: Create(CreateBreakdownRequest)
+  href: api/BgituSec.Api.Hubs.BreakdownHub.html#BgituSec_Api_Hubs_BreakdownHub_Create_BgituSec_Api_Models_Breakdowns_Request_CreateBreakdownRequest_
+  commentId: M:BgituSec.Api.Hubs.BreakdownHub.Create(BgituSec.Api.Models.Breakdowns.Request.CreateBreakdownRequest)
+  fullName: BgituSec.Api.Hubs.BreakdownHub.Create(BgituSec.Api.Models.Breakdowns.Request.CreateBreakdownRequest)
+  nameWithType: BreakdownHub.Create(CreateBreakdownRequest)
+- uid: BgituSec.Api.Hubs.BreakdownHub.Create*
+  name: Create
+  href: api/BgituSec.Api.Hubs.BreakdownHub.html#BgituSec_Api_Hubs_BreakdownHub_Create_
+  commentId: Overload:BgituSec.Api.Hubs.BreakdownHub.Create
+  isSpec: "True"
+  fullName: BgituSec.Api.Hubs.BreakdownHub.Create
+  nameWithType: BreakdownHub.Create
+- uid: BgituSec.Api.Hubs.BreakdownHub.Delete(System.Int32)
+  name: Delete(int)
+  href: api/BgituSec.Api.Hubs.BreakdownHub.html#BgituSec_Api_Hubs_BreakdownHub_Delete_System_Int32_
+  commentId: M:BgituSec.Api.Hubs.BreakdownHub.Delete(System.Int32)
+  name.vb: Delete(Integer)
+  fullName: BgituSec.Api.Hubs.BreakdownHub.Delete(int)
+  fullName.vb: BgituSec.Api.Hubs.BreakdownHub.Delete(Integer)
+  nameWithType: BreakdownHub.Delete(int)
+  nameWithType.vb: BreakdownHub.Delete(Integer)
+- uid: BgituSec.Api.Hubs.BreakdownHub.Delete*
+  name: Delete
+  href: api/BgituSec.Api.Hubs.BreakdownHub.html#BgituSec_Api_Hubs_BreakdownHub_Delete_
+  commentId: Overload:BgituSec.Api.Hubs.BreakdownHub.Delete
+  isSpec: "True"
+  fullName: BgituSec.Api.Hubs.BreakdownHub.Delete
+  nameWithType: BreakdownHub.Delete
+- uid: BgituSec.Api.Hubs.BreakdownHub.GetAll
+  name: GetAll()
+  href: api/BgituSec.Api.Hubs.BreakdownHub.html#BgituSec_Api_Hubs_BreakdownHub_GetAll
+  commentId: M:BgituSec.Api.Hubs.BreakdownHub.GetAll
+  fullName: BgituSec.Api.Hubs.BreakdownHub.GetAll()
+  nameWithType: BreakdownHub.GetAll()
+- uid: BgituSec.Api.Hubs.BreakdownHub.GetAll*
+  name: GetAll
+  href: api/BgituSec.Api.Hubs.BreakdownHub.html#BgituSec_Api_Hubs_BreakdownHub_GetAll_
+  commentId: Overload:BgituSec.Api.Hubs.BreakdownHub.GetAll
+  isSpec: "True"
+  fullName: BgituSec.Api.Hubs.BreakdownHub.GetAll
+  nameWithType: BreakdownHub.GetAll
+- uid: BgituSec.Api.Hubs.BreakdownHub.Update(System.Int32,BgituSec.Api.Models.Breakdowns.Request.UpdateBreakdownRequest)
+  name: Update(int, UpdateBreakdownRequest)
+  href: api/BgituSec.Api.Hubs.BreakdownHub.html#BgituSec_Api_Hubs_BreakdownHub_Update_System_Int32_BgituSec_Api_Models_Breakdowns_Request_UpdateBreakdownRequest_
+  commentId: M:BgituSec.Api.Hubs.BreakdownHub.Update(System.Int32,BgituSec.Api.Models.Breakdowns.Request.UpdateBreakdownRequest)
+  name.vb: Update(Integer, UpdateBreakdownRequest)
+  fullName: BgituSec.Api.Hubs.BreakdownHub.Update(int, BgituSec.Api.Models.Breakdowns.Request.UpdateBreakdownRequest)
+  fullName.vb: BgituSec.Api.Hubs.BreakdownHub.Update(Integer, BgituSec.Api.Models.Breakdowns.Request.UpdateBreakdownRequest)
+  nameWithType: BreakdownHub.Update(int, UpdateBreakdownRequest)
+  nameWithType.vb: BreakdownHub.Update(Integer, UpdateBreakdownRequest)
+- uid: BgituSec.Api.Hubs.BreakdownHub.Update*
+  name: Update
+  href: api/BgituSec.Api.Hubs.BreakdownHub.html#BgituSec_Api_Hubs_BreakdownHub_Update_
+  commentId: Overload:BgituSec.Api.Hubs.BreakdownHub.Update
+  isSpec: "True"
+  fullName: BgituSec.Api.Hubs.BreakdownHub.Update
+  nameWithType: BreakdownHub.Update
 - uid: BgituSec.Api.Hubs.BuildingHub
   name: BuildingHub
   href: api/BgituSec.Api.Hubs.BuildingHub.html
@@ -182,6 +259,83 @@ references:
   commentId: T:BgituSec.Api.Hubs.ComputerHub
   fullName: BgituSec.Api.Hubs.ComputerHub
   nameWithType: ComputerHub
+- uid: BgituSec.Api.Hubs.ComputerHub.#ctor(MediatR.IMediator,AutoMapper.IMapper,BgituSec.Api.Validators.Computer.CreateComputerRequestValidator,BgituSec.Api.Validators.Computer.UpdateComputerRequestValidator)
+  name: ComputerHub(IMediator, IMapper, CreateComputerRequestValidator, UpdateComputerRequestValidator)
+  href: api/BgituSec.Api.Hubs.ComputerHub.html#BgituSec_Api_Hubs_ComputerHub__ctor_MediatR_IMediator_AutoMapper_IMapper_BgituSec_Api_Validators_Computer_CreateComputerRequestValidator_BgituSec_Api_Validators_Computer_UpdateComputerRequestValidator_
+  commentId: M:BgituSec.Api.Hubs.ComputerHub.#ctor(MediatR.IMediator,AutoMapper.IMapper,BgituSec.Api.Validators.Computer.CreateComputerRequestValidator,BgituSec.Api.Validators.Computer.UpdateComputerRequestValidator)
+  name.vb: New(IMediator, IMapper, CreateComputerRequestValidator, UpdateComputerRequestValidator)
+  fullName: BgituSec.Api.Hubs.ComputerHub.ComputerHub(MediatR.IMediator, AutoMapper.IMapper, BgituSec.Api.Validators.Computer.CreateComputerRequestValidator, BgituSec.Api.Validators.Computer.UpdateComputerRequestValidator)
+  fullName.vb: BgituSec.Api.Hubs.ComputerHub.New(MediatR.IMediator, AutoMapper.IMapper, BgituSec.Api.Validators.Computer.CreateComputerRequestValidator, BgituSec.Api.Validators.Computer.UpdateComputerRequestValidator)
+  nameWithType: ComputerHub.ComputerHub(IMediator, IMapper, CreateComputerRequestValidator, UpdateComputerRequestValidator)
+  nameWithType.vb: ComputerHub.New(IMediator, IMapper, CreateComputerRequestValidator, UpdateComputerRequestValidator)
+- uid: BgituSec.Api.Hubs.ComputerHub.#ctor*
+  name: ComputerHub
+  href: api/BgituSec.Api.Hubs.ComputerHub.html#BgituSec_Api_Hubs_ComputerHub__ctor_
+  commentId: Overload:BgituSec.Api.Hubs.ComputerHub.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: BgituSec.Api.Hubs.ComputerHub.ComputerHub
+  fullName.vb: BgituSec.Api.Hubs.ComputerHub.New
+  nameWithType: ComputerHub.ComputerHub
+  nameWithType.vb: ComputerHub.New
+- uid: BgituSec.Api.Hubs.ComputerHub.Create(BgituSec.Api.Models.Computers.Request.CreateComputerRequest)
+  name: Create(CreateComputerRequest)
+  href: api/BgituSec.Api.Hubs.ComputerHub.html#BgituSec_Api_Hubs_ComputerHub_Create_BgituSec_Api_Models_Computers_Request_CreateComputerRequest_
+  commentId: M:BgituSec.Api.Hubs.ComputerHub.Create(BgituSec.Api.Models.Computers.Request.CreateComputerRequest)
+  fullName: BgituSec.Api.Hubs.ComputerHub.Create(BgituSec.Api.Models.Computers.Request.CreateComputerRequest)
+  nameWithType: ComputerHub.Create(CreateComputerRequest)
+- uid: BgituSec.Api.Hubs.ComputerHub.Create*
+  name: Create
+  href: api/BgituSec.Api.Hubs.ComputerHub.html#BgituSec_Api_Hubs_ComputerHub_Create_
+  commentId: Overload:BgituSec.Api.Hubs.ComputerHub.Create
+  isSpec: "True"
+  fullName: BgituSec.Api.Hubs.ComputerHub.Create
+  nameWithType: ComputerHub.Create
+- uid: BgituSec.Api.Hubs.ComputerHub.Delete(System.Int32)
+  name: Delete(int)
+  href: api/BgituSec.Api.Hubs.ComputerHub.html#BgituSec_Api_Hubs_ComputerHub_Delete_System_Int32_
+  commentId: M:BgituSec.Api.Hubs.ComputerHub.Delete(System.Int32)
+  name.vb: Delete(Integer)
+  fullName: BgituSec.Api.Hubs.ComputerHub.Delete(int)
+  fullName.vb: BgituSec.Api.Hubs.ComputerHub.Delete(Integer)
+  nameWithType: ComputerHub.Delete(int)
+  nameWithType.vb: ComputerHub.Delete(Integer)
+- uid: BgituSec.Api.Hubs.ComputerHub.Delete*
+  name: Delete
+  href: api/BgituSec.Api.Hubs.ComputerHub.html#BgituSec_Api_Hubs_ComputerHub_Delete_
+  commentId: Overload:BgituSec.Api.Hubs.ComputerHub.Delete
+  isSpec: "True"
+  fullName: BgituSec.Api.Hubs.ComputerHub.Delete
+  nameWithType: ComputerHub.Delete
+- uid: BgituSec.Api.Hubs.ComputerHub.GetAll
+  name: GetAll()
+  href: api/BgituSec.Api.Hubs.ComputerHub.html#BgituSec_Api_Hubs_ComputerHub_GetAll
+  commentId: M:BgituSec.Api.Hubs.ComputerHub.GetAll
+  fullName: BgituSec.Api.Hubs.ComputerHub.GetAll()
+  nameWithType: ComputerHub.GetAll()
+- uid: BgituSec.Api.Hubs.ComputerHub.GetAll*
+  name: GetAll
+  href: api/BgituSec.Api.Hubs.ComputerHub.html#BgituSec_Api_Hubs_ComputerHub_GetAll_
+  commentId: Overload:BgituSec.Api.Hubs.ComputerHub.GetAll
+  isSpec: "True"
+  fullName: BgituSec.Api.Hubs.ComputerHub.GetAll
+  nameWithType: ComputerHub.GetAll
+- uid: BgituSec.Api.Hubs.ComputerHub.Update(System.Int32,BgituSec.Api.Models.Computers.Request.UpdateComputerRequest)
+  name: Update(int, UpdateComputerRequest)
+  href: api/BgituSec.Api.Hubs.ComputerHub.html#BgituSec_Api_Hubs_ComputerHub_Update_System_Int32_BgituSec_Api_Models_Computers_Request_UpdateComputerRequest_
+  commentId: M:BgituSec.Api.Hubs.ComputerHub.Update(System.Int32,BgituSec.Api.Models.Computers.Request.UpdateComputerRequest)
+  name.vb: Update(Integer, UpdateComputerRequest)
+  fullName: BgituSec.Api.Hubs.ComputerHub.Update(int, BgituSec.Api.Models.Computers.Request.UpdateComputerRequest)
+  fullName.vb: BgituSec.Api.Hubs.ComputerHub.Update(Integer, BgituSec.Api.Models.Computers.Request.UpdateComputerRequest)
+  nameWithType: ComputerHub.Update(int, UpdateComputerRequest)
+  nameWithType.vb: ComputerHub.Update(Integer, UpdateComputerRequest)
+- uid: BgituSec.Api.Hubs.ComputerHub.Update*
+  name: Update
+  href: api/BgituSec.Api.Hubs.ComputerHub.html#BgituSec_Api_Hubs_ComputerHub_Update_
+  commentId: Overload:BgituSec.Api.Hubs.ComputerHub.Update
+  isSpec: "True"
+  fullName: BgituSec.Api.Hubs.ComputerHub.Update
+  nameWithType: ComputerHub.Update
 - uid: BgituSec.Api.Hubs.UserHub
   name: UserHub
   href: api/BgituSec.Api.Hubs.UserHub.html

@@ -46,7 +46,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "BgituSec.Api.Hubs.BreakdownHub",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/BgituSec.Api.Hubs.BreakdownHub.yml\" sourcestartlinenumber=\"1\">SignalR Hub для управления поломками через WebSocket.\nТребуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.\n<a href=\"https://bgitu-fix.ru:7111/hubs/breakdown\" sourcefile=\"api/BgituSec.Api.Hubs.BreakdownHub.yml\" sourcestartlinenumber=\"3\">https://bgitu-fix.ru:7111/hubs/breakdown</a></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -74,7 +74,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "BgituSec.Api.Hubs.ComputerHub",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/BgituSec.Api.Hubs.ComputerHub.yml\" sourcestartlinenumber=\"1\">SignalR Hub для управления компьюетрами через WebSocket.\nТребуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.\n<a href=\"https://bgitu-fix.ru:7111/hubs/computer\" sourcefile=\"api/BgituSec.Api.Hubs.ComputerHub.yml\" sourcestartlinenumber=\"3\">https://bgitu-fix.ru:7111/hubs/computer</a></p>\n"
     },
     {
       "type": "ManagedReference",
