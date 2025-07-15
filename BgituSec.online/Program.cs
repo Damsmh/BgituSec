@@ -130,6 +130,8 @@ namespace BgituSec.Online
             app.MapHub<BuildingHub>("/hubs/building");
             app.MapHub<AuditoriumHub>("/hubs/auditorium");
             app.MapHub<UserHub>("/hubs/user");
+            app.MapHub<ComputerHub>("/hubs/computer");
+            app.MapHub<BreakdownHub>("/hubs/breakdown");
             app.Run();
         }
     }

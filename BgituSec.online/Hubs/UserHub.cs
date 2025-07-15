@@ -84,8 +84,10 @@ namespace BgituSec.Api.Hubs
         /// <summary>
         /// Получает список всех пользователей.
         /// </summary>
-        /// <returns>Отправляет админу сообщение "Receive" со списком объектов <see cref="UserResponse"/>.</returns>
-        /// <returns>Отправляет пользователю сообщение "Receive" со списком объектов <see cref="LimitedUserResponse"/>.</returns>
+        /// <returns>
+        /// Отправляет админу сообщение "Receive" со списком объектов <see cref="UserResponse"/>.
+        /// Отправляет пользователю сообщение "Receive" со списком объектов <see cref="LimitedUserResponse"/>.
+        /// </returns>
         [Authorize]
         public async Task GetAll()
         {
@@ -108,8 +110,10 @@ namespace BgituSec.Api.Hubs
         /// Получает поьзователя по id.
         /// </summary>
         /// <param name="id">id пользователя</param>
-        /// <returns>Отправляет админу сообщение "Receive" с объектом <see cref="UserResponse"/>.</returns>
-        /// <returns>Отправляет пользователю сообщение "Receive" с объектом <see cref="LimitedUserResponse"/>.</returns>
+        /// <returns>
+        /// Отправляет админу сообщение "Receive" с объектом <see cref="UserResponse"/>.
+        /// Отправляет пользователю сообщение "Receive" с объектом <see cref="LimitedUserResponse"/>.
+        /// </returns>
         [Authorize]
         public async Task GetById(int id)
         {
