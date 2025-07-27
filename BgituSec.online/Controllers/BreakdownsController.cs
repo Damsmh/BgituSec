@@ -99,16 +99,14 @@ namespace BgituSec.Api.Controllers
             }
         }
 
-        [Authorize(Roles = "ROLE_ADMIN")]
+        [Authorize]
         [HttpDelete]
         [Route("{id}")]
         [SwaggerOperation(
-            Summary = "Only for ADMIN",
             Description = "Удаляет поломоку по Id."
         )]
         [SwaggerResponse(204, "Удаление выполнено успешно.")]
         [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
-        [SwaggerResponse(403, "Ошибка доступа в связи с отсутствием роли админа.")]
         [SwaggerResponse(404, "Поломока с таким Id не найден.")]
         public async Task<ActionResult> Delete([FromRoute] int id)
         {
