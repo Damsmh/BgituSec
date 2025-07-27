@@ -16,7 +16,7 @@ namespace BgituSec.Api.Hubs
     /// Требуется аутентификация JWT. Некоторые методы доступны только для роли ROLE_ADMIN.
     /// https://bgitu-fix.ru:7111/hubs/breakdown
     /// </summary>
-    public class BreakdownHub(IMediator mediator, IMapper mapper, CreateBreakdownRequestValidator createValidator, UpdateBreakdownRequestValidator updateValidator, ISSEService sseService) : Hub
+    public class BreakdownHub(IMediator mediator, IMapper mapper, CreateBreakdownRequestValidator createValidator, UpdateBreakdownRequestValidator updateValidator) : Hub
     {
         private readonly IMapper _mapper = mapper;
         private readonly IMediator _mediator = mediator;
