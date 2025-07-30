@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BgituSec.Api.Hubs;
 using BgituSec.Api.Models.Breakdowns.Request;
 using BgituSec.Api.Models.Breakdowns.Response;
 using BgituSec.Api.Validators.Breakdown;
@@ -8,6 +9,7 @@ using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net.Mime;
 using System.Text;
@@ -18,13 +20,15 @@ namespace BgituSec.Api.Controllers
     [Route("api/breakdown")]
     [Produces(MediaTypeNames.Application.Json)]
     [ApiController]
-    public class BreakdownsController(IMediator mediator, IMapper mapper, CreateBreakdownRequestValidator createValidator, UpdateBreakdownRequestValidator updateValidator, ISSEService sseService) : ControllerBase
+    public class BreakdownsController(IMediator mediator, IMapper mapper, CreateBreakdownRequestValidator createValidator,
+                                      UpdateBreakdownRequestValidator updateValidator, ISSEService sseService, IHubContext<BreakdownHub> hubContext) : ControllerBase
     {
         private readonly IMapper _mapper = mapper;
         private readonly IMediator _mediator = mediator;
         private readonly CreateBreakdownRequestValidator _createValidator = createValidator;
         private readonly UpdateBreakdownRequestValidator _updateValidator = updateValidator;
         private readonly ISSEService _sseService = sseService;
+        private readonly IHubContext<BreakdownHub> _hubContext = hubContext;
 
         [Authorize]
         [HttpGet]
@@ -54,7 +58,7 @@ namespace BgituSec.Api.Controllers
         [SwaggerResponse(400, "Ошибки валидации.", typeof(List<ValidationFailure>))]
         [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
         [SwaggerResponse(403, "Ошибка доступа в связи с отсутствием роли админа.")]
-        public async Task<ActionResult> Create([FromBody] CreateBreakdownRequest request)
+        public async Task<ActionResult<CreateBreakdownResponse>> Create([FromBody] CreateBreakdownRequest request)
         {
             ValidationResult result = await _createValidator.ValidateAsync(request);
             if (!result.IsValid)
@@ -64,6 +68,7 @@ namespace BgituSec.Api.Controllers
             var command = _mapper.Map<CreateBreakdownCommand>(request);
             var BreakdownDTO = await _mediator.Send(command);
             var response = _mapper.Map<CreateBreakdownResponse>(BreakdownDTO);
+            await _hubContext.Clients.All.SendAsync("Created", _mapper.Map<GetBreakdownResponse>(BreakdownDTO));
             return CreatedAtAction(nameof(Create), response);
         }
 
@@ -90,7 +95,8 @@ namespace BgituSec.Api.Controllers
             command.Id = id;
             try
             {
-                await _mediator.Send(command);
+                var response = _mapper.Map<GetBreakdownResponse>(await _mediator.Send(command));
+                await _hubContext.Clients.All.SendAsync("Updated", response);
                 return Ok();
             }
             catch (KeyNotFoundException)
@@ -114,6 +120,7 @@ namespace BgituSec.Api.Controllers
             try
             {
                 await _mediator.Send(command);
+                await _hubContext.Clients.All.SendAsync("Deleted", id);
                 return NoContent();
             }
             catch (KeyNotFoundException)

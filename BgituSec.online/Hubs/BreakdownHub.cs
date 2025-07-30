@@ -3,7 +3,6 @@ using BgituSec.Api.Models.Breakdowns.Request;
 using BgituSec.Api.Models.Breakdowns.Response;
 using BgituSec.Api.Validators.Breakdown;
 using BgituSec.Application.Features.Breakdowns.Commands;
-using BgituSec.Application.Services.SSE;
 using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -43,9 +42,8 @@ namespace BgituSec.Api.Hubs
             }
             var command = _mapper.Map<CreateBreakdownCommand>(request);
             var BreakdownDTO = await _mediator.Send(command);
-            var response = _mapper.Map<CreateBreakdownResponse>(BreakdownDTO);
-            await Clients.Caller.SendAsync("Created", response);
-            await Clients.All.SendAsync("Added", response);
+            var response = _mapper.Map<GetBreakdownResponse>(BreakdownDTO);
+            await Clients.All.SendAsync("Created", response);
         }
 
         [Authorize(Roles = "ROLE_ADMIN")]
@@ -61,8 +59,7 @@ namespace BgituSec.Api.Hubs
             try
             {
                 var response = _mapper.Map<GetBreakdownResponse>(await _mediator.Send(command));
-                await Clients.Caller.SendAsync("Updated", response);
-                await Clients.All.SendAsync("Modified", response);
+                await Clients.All.SendAsync("Updated", response);
             }
             catch (KeyNotFoundException)
             {
@@ -70,15 +67,14 @@ namespace BgituSec.Api.Hubs
             }
         }
 
-        [Authorize(Roles = "ROLE_ADMIN")]
+        [Authorize]
         public async Task Delete(int id)
         {
             var command = new DeleteBreakdownCommand { Id = id };
             try
             {
                 await _mediator.Send(command);
-                await Clients.Caller.SendAsync("Deleted", id);
-                await Clients.All.SendAsync("Removed", id);
+                await Clients.All.SendAsync("Deleted", id);
             }
             catch (KeyNotFoundException)
             {

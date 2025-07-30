@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
+using BgituSec.Api.Hubs;
 using BgituSec.Api.Models.Computers.Request;
 using BgituSec.Api.Models.Computers.Response;
 using BgituSec.Api.Validators.Computer;
+using BgituSec.Application.DTOs;
 using BgituSec.Application.Features.Computers.Commands;
 using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net.Mime;
 
@@ -15,12 +18,14 @@ namespace BgituSec.Api.Controllers
     [Route("api/computer")]
     [Produces(MediaTypeNames.Application.Json)]
     [ApiController]
-    public class ComputersController(IMediator mediator, IMapper mapper, CreateComputerRequestValidator createValidator, UpdateComputerRequestValidator updateValidator) : ControllerBase
+    public class ComputersController(IMediator mediator, IMapper mapper, CreateComputerRequestValidator createValidator,
+                                     UpdateComputerRequestValidator updateValidator, IHubContext<ComputerHub> hubContext) : ControllerBase
     {
         private readonly IMapper _mapper = mapper;
         private readonly IMediator _mediator = mediator;
         private readonly CreateComputerRequestValidator _createValidator = createValidator;
         private readonly UpdateComputerRequestValidator _updateValidator = updateValidator;
+        private readonly IHubContext<ComputerHub> _hubContext = hubContext;
 
         [Authorize]
         [HttpGet]
@@ -61,6 +66,7 @@ namespace BgituSec.Api.Controllers
             var command = _mapper.Map<CreateComputerCommand>(request);
             var computerDTO = await _mediator.Send(command);
             var response = _mapper.Map<CreateComputerResponse>(computerDTO);
+            await _hubContext.Clients.All.SendAsync("Created", _mapper.Map<GetComputerResponse>(computerDTO));
             return CreatedAtAction(nameof(Create), response);
         }
 
@@ -87,7 +93,8 @@ namespace BgituSec.Api.Controllers
             command.Id = id;
             try
             {
-                await _mediator.Send(command);
+                var computerDTO = await _mediator.Send(command);
+                await _hubContext.Clients.All.SendAsync("Updated", _mapper.Map<GetComputerResponse>(computerDTO));
                 return Ok();
             }
             catch (KeyNotFoundException)
@@ -113,6 +120,7 @@ namespace BgituSec.Api.Controllers
             try
             {
                 await _mediator.Send(command);
+                await _hubContext.Clients.All.SendAsync("Deleted", id);
                 return NoContent();
             }
             catch (KeyNotFoundException)

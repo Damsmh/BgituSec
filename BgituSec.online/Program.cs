@@ -16,6 +16,8 @@ using MediatR;
 using BgituSec.Application.Features.Users.Commands;
 using BgituSec.Api.Hubs;
 using BgituSec.Api;
+using Microsoft.AspNetCore.SignalR;
+using BgituSec.Api.Hubs.Filters;
 
 namespace BgituSec.Online
 {
@@ -23,9 +25,17 @@ namespace BgituSec.Online
     {
         public static void Main(string[] args)
         {
-            IdentityModelEventSource.ShowPII = true;
+            IdentityModelEventSource.ShowPII = false;
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddSignalR();
+            builder.Services.AddSignalR(options =>
+            {
+                options.AddFilter<RoleBasedGroupHubFilter>();
+
+            }).AddJsonProtocol(options =>
+            {
+                options.PayloadSerializerOptions.Converters
+                   .Add(new JsonStringEnumConverter());
+            });
             builder.Services.AddCors(options =>
             {
                 options.AddDefaultPolicy(

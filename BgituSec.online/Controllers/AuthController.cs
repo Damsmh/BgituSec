@@ -99,7 +99,7 @@ namespace BgituSec.Api.Controllers
         [SwaggerResponse(200, "Возвращает token и refreshToken.", (typeof(CreateUserResponse)))]
         [SwaggerResponse(400, "Ошибки валидации.", typeof(List<ValidationFailure>))]
         [SwaggerResponse(401, "Ошибка добавления записи в базу данных.")]
-        public async Task<ActionResult<UserResponse>> Create([FromBody] CreateUserRequest model)
+        public async Task<ActionResult<CreateUserResponse>> Create([FromBody] CreateUserRequest model)
         {
             ValidationResult result = await _createValidator.ValidateAsync(model);
             if (!result.IsValid)
@@ -125,7 +125,8 @@ namespace BgituSec.Api.Controllers
             response.Token = token;
             refreshToken.Token = _tokenService.Hash(refreshToken.Token);
             await _tokenRepository.AddAsync(refreshToken);
-            await _hubContext.Clients.All.SendAsync("Added", _mapper.Map<UserResponse>(userDto));
+            await _hubContext.Clients.Group("Admins").SendAsync("Created", _mapper.Map<UserResponse>(userDto));
+            await _hubContext.Clients.Group("Users").SendAsync("Created", _mapper.Map<LimitedUserResponse>(userDto));
             return CreatedAtAction(nameof(Create), response);
         }
 
