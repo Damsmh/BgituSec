@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
+using BgituSec.Api.Hubs;
 using BgituSec.Api.Models.Users.Request;
 using BgituSec.Api.Models.Users.Response;
 using BgituSec.Api.Validators.User;
+using BgituSec.Application.DTOs;
 using BgituSec.Application.Features.Users.Commands;
 using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net.Mime;
 
@@ -16,11 +19,12 @@ namespace BgituSec.Api.Controllers
     [Route("api/user")]
     [Produces(MediaTypeNames.Application.Json)]
     [ApiController]
-    public class UsersController(IMediator mediator, IMapper mapper, UpdateUserByIdRequestValidator updateValidator) : ControllerBase
+    public class UsersController(IMediator mediator, IMapper mapper, UpdateUserByIdRequestValidator updateValidator, IHubContext<UserHub> hubContext) : ControllerBase
     {
         private readonly IMediator _mediator = mediator;
         private readonly IMapper _mapper = mapper;
         private readonly UpdateUserByIdRequestValidator _updateValidator = updateValidator;
+        private readonly IHubContext<UserHub> _hubContext = hubContext;
 
         [Authorize]
         [HttpPut]
@@ -46,7 +50,9 @@ namespace BgituSec.Api.Controllers
             command.Id = Id;
             try
             {
-                await _mediator.Send(command);
+                var userDTO = await _mediator.Send(command);
+                await _hubContext.Clients.Group("Admins").SendAsync("Updated", _mapper.Map<UserResponse>(userDTO));
+                await _hubContext.Clients.Group("Users").SendAsync("Updated", _mapper.Map<LimitedUserResponse>(userDTO));
                 return Ok();
             }
             catch (KeyNotFoundException)
@@ -66,17 +72,18 @@ namespace BgituSec.Api.Controllers
         [SwaggerResponse(404, "Пользователь не найден.")]
         [SwaggerResponse(401, "Ошибка доступа в связи с отсутствием/истечением срока действия jwt.")]
         [SwaggerResponse(403, "Ошибка доступа в связи с отсутствием роли админа.")]
-        public async Task<ActionResult> Delete([FromRoute] int Id)
+        public async Task<ActionResult> Delete([FromRoute] int id)
         {
-            var command = new DeleteUserCommand { Id = Id };
+            var command = new DeleteUserCommand { Id = id };
             try
             {
                 await _mediator.Send(command);
+                await _hubContext.Clients.All.SendAsync("Deleted", id);
                 return NoContent();
             }
             catch (KeyNotFoundException)
             {
-                return NotFound(Id);
+                return NotFound(id);
             }
         }
 

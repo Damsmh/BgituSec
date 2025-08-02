@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BgituSec.Api.Hubs;
 using BgituSec.Api.Models.Users.Request;
 using BgituSec.Api.Models.Users.Response;
 using BgituSec.Api.Validators.User;
@@ -7,6 +8,7 @@ using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net.Mime;
@@ -17,17 +19,13 @@ namespace BgituSec.Api.Controllers
     [Route("api/profile")]
     [Produces(MediaTypeNames.Application.Json)]
     [ApiController]
-    public class ProfileController : ControllerBase
+    public class ProfileController(IMediator mediator, IMapper mapper, UpdateUserRequestValidator updateValidator, IHubContext<UserHub> hubContext) : ControllerBase
     {
-        private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
-        private readonly UpdateUserRequestValidator _updateValidator;
-        public ProfileController(IMediator mediator, IMapper mapper, UpdateUserRequestValidator updateValidator)
-        {
-            _mediator = mediator;
-            _mapper = mapper;
-            _updateValidator = updateValidator;
-        }
+        private readonly IMediator _mediator = mediator;
+        private readonly IMapper _mapper = mapper;
+        private readonly UpdateUserRequestValidator _updateValidator = updateValidator;
+        private readonly IHubContext<UserHub> _hubContext = hubContext;
+
         [Authorize]
         [HttpGet]
         [Route("")]
@@ -75,7 +73,9 @@ namespace BgituSec.Api.Controllers
             command.Id = userId;
             try
             {
-                await _mediator.Send(command);
+                var userDTO = await _mediator.Send(command);
+                await _hubContext.Clients.Group("Admins").SendAsync("Updated", _mapper.Map<UserResponse>(userDTO));
+                await _hubContext.Clients.Group("Users").SendAsync("Updated", _mapper.Map<LimitedUserResponse>(userDTO));
                 return Ok();
             }
             catch (KeyNotFoundException)

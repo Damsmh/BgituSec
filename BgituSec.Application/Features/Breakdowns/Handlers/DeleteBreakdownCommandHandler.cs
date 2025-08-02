@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BgituSec.Api.Models.Breakdowns.Response;
 using BgituSec.Application.DTOs;
 using BgituSec.Application.Features.Breakdowns.Commands;
 using BgituSec.Application.Services.SSE;
@@ -17,7 +18,7 @@ namespace BgituSec.Application.Features.Breakdowns.Handlers
         public async Task<BreakdownDTO> Handle(DeleteBreakdownCommand request, CancellationToken cancellationToken)
         {
             var breakdown = await _repository.DeleteAsync(request.Id);
-            var message = JsonSerializer.Serialize(await _mediator.Send(new GetAllBreakdowns(), CancellationToken.None));
+            var message = JsonSerializer.Serialize(_mapper.Map<GetBreakdownResponseSSE>(await _mediator.Send(new GetAllBreakdowns(), CancellationToken.None)));
             await _sseService.NotifyClientsAsync(message);
             return _mapper.Map<BreakdownDTO>(breakdown);
         }

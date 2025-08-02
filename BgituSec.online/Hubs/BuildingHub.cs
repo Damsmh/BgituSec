@@ -52,9 +52,8 @@ namespace BgituSec.Api.Hubs
             }
             var command = _mapper.Map<CreateBuildingCommand>(request);
             var buildingDTO = await _mediator.Send(command);
-            var buildingResponse = _mapper.Map<CreateBuildingResponse>(buildingDTO);
-            await Clients.Caller.SendAsync("Created", buildingResponse);
-            await Clients.All.SendAsync("Added", buildingResponse);
+            var response = _mapper.Map<GetBuildingResponse>(buildingDTO);
+            await Clients.All.SendAsync("Created", response);
         }
 
         /// <summary>
@@ -79,8 +78,7 @@ namespace BgituSec.Api.Hubs
             try
             {
                 var response = _mapper.Map<GetBuildingResponse>(await _mediator.Send(command));
-                await Clients.Caller.SendAsync("Updated", response);
-                await Clients.All.SendAsync("Modified", response);
+                await Clients.All.SendAsync("Updated", response);
             }
             catch (KeyNotFoundException)
             {
@@ -104,8 +102,7 @@ namespace BgituSec.Api.Hubs
             try
             {
                 await _mediator.Send(command);
-                await Clients.Caller.SendAsync("Deleted", id);
-                await Clients.All.SendAsync("Removed", id);
+                await Clients.All.SendAsync("Deleted", id);
             }
             catch (KeyNotFoundException)
             {

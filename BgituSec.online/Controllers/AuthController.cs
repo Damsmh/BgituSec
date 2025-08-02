@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BgituSec.Api.Hubs;
 using BgituSec.Api.Models.RefreshTokens.Request;
 using BgituSec.Api.Models.RefreshTokens.Response;
 using BgituSec.Api.Models.Users.Request;
@@ -12,6 +13,7 @@ using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net.Mime;
@@ -22,26 +24,17 @@ namespace BgituSec.Api.Controllers
     [Route("api/auth")]
     [Produces(MediaTypeNames.Application.Json)]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController(IMediator mediator, IMapper mapper, ITokenService tokenService,
+        IValidator<CreateUserRequest> createValidator, IValidator<LoginUserRequest> loginValidator,
+        IRefreshTokenRepository tokenRepository, IHubContext<UserHub> hubContext) : ControllerBase
     {
-        private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
-        private readonly ITokenService _tokenService;
-        private readonly IValidator<CreateUserRequest> _createValidator;
-        private readonly IValidator<LoginUserRequest> _loginValidator;
-        private readonly IRefreshTokenRepository _tokenRepository;
-
-        public AuthController(IMediator mediator, IMapper mapper, ITokenService tokenService,
-            IValidator<CreateUserRequest> createValidator, IValidator<LoginUserRequest> loginValidator,
-            IRefreshTokenRepository tokenRepository)
-        {
-            _mediator = mediator;
-            _mapper = mapper;
-            _tokenService = tokenService;
-            _createValidator = createValidator;
-            _loginValidator = loginValidator;
-            _tokenRepository = tokenRepository;
-        }
+        private readonly IMediator _mediator = mediator;
+        private readonly IMapper _mapper = mapper;
+        private readonly ITokenService _tokenService = tokenService;
+        private readonly IValidator<CreateUserRequest> _createValidator = createValidator;
+        private readonly IValidator<LoginUserRequest> _loginValidator = loginValidator;
+        private readonly IRefreshTokenRepository _tokenRepository = tokenRepository;
+        private readonly IHubContext<UserHub> _hubContext = hubContext;
 
         [HttpPost]
         [AllowAnonymous]
@@ -106,7 +99,7 @@ namespace BgituSec.Api.Controllers
         [SwaggerResponse(200, "Возвращает token и refreshToken.", (typeof(CreateUserResponse)))]
         [SwaggerResponse(400, "Ошибки валидации.", typeof(List<ValidationFailure>))]
         [SwaggerResponse(401, "Ошибка добавления записи в базу данных.")]
-        public async Task<ActionResult<UserResponse>> Create([FromBody] CreateUserRequest model)
+        public async Task<ActionResult<CreateUserResponse>> Create([FromBody] CreateUserRequest model)
         {
             ValidationResult result = await _createValidator.ValidateAsync(model);
             if (!result.IsValid)
@@ -132,6 +125,8 @@ namespace BgituSec.Api.Controllers
             response.Token = token;
             refreshToken.Token = _tokenService.Hash(refreshToken.Token);
             await _tokenRepository.AddAsync(refreshToken);
+            await _hubContext.Clients.Group("Admins").SendAsync("Created", _mapper.Map<UserResponse>(userDto));
+            await _hubContext.Clients.Group("Users").SendAsync("Created", _mapper.Map<LimitedUserResponse>(userDto));
             return CreatedAtAction(nameof(Create), response);
         }
 

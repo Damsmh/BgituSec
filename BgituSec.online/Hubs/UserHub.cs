@@ -24,7 +24,7 @@ namespace BgituSec.Api.Hubs
         /// <summary>
         /// Обновляет существующего пользователя по его id. Доступно только для ROLE_ADMIN.
         /// </summary>
-        /// <param name="Id">Id пользователя для обновления</param>
+        /// <param name="id">Id пользователя для обновления</param>
         /// <param name="request">Данные пользователя для обновления (<see cref="UpdateUserRequest"/>).</param>
         /// <returns>
         /// Отправляет клиенту сообщение "Updated" при успехе,
@@ -33,51 +33,50 @@ namespace BgituSec.Api.Hubs
         /// или уведомляет всех клиентов сообщением "Modified".
         /// </returns>
         [Authorize(Roles = "ROLE_ADMIN")]
-        public async Task Update(int Id, UpdateUserRequest request)
+        public async Task Update(int id, UpdateUserRequest request)
         {
             var validateRequest = _mapper.Map<UpdateUserByIdRequest>(request);
-            validateRequest.Id = Id;
+            validateRequest.Id = id;
             ValidationResult result = await _updateValidator.ValidateAsync(validateRequest);
             if (!result.IsValid)
             {
                 await Clients.Caller.SendAsync("ValidationError", result.Errors);
             }
             var command = _mapper.Map<UpdateUserCommand>(request);
-            command.Id = Id;
+            command.Id = id;
             try
             {
-                var response = _mapper.Map<UserResponse>(await _mediator.Send(command));
-                await Clients.Caller.SendAsync("Updated", response);
-                await Clients.All.SendAsync("Modified", response);
+                var userDTO = await _mediator.Send(command);
+                await Clients.Group("Admins").SendAsync("Updated", _mapper.Map<UserResponse>(userDTO));
+                await Clients.Group("Users").SendAsync("Updated", _mapper.Map<LimitedUserResponse>(userDTO));
             }
             catch (KeyNotFoundException)
             {
-                await Clients.Caller.SendAsync("NotFound", Id);
+                await Clients.Caller.SendAsync("NotFound", id);
             }
         }
 
         /// <summary>
         /// Удаляет пользователя по его id. Доступно только для ROLE_ADMIN.
         /// </summary>
-        /// <param name="Id">id пользователя.</param>
+        /// <param name="id">id пользователя.</param>
         /// <returns>
         /// Отправляет клиенту сообщение "Deleted" при успехе,
         /// "NotFound" если пользователь не найден,
         /// или уведомляет всех клиентов сообщением "Removed".
         /// </returns>
         [Authorize(Roles = "ROLE_ADMIN")]
-        public async Task Delete(int Id)
+        public async Task Delete(int id)
         {
-            var command = new DeleteUserCommand { Id = Id };
+            var command = new DeleteUserCommand { Id = id };
             try
             {
                 await _mediator.Send(command);
-                await Clients.Caller.SendAsync("Deleted", Id);
-                await Clients.All.SendAsync("Removed", Id);
+                await Clients.All.SendAsync("Deleted", id);
             }
             catch (KeyNotFoundException)
             {
-                await Clients.Caller.SendAsync("NotFound", Id);
+                await Clients.Caller.SendAsync("NotFound", id);
             }
         }
 

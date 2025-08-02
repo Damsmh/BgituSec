@@ -44,8 +44,7 @@ namespace BgituSec.Api.Hubs
             var command = _mapper.Map<CreateComputerCommand>(request);
             var computerDTO = await _mediator.Send(command);
             var response = _mapper.Map<GetComputerResponse>(computerDTO);
-            await Clients.Caller.SendAsync("Created", response);
-            await Clients.All.SendAsync("Added", response);
+            await Clients.All.SendAsync("Created", response);
         }
 
         [Authorize(Roles = "ROLE_ADMIN")]
@@ -61,8 +60,7 @@ namespace BgituSec.Api.Hubs
             try
             {
                 var response = _mapper.Map<GetComputerResponse>(await _mediator.Send(command));
-                await Clients.Caller.SendAsync("Updated", response);
-                await Clients.All.SendAsync("Modified", response);
+                await Clients.All.SendAsync("Updated", response);
             }
             catch (KeyNotFoundException)
             {
@@ -77,8 +75,7 @@ namespace BgituSec.Api.Hubs
             try
             {
                 await _mediator.Send(command);
-                await Clients.Caller.SendAsync("Deleted", id);
-                await Clients.All.SendAsync("Removed", id);
+                await Clients.All.SendAsync("Deleted", id);
             }
             catch (KeyNotFoundException)
             {

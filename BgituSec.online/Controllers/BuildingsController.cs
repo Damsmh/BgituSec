@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
+using BgituSec.Api.Hubs;
 using BgituSec.Api.Models.Buildings.Request;
 using BgituSec.Api.Models.Buildings.Response;
 using BgituSec.Api.Validators.Building;
+using BgituSec.Application.DTOs;
 using BgituSec.Application.Features.Buildings.Commands;
 using FluentValidation.Results;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net.Mime;
 
@@ -16,11 +19,13 @@ namespace BgituSec.Api.Controllers
     [Route("api/building")]
     [Produces(MediaTypeNames.Application.Json)]
     [ApiController]
-    public class BuildingsController(IMediator mediator, IMapper mapper, BuildingRequestValidator validator) : ControllerBase
+    public class BuildingsController(IMediator mediator, IMapper mapper,
+                                     BuildingRequestValidator validator, IHubContext<BuildingHub> hubContext) : ControllerBase
     {
         private readonly IMediator _mediator = mediator;
         private readonly IMapper _mapper = mapper;
         private readonly BuildingRequestValidator _validator = validator;
+        private readonly IHubContext<BuildingHub> _hubContext = hubContext;
 
         [Authorize]
         [HttpGet]
@@ -59,6 +64,7 @@ namespace BgituSec.Api.Controllers
             var command = _mapper.Map<CreateBuildingCommand>(request);
             var buildingDTO = await _mediator.Send(command);
             var buildingResponse = _mapper.Map<CreateBuildingResponse>(buildingDTO);
+            await _hubContext.Clients.All.SendAsync("Created", _mapper.Map<GetBuildingResponse>(buildingResponse));
             return Ok(buildingResponse);
         }
 
@@ -84,7 +90,8 @@ namespace BgituSec.Api.Controllers
             var command = _mapper.Map<UpdateBuildingCommand>(request);
             try
             {
-                await _mediator.Send(command);
+                var BuildingDTO = await _mediator.Send(command);
+                await _hubContext.Clients.All.SendAsync("Updated", _mapper.Map<GetBuildingResponse>(BuildingDTO));
                 return Ok();
             }
             catch (KeyNotFoundException)
@@ -110,6 +117,7 @@ namespace BgituSec.Api.Controllers
             try
             {
                 await _mediator.Send(command);
+                await _hubContext.Clients.All.SendAsync("Deleted", id);
                 return NoContent();
             }
             catch (KeyNotFoundException)
