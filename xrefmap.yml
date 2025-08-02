@@ -96,15 +96,15 @@ references:
   commentId: T:BgituSec.Api.Hubs.BreakdownHub
   fullName: BgituSec.Api.Hubs.BreakdownHub
   nameWithType: BreakdownHub
-- uid: BgituSec.Api.Hubs.BreakdownHub.#ctor(MediatR.IMediator,AutoMapper.IMapper,BgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator,BgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator,BgituSec.Application.Services.SSE.ISSEService)
-  name: BreakdownHub(IMediator, IMapper, CreateBreakdownRequestValidator, UpdateBreakdownRequestValidator, ISSEService)
-  href: api/BgituSec.Api.Hubs.BreakdownHub.html#BgituSec_Api_Hubs_BreakdownHub__ctor_MediatR_IMediator_AutoMapper_IMapper_BgituSec_Api_Validators_Breakdown_CreateBreakdownRequestValidator_BgituSec_Api_Validators_Breakdown_UpdateBreakdownRequestValidator_BgituSec_Application_Services_SSE_ISSEService_
-  commentId: M:BgituSec.Api.Hubs.BreakdownHub.#ctor(MediatR.IMediator,AutoMapper.IMapper,BgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator,BgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator,BgituSec.Application.Services.SSE.ISSEService)
-  name.vb: New(IMediator, IMapper, CreateBreakdownRequestValidator, UpdateBreakdownRequestValidator, ISSEService)
-  fullName: BgituSec.Api.Hubs.BreakdownHub.BreakdownHub(MediatR.IMediator, AutoMapper.IMapper, BgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator, BgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator, BgituSec.Application.Services.SSE.ISSEService)
-  fullName.vb: BgituSec.Api.Hubs.BreakdownHub.New(MediatR.IMediator, AutoMapper.IMapper, BgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator, BgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator, BgituSec.Application.Services.SSE.ISSEService)
-  nameWithType: BreakdownHub.BreakdownHub(IMediator, IMapper, CreateBreakdownRequestValidator, UpdateBreakdownRequestValidator, ISSEService)
-  nameWithType.vb: BreakdownHub.New(IMediator, IMapper, CreateBreakdownRequestValidator, UpdateBreakdownRequestValidator, ISSEService)
+- uid: BgituSec.Api.Hubs.BreakdownHub.#ctor(MediatR.IMediator,AutoMapper.IMapper,BgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator,BgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator)
+  name: BreakdownHub(IMediator, IMapper, CreateBreakdownRequestValidator, UpdateBreakdownRequestValidator)
+  href: api/BgituSec.Api.Hubs.BreakdownHub.html#BgituSec_Api_Hubs_BreakdownHub__ctor_MediatR_IMediator_AutoMapper_IMapper_BgituSec_Api_Validators_Breakdown_CreateBreakdownRequestValidator_BgituSec_Api_Validators_Breakdown_UpdateBreakdownRequestValidator_
+  commentId: M:BgituSec.Api.Hubs.BreakdownHub.#ctor(MediatR.IMediator,AutoMapper.IMapper,BgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator,BgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator)
+  name.vb: New(IMediator, IMapper, CreateBreakdownRequestValidator, UpdateBreakdownRequestValidator)
+  fullName: BgituSec.Api.Hubs.BreakdownHub.BreakdownHub(MediatR.IMediator, AutoMapper.IMapper, BgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator, BgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator)
+  fullName.vb: BgituSec.Api.Hubs.BreakdownHub.New(MediatR.IMediator, AutoMapper.IMapper, BgituSec.Api.Validators.Breakdown.CreateBreakdownRequestValidator, BgituSec.Api.Validators.Breakdown.UpdateBreakdownRequestValidator)
+  nameWithType: BreakdownHub.BreakdownHub(IMediator, IMapper, CreateBreakdownRequestValidator, UpdateBreakdownRequestValidator)
+  nameWithType.vb: BreakdownHub.New(IMediator, IMapper, CreateBreakdownRequestValidator, UpdateBreakdownRequestValidator)
 - uid: BgituSec.Api.Hubs.BreakdownHub.#ctor*
   name: BreakdownHub
   href: api/BgituSec.Api.Hubs.BreakdownHub.html#BgituSec_Api_Hubs_BreakdownHub__ctor_
@@ -336,6 +336,85 @@ references:
   isSpec: "True"
   fullName: BgituSec.Api.Hubs.ComputerHub.Update
   nameWithType: ComputerHub.Update
+- uid: BgituSec.Api.Hubs.Filters
+  name: BgituSec.Api.Hubs.Filters
+  href: api/BgituSec.Api.Hubs.Filters.html
+  commentId: N:BgituSec.Api.Hubs.Filters
+  fullName: BgituSec.Api.Hubs.Filters
+  nameWithType: BgituSec.Api.Hubs.Filters
+- uid: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter
+  name: RoleBasedGroupHubFilter
+  href: api/BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.html
+  commentId: T:BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter
+  fullName: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter
+  nameWithType: RoleBasedGroupHubFilter
+- uid: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.#ctor(Microsoft.AspNetCore.SignalR.IHubContext{Microsoft.AspNetCore.SignalR.DynamicHub})
+  name: RoleBasedGroupHubFilter(IHubContext<DynamicHub>)
+  href: api/BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.html#BgituSec_Api_Hubs_Filters_RoleBasedGroupHubFilter__ctor_Microsoft_AspNetCore_SignalR_IHubContext_Microsoft_AspNetCore_SignalR_DynamicHub__
+  commentId: M:BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.#ctor(Microsoft.AspNetCore.SignalR.IHubContext{Microsoft.AspNetCore.SignalR.DynamicHub})
+  name.vb: New(IHubContext(Of DynamicHub))
+  fullName: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.RoleBasedGroupHubFilter(Microsoft.AspNetCore.SignalR.IHubContext<Microsoft.AspNetCore.SignalR.DynamicHub>)
+  fullName.vb: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.New(Microsoft.AspNetCore.SignalR.IHubContext(Of Microsoft.AspNetCore.SignalR.DynamicHub))
+  nameWithType: RoleBasedGroupHubFilter.RoleBasedGroupHubFilter(IHubContext<DynamicHub>)
+  nameWithType.vb: RoleBasedGroupHubFilter.New(IHubContext(Of DynamicHub))
+- uid: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.#ctor*
+  name: RoleBasedGroupHubFilter
+  href: api/BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.html#BgituSec_Api_Hubs_Filters_RoleBasedGroupHubFilter__ctor_
+  commentId: Overload:BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.RoleBasedGroupHubFilter
+  fullName.vb: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.New
+  nameWithType: RoleBasedGroupHubFilter.RoleBasedGroupHubFilter
+  nameWithType.vb: RoleBasedGroupHubFilter.New
+- uid: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.InvokeMethodAsync(Microsoft.AspNetCore.SignalR.HubInvocationContext,System.Func{Microsoft.AspNetCore.SignalR.HubInvocationContext,System.Threading.Tasks.ValueTask{System.Object}})
+  name: InvokeMethodAsync(HubInvocationContext, Func<HubInvocationContext, ValueTask<object>>)
+  href: api/BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.html#BgituSec_Api_Hubs_Filters_RoleBasedGroupHubFilter_InvokeMethodAsync_Microsoft_AspNetCore_SignalR_HubInvocationContext_System_Func_Microsoft_AspNetCore_SignalR_HubInvocationContext_System_Threading_Tasks_ValueTask_System_Object___
+  commentId: M:BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.InvokeMethodAsync(Microsoft.AspNetCore.SignalR.HubInvocationContext,System.Func{Microsoft.AspNetCore.SignalR.HubInvocationContext,System.Threading.Tasks.ValueTask{System.Object}})
+  name.vb: InvokeMethodAsync(HubInvocationContext, Func(Of HubInvocationContext, ValueTask(Of Object)))
+  fullName: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.InvokeMethodAsync(Microsoft.AspNetCore.SignalR.HubInvocationContext, System.Func<Microsoft.AspNetCore.SignalR.HubInvocationContext, System.Threading.Tasks.ValueTask<object>>)
+  fullName.vb: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.InvokeMethodAsync(Microsoft.AspNetCore.SignalR.HubInvocationContext, System.Func(Of Microsoft.AspNetCore.SignalR.HubInvocationContext, System.Threading.Tasks.ValueTask(Of Object)))
+  nameWithType: RoleBasedGroupHubFilter.InvokeMethodAsync(HubInvocationContext, Func<HubInvocationContext, ValueTask<object>>)
+  nameWithType.vb: RoleBasedGroupHubFilter.InvokeMethodAsync(HubInvocationContext, Func(Of HubInvocationContext, ValueTask(Of Object)))
+- uid: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.InvokeMethodAsync*
+  name: InvokeMethodAsync
+  href: api/BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.html#BgituSec_Api_Hubs_Filters_RoleBasedGroupHubFilter_InvokeMethodAsync_
+  commentId: Overload:BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.InvokeMethodAsync
+  isSpec: "True"
+  fullName: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.InvokeMethodAsync
+  nameWithType: RoleBasedGroupHubFilter.InvokeMethodAsync
+- uid: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.OnConnectedAsync(Microsoft.AspNetCore.SignalR.HubConnectionContext,System.Func{Microsoft.AspNetCore.SignalR.HubConnectionContext,System.Threading.Tasks.Task})
+  name: OnConnectedAsync(HubConnectionContext, Func<HubConnectionContext, Task>)
+  href: api/BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.html#BgituSec_Api_Hubs_Filters_RoleBasedGroupHubFilter_OnConnectedAsync_Microsoft_AspNetCore_SignalR_HubConnectionContext_System_Func_Microsoft_AspNetCore_SignalR_HubConnectionContext_System_Threading_Tasks_Task__
+  commentId: M:BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.OnConnectedAsync(Microsoft.AspNetCore.SignalR.HubConnectionContext,System.Func{Microsoft.AspNetCore.SignalR.HubConnectionContext,System.Threading.Tasks.Task})
+  name.vb: OnConnectedAsync(HubConnectionContext, Func(Of HubConnectionContext, Task))
+  fullName: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.OnConnectedAsync(Microsoft.AspNetCore.SignalR.HubConnectionContext, System.Func<Microsoft.AspNetCore.SignalR.HubConnectionContext, System.Threading.Tasks.Task>)
+  fullName.vb: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.OnConnectedAsync(Microsoft.AspNetCore.SignalR.HubConnectionContext, System.Func(Of Microsoft.AspNetCore.SignalR.HubConnectionContext, System.Threading.Tasks.Task))
+  nameWithType: RoleBasedGroupHubFilter.OnConnectedAsync(HubConnectionContext, Func<HubConnectionContext, Task>)
+  nameWithType.vb: RoleBasedGroupHubFilter.OnConnectedAsync(HubConnectionContext, Func(Of HubConnectionContext, Task))
+- uid: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.OnConnectedAsync*
+  name: OnConnectedAsync
+  href: api/BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.html#BgituSec_Api_Hubs_Filters_RoleBasedGroupHubFilter_OnConnectedAsync_
+  commentId: Overload:BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.OnConnectedAsync
+  isSpec: "True"
+  fullName: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.OnConnectedAsync
+  nameWithType: RoleBasedGroupHubFilter.OnConnectedAsync
+- uid: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.OnDisconnectedAsync(Microsoft.AspNetCore.SignalR.HubConnectionContext,System.Exception,System.Func{Microsoft.AspNetCore.SignalR.HubConnectionContext,System.Exception,System.Threading.Tasks.Task})
+  name: OnDisconnectedAsync(HubConnectionContext, Exception, Func<HubConnectionContext, Exception, Task>)
+  href: api/BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.html#BgituSec_Api_Hubs_Filters_RoleBasedGroupHubFilter_OnDisconnectedAsync_Microsoft_AspNetCore_SignalR_HubConnectionContext_System_Exception_System_Func_Microsoft_AspNetCore_SignalR_HubConnectionContext_System_Exception_System_Threading_Tasks_Task__
+  commentId: M:BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.OnDisconnectedAsync(Microsoft.AspNetCore.SignalR.HubConnectionContext,System.Exception,System.Func{Microsoft.AspNetCore.SignalR.HubConnectionContext,System.Exception,System.Threading.Tasks.Task})
+  name.vb: OnDisconnectedAsync(HubConnectionContext, Exception, Func(Of HubConnectionContext, Exception, Task))
+  fullName: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.OnDisconnectedAsync(Microsoft.AspNetCore.SignalR.HubConnectionContext, System.Exception, System.Func<Microsoft.AspNetCore.SignalR.HubConnectionContext, System.Exception, System.Threading.Tasks.Task>)
+  fullName.vb: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.OnDisconnectedAsync(Microsoft.AspNetCore.SignalR.HubConnectionContext, System.Exception, System.Func(Of Microsoft.AspNetCore.SignalR.HubConnectionContext, System.Exception, System.Threading.Tasks.Task))
+  nameWithType: RoleBasedGroupHubFilter.OnDisconnectedAsync(HubConnectionContext, Exception, Func<HubConnectionContext, Exception, Task>)
+  nameWithType.vb: RoleBasedGroupHubFilter.OnDisconnectedAsync(HubConnectionContext, Exception, Func(Of HubConnectionContext, Exception, Task))
+- uid: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.OnDisconnectedAsync*
+  name: OnDisconnectedAsync
+  href: api/BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.html#BgituSec_Api_Hubs_Filters_RoleBasedGroupHubFilter_OnDisconnectedAsync_
+  commentId: Overload:BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.OnDisconnectedAsync
+  isSpec: "True"
+  fullName: BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.OnDisconnectedAsync
+  nameWithType: RoleBasedGroupHubFilter.OnDisconnectedAsync
 - uid: BgituSec.Api.Hubs.UserHub
   name: UserHub
   href: api/BgituSec.Api.Hubs.UserHub.html
@@ -878,122 +957,6 @@ references:
   isSpec: "True"
   fullName: BgituSec.Api.Models.Breakdowns.Response.CreateBreakdownResponse.Id
   nameWithType: CreateBreakdownResponse.Id
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse
-  name: GetBreakdownResponse
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html
-  commentId: T:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse
-  nameWithType: GetBreakdownResponse
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.computerId
-  name: computerId
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html#BgituSec_Api_Models_Breakdowns_Response_GetBreakdownResponse_computerId
-  commentId: P:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.computerId
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.computerId
-  nameWithType: GetBreakdownResponse.computerId
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.computerId*
-  name: computerId
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html#BgituSec_Api_Models_Breakdowns_Response_GetBreakdownResponse_computerId_
-  commentId: Overload:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.computerId
-  isSpec: "True"
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.computerId
-  nameWithType: GetBreakdownResponse.computerId
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.createdAt
-  name: createdAt
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html#BgituSec_Api_Models_Breakdowns_Response_GetBreakdownResponse_createdAt
-  commentId: P:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.createdAt
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.createdAt
-  nameWithType: GetBreakdownResponse.createdAt
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.createdAt*
-  name: createdAt
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html#BgituSec_Api_Models_Breakdowns_Response_GetBreakdownResponse_createdAt_
-  commentId: Overload:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.createdAt
-  isSpec: "True"
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.createdAt
-  nameWithType: GetBreakdownResponse.createdAt
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.description
-  name: description
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html#BgituSec_Api_Models_Breakdowns_Response_GetBreakdownResponse_description
-  commentId: P:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.description
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.description
-  nameWithType: GetBreakdownResponse.description
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.description*
-  name: description
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html#BgituSec_Api_Models_Breakdowns_Response_GetBreakdownResponse_description_
-  commentId: Overload:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.description
-  isSpec: "True"
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.description
-  nameWithType: GetBreakdownResponse.description
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.id
-  name: id
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html#BgituSec_Api_Models_Breakdowns_Response_GetBreakdownResponse_id
-  commentId: P:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.id
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.id
-  nameWithType: GetBreakdownResponse.id
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.id*
-  name: id
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html#BgituSec_Api_Models_Breakdowns_Response_GetBreakdownResponse_id_
-  commentId: Overload:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.id
-  isSpec: "True"
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.id
-  nameWithType: GetBreakdownResponse.id
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.isSolved
-  name: isSolved
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html#BgituSec_Api_Models_Breakdowns_Response_GetBreakdownResponse_isSolved
-  commentId: P:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.isSolved
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.isSolved
-  nameWithType: GetBreakdownResponse.isSolved
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.isSolved*
-  name: isSolved
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html#BgituSec_Api_Models_Breakdowns_Response_GetBreakdownResponse_isSolved_
-  commentId: Overload:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.isSolved
-  isSpec: "True"
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.isSolved
-  nameWithType: GetBreakdownResponse.isSolved
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.level
-  name: level
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html#BgituSec_Api_Models_Breakdowns_Response_GetBreakdownResponse_level
-  commentId: P:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.level
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.level
-  nameWithType: GetBreakdownResponse.level
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.level*
-  name: level
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html#BgituSec_Api_Models_Breakdowns_Response_GetBreakdownResponse_level_
-  commentId: Overload:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.level
-  isSpec: "True"
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.level
-  nameWithType: GetBreakdownResponse.level
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.userId
-  name: userId
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html#BgituSec_Api_Models_Breakdowns_Response_GetBreakdownResponse_userId
-  commentId: P:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.userId
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.userId
-  nameWithType: GetBreakdownResponse.userId
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.userId*
-  name: userId
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html#BgituSec_Api_Models_Breakdowns_Response_GetBreakdownResponse_userId_
-  commentId: Overload:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.userId
-  isSpec: "True"
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.userId
-  nameWithType: GetBreakdownResponse.userId
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE
-  name: GetBreakdownResponseSSE
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE.html
-  commentId: T:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE
-  nameWithType: GetBreakdownResponseSSE
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE.breakdowns
-  name: breakdowns
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE.html#BgituSec_Api_Models_Breakdowns_Response_GetBreakdownResponseSSE_breakdowns
-  commentId: P:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE.breakdowns
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE.breakdowns
-  nameWithType: GetBreakdownResponseSSE.breakdowns
-- uid: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE.breakdowns*
-  name: breakdowns
-  href: api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE.html#BgituSec_Api_Models_Breakdowns_Response_GetBreakdownResponseSSE_breakdowns_
-  commentId: Overload:BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE.breakdowns
-  isSpec: "True"
-  fullName: BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE.breakdowns
-  nameWithType: GetBreakdownResponseSSE.breakdowns
 - uid: BgituSec.Api.Models.Buildings.Request
   name: BgituSec.Api.Models.Buildings.Request
   href: api/BgituSec.Api.Models.Buildings.Request.html

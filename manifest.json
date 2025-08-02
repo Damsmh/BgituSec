@@ -78,6 +78,34 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Hubs.Filters.RoleBasedGroupHubFilter",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BgituSec.Api.Hubs.Filters.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BgituSec.Api.Hubs.Filters.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BgituSec.Api.Hubs.Filters",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BgituSec.Api.Hubs.UserHub.yml",
       "output": {
         ".html": {
@@ -242,34 +270,6 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "BgituSec.Api.Models.Breakdowns.Response.CreateBreakdownResponse",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponse",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "BgituSec.Api.Models.Breakdowns.Response.GetBreakdownResponseSSE",
       "Summary": null
     },
     {
