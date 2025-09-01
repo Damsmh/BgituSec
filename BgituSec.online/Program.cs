@@ -130,7 +130,10 @@ namespace BgituSec.Online
                 options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_0;
 
             });
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(options =>
+            {
+                options.DefaultModelsExpandDepth(-1);
+            });
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseCors();
